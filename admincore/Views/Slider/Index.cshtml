@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Slider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var noOfSliders = 1;
+}
+
+<style type="text/css">
+
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .auto-style1 {
+        width: 410px;
+    }
+
+    .auto-style2 {
+        width: 412px;
+    }
+
+    .auto-style3 {
+        width: 100%;
+        height: 132px;
+    }
+</style>
+
+<h1 style="text-align: center"> Change Slider Images</h1>
+
+
+<table class="auto-style3">
+    @{
+        for (int i = 0; i < noOfSliders; i++)
+        {
+            var n = i + 1;
+            var cssClass = "auto-style3" + n;
+            <tr>
+                <td class="@cssClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                @*<td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>*@
+            </tr>
+
+            <tr>
+                <td class="@cssClass">&nbsp;Slider Image @n &nbsp;&nbsp;</td>
+                @*<td class="auto-style2">&nbsp;Slider Image 2</td>
+                    <td>&nbsp;Slider Image 3&nbsp;&nbsp;</td>*@
+            </tr>
+            <tr>
+
+                <td class="auto-style1">
+                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" /><br>
+                    <label ID="Label1" runat="server" Text=""></label>
+                </td>
+            </tr>
+
+
+
+
+
+
+
+        }
+    }
+
+
+</table>
+
+<button class="btn btn-primary" type="submit" style="float: right;">Submit<div></div></button>
+

@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "Event";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style type="text/css">
+
+
+
+
+    .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+
+<h1 style="text-align: center"> Event Entry</h1>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Table heading</th>
+                <th>Table heading</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Serial Number</td>
+                <td><input type="text" class="textbox"></td>
+
+
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Title of Event</td>
+                <td><input type="text" class="textbox"></td>
+
+
+            </tr>
+
+            <tr>
+                <th scope="row">3</th>
+                <td>Select File</td>
+                <td>
+                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" /><br>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Select Date</td>
+                <td>
+                    <input type="date" class="date" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <button class="btn btn-primary" type="submit" style="float: right;">Submit<div></div></button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+</div>

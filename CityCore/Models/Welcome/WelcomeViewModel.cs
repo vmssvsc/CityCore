@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CityCore.Models
+{
+    public class WelcomeViewModel
+    {
+        public List<SliderImage> SliderImages { get; set; }
+        
+        public List<Project> Projects { get; set; }
+    }
+
+    public class Project
+    {
+
+    }
+
+    public class SliderImage
+    {
+        public string Url { get; set; }
+    }
+
+
+}
