@@ -34,7 +34,6 @@ namespace CityCore.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user != null)
             {
-
                 ViewBag.FirstName = user.FirstName;
                 ViewBag.LastName = user.LastName;
             }
