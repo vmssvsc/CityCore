@@ -3,7 +3,7 @@
     ViewData["Title"] = "Slider";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
-    var noOfSliders = 1;
+    var noOfSliders = 2;
 }
 
 <style type="text/css">
@@ -44,29 +44,43 @@
 
 <table class="auto-style3">
     @{
+<thead>
+    <tr>
+        <td  class="text-center"><b>File</b></td>
+        <td class="text-center"><b>Upload</b></td>
+        <td class="text-center"><b>Action</b></td>
+    </tr>
+</thead>
         for (int i = 0; i < noOfSliders; i++)
         {
             var n = i + 1;
-            var cssClass = "auto-style3" + n;
+            var cssClass = "auto-style" + n;
+            
             <tr>
-                <td class="@cssClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                @*<td class="auto-style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>*@
-            </tr>
+                <td class="@cssClass">
+                    &nbsp;Slider Image @n &nbsp;&nbsp;
 
-            <tr>
-                <td class="@cssClass">&nbsp;Slider Image @n &nbsp;&nbsp;</td>
+                    
+                </td>
+                <td>
+                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" />
+                    <label ID="Label1" class="pull-left">file1.jpg</label>
+                    <div class="margin-top">
+                        <button class="btn btn-sm btn-info pull-right"><i class="fa fa-floppy-o"></i> Save</button>
+                    </div>
+
+                </td>
                 @*<td class="auto-style2">&nbsp;Slider Image 2</td>
                     <td>&nbsp;Slider Image 3&nbsp;&nbsp;</td>*@
-            </tr>
-            <tr>
+                <td class="@cssClass">
+                    <div class="pull-right">
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Preview</button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</button>
+                    </div>
 
-                <td class="auto-style1">
-                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" /><br>
-                    <label ID="Label1" runat="server" Text=""></label>
                 </td>
             </tr>
-
+           
 
 
 
@@ -79,5 +93,5 @@
 
 </table>
 
-<button class="btn btn-primary" type="submit" style="float: right;">Submit<div></div></button>
+<button class="btn btn-primary margin-top pull-right"><i class="fa fa-floppy-o"></i> Save All</button>
 

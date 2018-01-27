@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using static admincore.Common.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace admincore.Data.Models
 {
-    public class Setting
+    public class SliderImage
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } 
+        
+        public int SequenceNo { get; set; }
 
-        public SettingsValues EnumValue { get; set; }
-
-        public string SettingValue { get; set; }
+        public int DocumentId { get; set; }
+        [ForeignKey("DocumentId")]
+        public virtual Document Document { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

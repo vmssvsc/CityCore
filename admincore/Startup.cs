@@ -35,6 +35,7 @@ namespace admincore
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IDocumentManager, DocumentManager>();
 
             services.AddMvc();
         }

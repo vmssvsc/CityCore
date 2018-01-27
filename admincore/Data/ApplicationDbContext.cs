@@ -21,6 +21,8 @@ namespace admincore.Data
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<SliderImage> SliderImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
