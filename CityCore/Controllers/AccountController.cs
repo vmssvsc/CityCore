@@ -17,7 +17,6 @@ using CityCore.Services;
 namespace CityCore.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

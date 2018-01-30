@@ -35,7 +35,7 @@ namespace admincore
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IDocumentManager, DocumentManager>();
+            services.AddTransient<IDocumentManager, AmazonDocumentManager>();
 
             services.AddMvc();
         }
@@ -48,6 +48,7 @@ namespace admincore
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
+
             }
             else
             {
@@ -62,7 +63,7 @@ namespace admincore
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Login}");
             });
         }
     }

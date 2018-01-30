@@ -28,7 +28,7 @@ namespace admincore.Controllers
         public async Task<IActionResult> Index()
         {         
             await SetUserData();
-
+    
             var sliderList = (from slider in _context.SliderImages
                               join doc in _context.Documents
                               on slider.DocumentId equals doc.Id
@@ -53,12 +53,12 @@ namespace admincore.Controllers
                     {
                         //upload.  TODo Check if file size is > that defined in settings table
 
-                        var success = _documentManager.Save(file);
+                        var success = _documentManager.Save(file, "vmssvsc-sliders");
 
                        
                     }
                     else
-                        return Json(new { success = true, url = "", id = "" });
+                        return Json(new { success = false, url = "", id = "" });
                 }
                 catch (Exception e)
                 {
