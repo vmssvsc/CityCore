@@ -60,8 +60,13 @@ namespace CityCore
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                  name: "about-route",
+                  template: "",
+                  defaults: new { controller = "Account", action = "Login" });
+
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Welcome}");
+                    template: "{controller=Home}/{action=Index}");
             });
         }
     }

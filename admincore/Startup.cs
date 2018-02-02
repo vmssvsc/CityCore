@@ -37,7 +37,8 @@ namespace admincore
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IDocumentManager, AmazonDocumentManager>();
 
-            services.AddMvc();
+             services.AddMvc();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,9 +63,16 @@ namespace admincore
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                name: "about-route",
+                template: "",
+                defaults: new { controller = "Account", action = "Login" });
+
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Account}/{action=Login}");
+                    template: "{controller=Home}/{action=Index}");
             });
+
+
         }
     }
 }

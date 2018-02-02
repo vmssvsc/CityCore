@@ -44,7 +44,7 @@ namespace admincore.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Save(IFormFile file)
-        {
+        {   
             using (var transaction = _context.Database.BeginTransaction() )
             {
                 try
@@ -53,7 +53,7 @@ namespace admincore.Controllers
                     {
                         //upload.  TODo Check if file size is > that defined in settings table
 
-                        var success = _documentManager.Save(file, "vmssvsc-sliders");
+                        var success = await _documentManager.Save(file, "vmssvsc-sliders");
 
                        
                     }
