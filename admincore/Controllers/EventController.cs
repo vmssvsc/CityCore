@@ -25,7 +25,6 @@ namespace admincore.Controllers
             return View();
         }
 
-        
 
     }
 }
