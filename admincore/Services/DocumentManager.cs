@@ -1,6 +1,6 @@
 ﻿using admincore.Data;
-using Amazon.S3;
-using Amazon.S3.Transfer;
+//using Amazon.S3;
+//using Amazon.S3.Transfer;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
@@ -54,13 +54,13 @@ namespace admincore.Services
 
         public async Task<bool> Save(IFormFile formFile, string bucketName)
         {
-            IAmazonS3 client = new AmazonS3Client("AKIAJ2J32HOXARTMNX4A", "32kLKE/F7aMwSot6p309/WfJqOvMiNLiyViZ8Tyq");
-            TransferUtility utility = new TransferUtility(client);
-            TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
-            request.BucketName = bucketName;
-            request.Key = formFile.FileName + '$' + Guid.NewGuid(); //file name up in S3  
-            request.InputStream = formFile.OpenReadStream();
-            utility.Upload(request); //commensing the transfer
+            //S3Client client = new S3Client("AKIAJ2J32HOXARTMNX4A", "32kLKE/F7aMwSot6p309/WfJqOvMiNLiyViZ8Tyq", S3Region.APS1);
+            //TransferUtility utility = new TransferUtility(client);
+            //TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
+            //request.BucketName = bucketName;
+            //request.Key = formFile.FileName + '$' + Guid.NewGuid(); //file name up in S3  
+            //request.InputStream = formFile.OpenReadStream();
+            //utility.Upload(request); //commensing the transfer
 
             return true; //indicate that the file was sent  
         }

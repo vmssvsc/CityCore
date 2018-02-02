@@ -5,6 +5,7 @@ using admincore.Models;
 using admincore.Services;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace admincore.Controllers
 {
@@ -18,7 +19,7 @@ namespace admincore.Controllers
         {
         }
 
-
+       
         public async Task<IActionResult> Index() 
         {
             var user = await _userManager.GetUserAsync(User);
@@ -27,6 +28,17 @@ namespace admincore.Controllers
             else
                 await SetUserData();
             return View("~/Views/Home/MenuDescription.cshtml");
+
+        }
+        [Authorize]
+        public async Task<IActionResult> MenuDescription()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return View();
+            else
+                await SetUserData();
+            return View();
 
         }
 

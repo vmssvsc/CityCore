@@ -51,11 +51,11 @@
         <td class="text-center"><b>Action</b></td>
     </tr>
 </thead>
-        for (int i = 0; i < noOfSliders; i++)
+        for (int i = 0; i < 1; i++)
         {
             var n = i + 1;
             var cssClass = "auto-style" + n;
-            
+            var fileClass = "slider-upload" + n;
             <tr>
                 <td class="@cssClass">
                     &nbsp;Slider Image @n &nbsp;&nbsp;
@@ -63,8 +63,8 @@
                     
                 </td>
                 <td>
-                    <input type="file" class="btn btn-default btn-file slider-upload"/>
-                    <label ID="Label1" class="pull-left">file1.jpg</label>
+                    <input type="file" class="btn btn-default btn-file slider-image @fileClass"/>
+                    <label class="pull-left">file1.jpg</label>
                     <div class="margin-top">
                         <a href="javascript:void(0)" class="btn btn-sm btn-info pull-right btnSave"><i class="fa fa-floppy-o"></i> Save</a>
                     </div>
@@ -95,3 +95,6 @@
 
 <button class="btn btn-primary margin-top pull-right"><i class="fa fa-floppy-o"></i> Save All</button>
 
+@section EndScripts{ 
+<script src="~/js/Slider/Index.js"></script>
+}

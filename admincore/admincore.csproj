@@ -12,12 +12,10 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Amazon.S3" Version="0.10.6" />
-    <PackageReference Include="AWSSDK.Core" Version="3.3.21.9" />
-    <PackageReference Include="FileStorage.AmazonS3" Version="0.1.17" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
   </ItemGroup>
 
   <ItemGroup>
