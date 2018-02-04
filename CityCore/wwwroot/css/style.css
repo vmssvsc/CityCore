@@ -10,8 +10,17 @@
 	min-height: 50px;
 	margin-top:35px;
 	text-indent:-999em;
-	background:url(../images/logo.png) no-repeat center bottom;
+	/*background:url(../images/logo.png) no-repeat center bottom;*/
 }
+
+h1 {
+    color: dimgray;
+}
+
+span {
+    color: Highlight;
+}
+
 
 
 

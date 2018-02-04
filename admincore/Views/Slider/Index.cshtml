@@ -3,26 +3,29 @@
     ViewData["Title"] = "Slider";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
-    var noOfSliders = 2;
+    var noOfSliders = 3;
 }
 
 <style type="text/css">
 
+    
 
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
+        table-layout: fixed;
     }
 
     td, th {
         border: 1px solid #dddddd;
-        text-align: left;
+        text-align: center;
         padding: 8px;
+        width:33%;
     }
 
     tr:nth-child(even) {
-        background-color: #dddddd;
+        /*background-color: #dddddd;*/
     }
 
     .auto-style1 {
@@ -39,62 +42,50 @@
     }
 </style>
 
-<h1 style="text-align: center"> Change Slider Images</h1>
+<div class="grid_3 grid_4">
+    
+    <div class="row">
 
 
-<table class="auto-style3">
-    @{
-<thead>
-    <tr>
-        <td  class="text-center"><b>File</b></td>
-        <td class="text-center"><b>Upload</b></td>
-        <td class="text-center"><b>Action</b></td>
-    </tr>
-</thead>
-        for (int i = 0; i < 1; i++)
-        {
-            var n = i + 1;
-            var cssClass = "auto-style" + n;
-            var fileClass = "slider-upload" + n;
-            <tr>
-                <td class="@cssClass">
-                    &nbsp;Slider Image @n &nbsp;&nbsp;
+        <div class="col-xs-12"><h3>Change Slider Image</h3></div>
+        <div class="">&nbsp;</div>
+        <div class="col-xs-12">
 
-                    
-                </td>
-                <td>
-                    <input type="file" class="btn btn-default btn-file slider-image @fileClass"/>
-                    <label class="pull-left">file1.jpg</label>
-                    <div class="margin-top">
-                        <a href="javascript:void(0)" class="btn btn-sm btn-info pull-right btnSave"><i class="fa fa-floppy-o"></i> Save</a>
+            <div class="panel panel-default">
+                <div class="panel-heading">Slider Image 1</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="row">
+                                    <div class="col-xs-9 col-sm-8">
+                                        <input type="file" id="exampleInputFile">
+                                    </div>
+                                    <div class="col-xs-3 col-sm-4">
+                                        <button type="button" class="btn btn-info btn-block"><i class="glyphicon glyphicon-floppy-disk"></i> <span class="hidden-xs">Save</span></button>
+                                    </div>
+                                    <div class="">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-7 text-right">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-eye-open"></i> Preview
+                                </button>
+                                <button type="button" class="btn btn-success warning_2">
+                                    <i class="glyphicon glyphicon-remove"></i> Delete
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
-                </td>
-                @*<td class="auto-style2">&nbsp;Slider Image 2</td>
-                    <td>&nbsp;Slider Image 3&nbsp;&nbsp;</td>*@
-                <td class="@cssClass">
-                    <div class="pull-right">
-                        <button class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Preview</button>
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</button>
-                    </div>
-
-                </td>
-            </tr>
-           
+                </div>
+            </div>
+        </div>
 
 
 
 
-
-
-        }
-    }
-
-
-</table>
-
-<button class="btn btn-primary margin-top pull-right"><i class="fa fa-floppy-o"></i> Save All</button>
-
-@section EndScripts{ 
-<script src="~/js/Slider/Index.js"></script>
-}
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-info pull-right"><i class="glyphicon glyphicon-floppy-disk"></i> Save All</button>
+        </div>
+    </div>
+    </div>
