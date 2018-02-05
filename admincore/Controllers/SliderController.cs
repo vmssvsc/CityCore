@@ -53,7 +53,7 @@ namespace admincore.Controllers
                     {
                         //upload.  TODo Check if file size is > that defined in settings table
 
-                        var success = await _documentManager.Save(file, "vmssvsc-sliders");
+                        var success = await _documentManager.Save(file, "");
 
                        
                     }

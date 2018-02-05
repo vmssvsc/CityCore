@@ -62,16 +62,6 @@ namespace admincore.Services
 
         public async Task<bool> Save(IFormFile formFile, string bucketName)
         {
-            //S3Client client = new S3Client("AKIAJ2J32HOXARTMNX4A", "32kLKE/F7aMwSot6p309/WfJqOvMiNLiyViZ8Tyq", S3Region.APS1);
-            //TransferUtility utility = new TransferUtility(client);
-            //TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
-            //request.BucketName = bucketName;
-            //request.Key = formFile.FileName + '$' + Guid.NewGuid(); //file name up in S3  
-            //request.InputStream = formFile.OpenReadStream();
-            //utility.Upload(request); //commensing the transfer
-
-
-
             try
             {
                 using (var client = new AmazonS3Client("", "",RegionEndpoint.APSouth1 ))//new AmazonS3Config() { ServiceURL = "", UseHttp = true, RegionEndpoint = RegionEndpoint.APSouth1 }))
