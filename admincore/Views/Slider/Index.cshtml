@@ -3,7 +3,7 @@
     ViewData["Title"] = "Slider";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
-    var noOfSliders = 3;
+    var noOfSliders = Convert.ToInt16(ViewBag.NoOfSliders);
 }
 
 <style type="text/css">
@@ -51,34 +51,43 @@
         <div class="">&nbsp;</div>
         <div class="col-xs-12">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Slider Image 1</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5">
+            @{
+                    for (int i = 0; i < noOfSliders; i++)
+                    {
+                        var SeqNo = i + 1;
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Slider Image @SeqNo</div>
+                        <div class="panel-body">
+                            <div class="form-group">
                                 <div class="row">
-                                    <div class="col-xs-9 col-sm-8">
-                                        <input type="file" class="sliderImage">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="row">
+                                            <div class="col-xs-9 col-sm-8">
+                                                <input type="file" class="sliderImage" accept="image/*">
+                                            </div>
+                                            <div class="col-xs-3 col-sm-4">
+                                                <button type="button" class="btn btn-info btn-block btnUpload"><i class="fa fa-floppy-o"></i> <span class="hidden-xs">Save</span></button>
+                                            </div>
+                                            <div class="">&nbsp;</div>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-3 col-sm-4">
-                                        <button type="button" class="btn btn-info btn-block btnUpload"><i class="glyphicon glyphicon-floppy-disk"></i> <span class="hidden-xs">Save</span></button>
+                                    <div class="col-sm-12 col-md-7 text-right">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa fa-eye"></i> Preview
+                                        </button>
+                                        <button type="button" class="btn btn-success warning_2">
+                                            <i class="fa fa-times"></i> Delete
+                                        </button>
                                     </div>
-                                    <div class="">&nbsp;</div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 col-md-7 text-right">
-                                <button type="button" class="btn btn-primary">
-                                    <i class="glyphicon glyphicon-eye-open"></i> Preview
-                                </button>
-                                <button type="button" class="btn btn-success warning_2">
-                                    <i class="glyphicon glyphicon-remove"></i> Delete
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                }
+            }
+
+
         </div>
 
 

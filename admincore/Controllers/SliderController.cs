@@ -13,6 +13,8 @@ using admincore.Data;
 using System.Linq;
 using System.Collections.Generic;
 using admincore.Data.Models;
+using Microsoft.Extensions.Options;
+using admincore.Common;
 
 namespace admincore.Controllers
 {
@@ -22,14 +24,18 @@ namespace admincore.Controllers
         public SliderController(UserManager<ApplicationUser> userManager,
          SignInManager<ApplicationUser> signInManager,
          IEmailSender emailSender,
-         ILogger<AccountController> logger, IDocumentManager documentManager, ApplicationDbContext context) : base(userManager, signInManager, emailSender, logger, documentManager, context)
+         ILogger<AccountController> logger, IDocumentManager documentManager, ApplicationDbContext context, IOptions<AmazonSettings> amazonSettings) : base(userManager, signInManager, emailSender, logger, documentManager, context, amazonSettings)
         {
         }
 
         public async Task<IActionResult> Index()
         {         
             await SetUserData();
-    
+
+            var NoOfSliders = 5;//_context.Settings.Where(e => e.EnumValue == Enums.SettingsValues.NoOfSliderImages).Select(k => k.SettingValue).FirstOrDefault();
+
+            ViewBag.NoOfSliders = Convert.ToInt16(NoOfSliders);
+
             var sliderList = (from slider in _context.SliderImages
                               join doc in _context.Documents
                               on slider.DocumentId equals doc.Id
@@ -55,7 +61,7 @@ namespace admincore.Controllers
                         //upload.  TODo Check if file size is > that defined in settings table
                         // Also check sequence number. 
 
-                        var res = await _documentManager.Save(file, ""); 
+                        var res = await _documentManager.Save(file, _amazonSettings.SliderBucketName); 
 
                         if (res != null)
                         {
@@ -93,7 +99,9 @@ namespace admincore.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> 
+            
+            Delete(int Id)
         {
             return Json(new { success = true, url = "", id = "" });
         }

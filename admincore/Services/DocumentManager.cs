@@ -14,6 +14,7 @@ using System.Configuration;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace admincore.Services
 {
@@ -49,9 +50,11 @@ namespace admincore.Services
     public class AmazonDocumentManager : IDocumentManager
     {
         private ApplicationDbContext _context;
-        public AmazonDocumentManager(ApplicationDbContext context)
+        private AmazonSettings _settings;
+        public AmazonDocumentManager(ApplicationDbContext context, IOptions<AmazonSettings> settings)
         {
             _context = context;
+            _settings = settings.Value;
         }
 
 
@@ -65,7 +68,7 @@ namespace admincore.Services
             Document uploadedDocument = null;
             try
             {              
-                using (var client = new AmazonS3Client("", "", RegionEndpoint.APSouth1 ))
+                using (var client = new AmazonS3Client(_settings.SliderBucketKeyId, _settings.SliderBucketKey, RegionEndpoint.APSouth1 ))
                 {
                     using (MemoryStream fileStream = new MemoryStream())
                     {
@@ -91,7 +94,7 @@ namespace admincore.Services
                                 CreatedOn = DateTime.UtcNow,
                                 FileName = formFile.FileName,
                                 DocumentContentType = formFile.ContentType,
-                                URL = "https://s3.ap-south-1.amazonaws.com/" + bucketName + filename,
+                                URL = _settings.AWSURL + bucketName + filename,
                             };
                             _context.Documents.Add(uploadedDocument);
                             _context.SaveChanges();

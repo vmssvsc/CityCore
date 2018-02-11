@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using admincore.Data;
 using System.Collections.Generic;
 using System;
+using admincore.Common;
+using Microsoft.Extensions.Options;
 
 namespace admincore.Controllers
 {
@@ -18,7 +20,7 @@ namespace admincore.Controllers
         protected readonly ILogger _logger;
         protected readonly IDocumentManager _documentManager;
         protected readonly ApplicationDbContext _context;
-
+        protected readonly AmazonSettings _amazonSettings;
 
         public BaseController() { }
 
@@ -48,6 +50,24 @@ namespace admincore.Controllers
             _logger = logger;
             _documentManager = documentManager;
             _context = context;
+        }
+
+        public BaseController(
+          UserManager<ApplicationUser> userManager,
+          SignInManager<ApplicationUser> signInManager,
+          IEmailSender emailSender,
+          ILogger<AccountController> logger,
+          IDocumentManager documentManager,
+          ApplicationDbContext context,
+          IOptions<AmazonSettings> amazonSettings)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+            _logger = logger;
+            _documentManager = documentManager;
+            _context = context;
+            _amazonSettings = amazonSettings.Value;
         }
 
         protected Dictionary<string, string> GetParameters(List<string> columns)

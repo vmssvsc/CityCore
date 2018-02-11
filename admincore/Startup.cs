@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using admincore.Data;
 using admincore.Models;
 using admincore.Services;
+using admincore.Common;
 
 namespace admincore
 {
@@ -28,6 +29,8 @@ namespace admincore
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.Configure<AmazonSettings>(Configuration.GetSection("AmazonSettings"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
