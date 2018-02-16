@@ -1,6 +1,6 @@
 ﻿Slider = {
     Variables: {
-        srcUpload: '/Slider/Save'
+        srcUpload: '/Slider/Save',
     },
     Controls: {
         btnSave: '.btnUpload',
@@ -15,7 +15,7 @@
 $(document).ready(function () {
     $(Slider.Controls.btnSave).click(function () {
         var fdata = new FormData();
-        var fileInput = $('.sliderImage')[0];
+        var fileInput = $(this).parent().parent().find('input')[0];
         var file = fileInput.files[0];
         fdata.append("file", file);
 
@@ -24,7 +24,18 @@ $(document).ready(function () {
             url: Slider.Variables.srcUpload,
             data: fdata,
             processData: false,
-            contentType: false
-        })
+            contentType: false,
+            success: function (data) {
+                if (data.success) {
+                    Common.Success(data.message);
+                }
+                else {
+                    Common.Error(data.message);
+                }
+            },
+            error: function() {
+                Common.Error(data.message);
+            }
+        });
     });
 });

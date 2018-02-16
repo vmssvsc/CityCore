@@ -14,13 +14,14 @@ using System.Configuration;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace admincore.Services
 {
     public interface IDocumentManager
     {
         bool Delete(int Id);
-        Task<bool> Save(IFormFile formFile, string bucketName);
+        Task<Document> Save(IFormFile formFile, string bucketName);
         string Get(int Id);
 
     }
@@ -49,9 +50,11 @@ namespace admincore.Services
     public class AmazonDocumentManager : IDocumentManager
     {
         private ApplicationDbContext _context;
-        public AmazonDocumentManager(ApplicationDbContext context)
+        private AmazonSettings _settings;
+        public AmazonDocumentManager(ApplicationDbContext context, IOptions<AmazonSettings> settings)
         {
             _context = context;
+            _settings = settings.Value;
         }
 
 
@@ -60,27 +63,42 @@ namespace admincore.Services
             return true;
         }
 
-        public async Task<bool> Save(IFormFile formFile, string bucketName)
+        public async Task<Document> Save(IFormFile formFile, string bucketName)
         {
+            Document uploadedDocument = null;
             try
-            {
-                using (var client = new AmazonS3Client("", "",RegionEndpoint.APSouth1 ))//new AmazonS3Config() { ServiceURL = "", UseHttp = true, RegionEndpoint = RegionEndpoint.APSouth1 }))
+            {              
+                using (var client = new AmazonS3Client(_settings.SliderBucketKeyId, _settings.SliderBucketKey, RegionEndpoint.APSouth1 ))
                 {
                     using (MemoryStream fileStream = new MemoryStream())
                     {
                         await formFile.CopyToAsync(fileStream);
-                        var filename = Path.GetExtension(formFile.FileName);
+                        var filename = Path.GetFileNameWithoutExtension(formFile.FileName) + "$" + Guid.NewGuid() + Path.GetExtension(formFile.FileName);
 
                         PutObjectRequest request = new PutObjectRequest()
                         {
                             BucketName = bucketName,
-                            Key = filename + "$" + Guid.NewGuid(),
+                            Key = filename,
                             InputStream = fileStream,
                             ContentType = "application/octet-stream",
+                            CannedACL = S3CannedACL.PublicRead
                         };
 
                         PutObjectResponse response = await client.PutObjectAsync(request);
 
+                        if(response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            //Save to Db
+                            uploadedDocument = new Document
+                            {
+                                CreatedOn = DateTime.UtcNow,
+                                FileName = formFile.FileName,
+                                DocumentContentType = formFile.ContentType,
+                                URL = _settings.AWSURL + bucketName + filename,
+                            };
+                            _context.Documents.Add(uploadedDocument);
+                            _context.SaveChanges();
+                        }
                     }
 
                 }
@@ -91,31 +109,20 @@ namespace admincore.Services
                     (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId") ||
                     amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
                 {
-                    Console.WriteLine("Please check the provided AWS Credentials.");
-                    Console.WriteLine("If you haven't signed up for Amazon S3, please visit http://aws.amazon.com/s3");
+                    throw new Exception("Please check the provided AWS Credentials.");
                 }
                 else
                 {
-                    Console.WriteLine("An error occurred with the message '{0}' when writing an object", amazonS3Exception.Message);
+                    throw new Exception(amazonS3Exception.Message);
                 }
             }
-            return true; //indicate that the file was sent  
+            return uploadedDocument; //indicate that the file was sent  
         }
 
         public string Get(int Id)
         {
             return null;
-        }
-
-        private string ToHex(byte[] bytes, bool upperCase)
-        {
-            StringBuilder result = new StringBuilder(bytes.Length * 2);
-
-            for (int i = 0; i < bytes.Length; i++)
-                result.Append(bytes[i].ToString(upperCase ? "X2" : "x2"));
-
-            return result.ToString();
-        }
+        }      
     }
 
    

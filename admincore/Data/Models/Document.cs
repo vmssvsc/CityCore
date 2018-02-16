@@ -14,9 +14,9 @@ namespace admincore.Data.Models
 
         public string FileName { get; set; }
 
-        public DocumentCategory DocumentCategory { get; set; }
+        public DocumentCategory? DocumentCategory { get; set; }
 
-        public DocumentType DocumentType { get; set; }
+        public string DocumentContentType { get; set; }
 
         public ICollection<SliderImage> SliderImages { get; set; }
 
