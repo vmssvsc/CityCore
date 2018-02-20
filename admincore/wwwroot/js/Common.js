@@ -27,7 +27,7 @@
             fadeOutSpeed: 'normal',
 
             // opacity
-            opacity: 0.8,
+            opacity: 0.3,
 
             // background color
             backgroundColor: "#000",
@@ -37,7 +37,7 @@
             loadingImageHeigth: "60px",
 
             // path to the loading gif
-            loadingImageSrc: "/images/default.gif"
+            loadingImageSrc: "/images/load1.gif"
             
         }); 
        

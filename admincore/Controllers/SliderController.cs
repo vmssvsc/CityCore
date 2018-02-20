@@ -39,11 +39,13 @@ namespace admincore.Controllers
             var sliderList = (from slider in _context.SliderImages
                               join doc in _context.Documents
                               on slider.DocumentId equals doc.Id
+                              where slider.SequenceNo > 0
                               select new SliderViewModel()
                               {
-                                  DocumentId = doc.Id,
+                                  Id = slider.Id,
                                   FileName = doc.FileName,
-                                  Url = doc.URL
+                                  Url = doc.URL,
+                                  SequenceNumber = slider.SequenceNo
                               }).ToList();
 
             return View(sliderList);
@@ -59,7 +61,12 @@ namespace admincore.Controllers
                     if (file != null && file.Length > 0)
                     {
                         //upload.  TODo Check if file size is > that defined in settings table
-                        // Also check sequence number. 
+
+                        if (sequenceNo == 0)
+                            throw new Exception("Sequence number can not be zero.");
+
+                        if (_context.SliderImages.Where(s => s.SequenceNo == sequenceNo).Any())
+                            throw new Exception("Image already exists at this sequence number.");
 
                         var res = await _documentManager.Save(file, _amazonSettings.SliderBucketName); 
 
@@ -79,7 +86,7 @@ namespace admincore.Controllers
 
                             _context.SaveChanges();
                             transaction.Commit();
-                            return Json(new { success = true, url = res.URL, id = res.Id, message = "File uploaded successfully." });
+                            return Json(new { success = true, url = res.URL, id = res.Id, name = res.FileName, message = "File uploaded successfully." });
                         }
                         else
                         {
@@ -98,19 +105,52 @@ namespace admincore.Controllers
             }           
         }
 
-        [HttpGet]
-        public async Task<IActionResult> 
-            
-            Delete(int Id)
-        {
-            return Json(new { success = true, url = "", id = "" });
-        }
+
 
         [HttpGet]
-        public async Task<IActionResult> Get(int Id)
+        public async Task<IActionResult> Delete(int sequenceNumber)
         {
-            return Json(new { success = true, url = "", id = "" });
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var rec = _context.SliderImages.Where(s => s.SequenceNo == sequenceNumber).FirstOrDefault();
+                    if (rec == null)
+                        throw new Exception("Invalid sequence number.");
+
+                    var res = await _documentManager.Delete(rec.DocumentId);
+
+                    if (res)
+                    {
+                        var user = await _userManager.GetUserAsync(User);
+                        _context.Remove(rec);
+                        transaction.Commit();
+                        return Json(new { success = true, message = "File deleted successfully." });
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        return Json(new { success = false, message = "Delete failed." });
+                    }
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return Json(new { success = false, message = e.Message });
+                }
+            }
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetSliderImagesStatus(int Id)
+        //{
+        //    var docs = _context.SliderImages.Select(k => new
+        //    {
+        //        sequenceNumber = k.SequenceNo,
+        //        URL = k.
+        //    }).ToList();
+        //    return Json(new { success = true, url = "", id = "" });
+        //}
 
 
     }

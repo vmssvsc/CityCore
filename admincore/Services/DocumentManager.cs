@@ -15,12 +15,13 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace admincore.Services
 {
     public interface IDocumentManager
     {
-        bool Delete(int Id);
+        Task<bool> Delete(int Id);
         Task<Document> Save(IFormFile formFile, string bucketName);
         string Get(int Id);
 
@@ -58,9 +59,44 @@ namespace admincore.Services
         }
 
 
-        public bool Delete(int Id)
+        public async Task<bool> Delete(int Id)
         {
-            return true;
+            try
+            {
+                using (var client = new AmazonS3Client(_settings.SliderBucketKeyId, _settings.SliderBucketKey, RegionEndpoint.APSouth1))
+                {
+                    using (MemoryStream fileStream = new MemoryStream())
+                    {
+                        var doc = _context.Documents.Where(k => k.Id == Id).FirstOrDefault();
+                        var arr = doc.URL.Split("/");
+                        DeleteObjectRequest request = new DeleteObjectRequest()
+                        {
+                            BucketName = arr[3],
+                            Key = arr[4],
+                        };
+
+                        DeleteObjectResponse response = await client.DeleteObjectAsync(request);
+
+                        _context.Remove(doc);
+                        _context.SaveChanges();
+                    }
+
+                }
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                if (amazonS3Exception.ErrorCode != null &&
+                    (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId") ||
+                    amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
+                {
+                    throw new Exception("Please check the provided AWS Credentials.");
+                }
+                else
+                {
+                    throw new Exception(amazonS3Exception.Message);
+                }
+            }
+            return true; //indicate that the file was sent  
         }
 
         public async Task<Document> Save(IFormFile formFile, string bucketName)
@@ -94,7 +130,7 @@ namespace admincore.Services
                                 CreatedOn = DateTime.UtcNow,
                                 FileName = formFile.FileName,
                                 DocumentContentType = formFile.ContentType,
-                                URL = _settings.AWSURL + bucketName + filename,
+                                URL = _settings.AWSURL + bucketName +"/"+ filename,
                             };
                             _context.Documents.Add(uploadedDocument);
                             _context.SaveChanges();
