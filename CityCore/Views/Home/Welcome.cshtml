@@ -13,41 +13,25 @@
 
             <ul>
                 <!-- SLIDE 1 -->
-                @{
+                @{ 
 
-        foreach (var item in Model.SliderImages)
-        {
-            <li data-transition="fade" data-slotamount="9" data-thumb="http://placehold.it/1920x500">
-                <img src="~/images/slide/slider3.jpg" alt="Alternate Text" height="75" width="75" />
+                    foreach (var item in Model.SliderImages)
 
-                @*<div class="caption sfb" data-x="500" data-y="0" data-speed="900" data-start="900" data-easing="easeOutSine"><img src="http://placehold.it/670x500" alt="" /></div>*@
+                  {
+                        <li data-transition="fade" data-slotamount="9" data-thumb="http://placehold.it/1920x500">
 
-                @*<div class="caption lft big_white" data-x="10" data-y="120" data-speed="900" data-start="700" data-easing="easeOutExpo">Develop your small</div>
+                        <img src="http://placehold.it/1920x500" alt="" />
 
-                <div class="caption lfb big_white_two" data-x="10" data-y="162" data-speed="900" data-start="1300" data-easing="easeOutExpo">business right</div>
-
-                <div class="caption sfr stb large_text" data-x="340" data-y="140" data-speed="900" data-start="2000" data-easing="easeOutExpo">WAY</div>
-
-                <div class="caption lfb h_line" data-x="10" data-y="220" data-speed="900" data-start="2200" data-easing="easeOutExpo"></div>
-
-                <div class="caption lfb small_text" data-x="10" data-y="241" data-speed="900" data-start="2700" data-easing="easeOutExpo">When an unknown printer took galley of type and scrambled it to make <br /> type dummy text ever since the specimen books.</div>
-
-                <div class="caption lfb h_line" data-x="10" data-y="320" data-speed="900" data-start="3000" data-easing="easeOutExpo"></div>
-
-                <div class="caption lfb" data-x="10" data-y="357" data-speed="900" data-start="3500" data-easing="easeOutExpo"><a href="#" class="button_slider">Read more <i class="fa fa-angle-right fa-lg"></i></a></div>
-
-                <div class="caption sfb stb medium_text" data-x="162" data-y="367" data-speed="900" data-start="3800" data-easing="easeOutExpo">or</div>
-
-                <div class="caption lfb" data-x="190" data-y="358" data-speed="900" data-start="4300" data-easing="easeOutExpo"><a href="#" class="button_slider_02">Buy Now! <i class="fa fa-angle-right fa-lg"></i></a></div>*@
-
-            </li>
-
-}
+                      
+                        </li>
+            <!-- SLIDE 2 -->
 
 
-                }
+                        }
 
-                @*  <!-- SLIDE 2 -->
+
+
+                    }@*  <!-- SLIDE 2 -->
         <li data-transition="slideleft" data-slotamount="9" data-thumb="http://placehold.it/1920x500">
 
             <img src="http://placehold.it/1920x500" alt="" />
@@ -86,7 +70,7 @@
 
         </li>*@
 
-            </ul>
+</ul>
 
         </div>
 
