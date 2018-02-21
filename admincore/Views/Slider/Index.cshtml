@@ -1,4 +1,5 @@
-﻿
+﻿@using admincore.Models;
+@model List<SliderViewModel>;
 @{
     ViewData["Title"] = "Slider";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -52,37 +53,93 @@
         <div class="col-xs-12">
 
             @{
-                    for (int i = 0; i < noOfSliders; i++)
+                for (int i = 0; i < noOfSliders; i++)
+                {
+                    var SeqNo = i + 1;
+
+                    var existingFile = Model.Where(k => k.SequenceNumber == SeqNo).FirstOrDefault();
+                    if (existingFile == null)    // Image is not there already
                     {
-                        var SeqNo = i + 1;
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Slider Image @SeqNo</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="row">
-                                            <div class="col-xs-9 col-sm-8">
-                                                <input type="file" class="sliderImage" accept="image/*">
+                        <div class="panel panel-default">
+                            <div class="panel-heading sequence-@SeqNo">Slider Image @SeqNo</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row controlsContainer" >
+                                        <input type="hidden" class="seqNo" value="@SeqNo" />
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="row">
+                                                <div class="col-xs-9 col-sm-8">
+                                                    <input type="file" class="sliderImage" accept="image/*" data-seq="@SeqNo">
+                                                    <label class="sliderName" style="display:none" data-seq="@SeqNo"></label>
+                                                    <img class="preview" data-seq="@SeqNo" data-pic-title=""
+                                                         data-pic=""
+                                                         src="~/images/256-256-e67be78b33a03225936cb8531374997b-eye.png"
+                                                         height="30"
+                                                         width="37"
+                                                         style="display:none">
+                                                </div>
+                                                <div class="col-xs-3 col-sm-4">
+                                                    <button type="button" class="btn btn-info btn-block btnUpload" data-seq="@SeqNo"><i class="fa fa-floppy-o"></i> <span class="hidden-xs">Save</span></button>
+                                                </div>
+                                                <div class="">&nbsp;</div>
                                             </div>
-                                            <div class="col-xs-3 col-sm-4">
-                                                <button type="button" class="btn btn-info btn-block btnUpload"><i class="fa fa-floppy-o"></i> <span class="hidden-xs">Save</span></button>
-                                            </div>
-                                            <div class="">&nbsp;</div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7 text-right">
-                                        <button type="button" class="btn btn-primary">
-                                            <i class="fa fa-eye"></i> Preview
-                                        </button>
-                                        <button type="button" class="btn btn-success warning_2">
-                                            <i class="fa fa-times"></i> Delete
-                                        </button>
+                                        <div class="col-sm-12 col-md-7 text-right">
+                                            @*<button type="button" class="btn btn-primary btnPreveiew" data-seq="@SeqNo" data-id="0" style="display:none">
+                                                <i class="fa fa-eye"></i> Preview
+                                            </button>*@
+                                            <button type="button" class="btn btn-success warning_2 btnDelete" data-seq="@SeqNo" data-id="0" style="display:none">
+                                                <i class="fa fa-times"></i> Delete
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    }
+                    else
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading sequence-@SeqNo">Slider Image @SeqNo</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row controlsContainer">
+                                        <input type="hidden" class="seqNo" value="@SeqNo" />
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="row">
+                                                <div class="col-xs-9 col-sm-8">
+                                                    <input type="file" class="sliderImage" accept="image/*" style="display:none" data-seq="@existingFile.SequenceNumber">
+                                                    <label class="sliderName" data-seq="@SeqNo">@existingFile.FileName</label>
+                                                    <img class="preview" data-seq="@existingFile.SequenceNumber" data-pic-title="@existingFile.FileName"             
+                                                         data-pic="@existingFile.Url"
+                                                         src="~/images/256-256-e67be78b33a03225936cb8531374997b-eye.png"
+                                                         height="30"
+                                                         width="37">
+                                                </div>
+                                                <div class="col-xs-3 col-sm-4">
+                                                    <button type="button" class="btn btn-info btn-block btnUpload" style="display:none" data-seq="@existingFile.SequenceNumber"><i class="fa fa-floppy-o"></i> <span class="hidden-xs">Save</span></button>
+                                                </div>
+                                                <div class="">&nbsp;</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-7 text-right">
+                                            @*<button  data-pic-title="@existingFile.FileName"  src="@existingFile.Url" type="button" class="btn btn-primary btnPreveiew" data-id="@existingFile.Id" data-seq="@existingFile.SequenceNumber">
+                                                <i class="fa fa-eye"></i> Preview
+                                            </button>*@
+                                            <button type="button" class="btn btn-success warning_2 btnDelete" data-seq="@existingFile.SequenceNumber">
+                                                <i class="fa fa-times"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+
+
 
                 }
             }
