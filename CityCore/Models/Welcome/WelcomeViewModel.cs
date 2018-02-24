@@ -19,6 +19,7 @@ namespace CityCore.Models
 
     public class SliderImage
     {
+        public int SequenceNumber { get; set; }
         public string Url { get; set; }
     }
 

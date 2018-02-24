@@ -17,6 +17,11 @@ namespace CityCore.Data
         }
 
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<Models.SliderImage> SliderImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

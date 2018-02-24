@@ -12,5 +12,20 @@ namespace CityCore.Common
         {
             NoOfSliderImages = 1
         }
+
+        public enum DocumentCategory
+        {
+            SliderImage,
+            ProjectImage,
+            UserProfileImage,
+            ProjectVideo
+        }
+
+        public enum DocumentType
+        {
+            Image,
+            File,
+            Media
+        }
     }
 }

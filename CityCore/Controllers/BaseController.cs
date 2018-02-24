@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using CityCore.Models;
 using CityCore.Services;
 using System.Threading.Tasks;
+using CityCore.Data;
 
 namespace CityCore.Controllers
 {
@@ -13,6 +14,7 @@ namespace CityCore.Controllers
         protected readonly SignInManager<ApplicationUser> _signInManager;
         protected readonly IEmailSender _emailSender;
         protected readonly ILogger _logger;
+        protected readonly ApplicationDbContext _context;
 
         public BaseController() { }
 
@@ -28,6 +30,18 @@ namespace CityCore.Controllers
             _logger = logger;
         }
 
+        public BaseController(UserManager<ApplicationUser> userManager,
+         SignInManager<ApplicationUser> signInManager,
+         IEmailSender emailSender,
+         ILogger<AccountController> logger, 
+         ApplicationDbContext context)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+            _logger = logger;
+            _context = context;
+        }
 
         protected async Task SetUserData()
         {
