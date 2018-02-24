@@ -62,7 +62,7 @@ namespace CityCore
                 routes.MapRoute(
                   name: "about-route",
                   template: "",
-                  defaults: new { controller = "Account", action = "Login" });
+                  defaults: new { controller = "Home", action = "Welcome" });
 
                 routes.MapRoute(
                     name: "default",

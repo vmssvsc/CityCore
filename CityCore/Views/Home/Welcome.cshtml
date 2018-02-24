@@ -3,6 +3,7 @@
 
 @{
     Layout = "_UserLayout";
+    ViewBag.Title = "Welcome";
 }
 
 <div class="container_full">
@@ -18,7 +19,7 @@
         foreach (var item in Model.SliderImages)
         {
             <li data-transition="fade" data-slotamount="9" data-thumb="http://placehold.it/1920x500">
-                <img src="~/images/slide/slider3.jpg" alt="Alternate Text" height="75" width="75" />
+                <img src="@item.Url" alt="Alternate Text" height="75" width="75" />
 
                 @*<div class="caption sfb" data-x="500" data-y="0" data-speed="900" data-start="900" data-easing="easeOutSine"><img src="http://placehold.it/670x500" alt="" /></div>*@
 
