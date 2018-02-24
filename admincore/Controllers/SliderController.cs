@@ -32,7 +32,7 @@ namespace admincore.Controllers
         {         
             await SetUserData();
 
-            var NoOfSliders = 5;//_context.Settings.Where(e => e.EnumValue == Enums.SettingsValues.NoOfSliderImages).Select(k => k.SettingValue).FirstOrDefault();
+            var NoOfSliders = 3;//_context.Settings.Where(e => e.EnumValue == Enums.SettingsValues.NoOfSliderImages).Select(k => k.SettingValue).FirstOrDefault();
 
             ViewBag.NoOfSliders = Convert.ToInt16(NoOfSliders);
 
