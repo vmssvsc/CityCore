@@ -23,6 +23,7 @@ namespace admincore.Data
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<SliderImage> SliderImages { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -19,6 +19,7 @@ namespace admincore.Data.Models
         public string DocumentContentType { get; set; }
 
         public ICollection<SliderImage> SliderImages { get; set; }
+        public ICollection<Event> Events { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

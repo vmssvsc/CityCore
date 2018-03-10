@@ -27,5 +27,12 @@ namespace admincore.Common
             File,
             Media
         }
+
+        public enum EventPriority
+        {
+            Low,
+            Medium,
+            High
+        }
     }
 }

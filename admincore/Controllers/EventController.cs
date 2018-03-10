@@ -6,6 +6,9 @@ using admincore.Services;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using admincore.Data;
+using Microsoft.Extensions.Options;
+using admincore.Common;
 
 namespace admincore.Controllers
 {
@@ -15,7 +18,7 @@ namespace admincore.Controllers
         public EventController(UserManager<ApplicationUser> userManager,
          SignInManager<ApplicationUser> signInManager,
          IEmailSender emailSender,
-         ILogger<AccountController> logger) : base(userManager, signInManager, emailSender, logger)
+         ILogger<AccountController> logger, IDocumentManager documentManager, ApplicationDbContext context, IOptions<AmazonSettings> amazonSettings) : base(userManager, signInManager, emailSender, logger, documentManager, context, amazonSettings)
         {
         }
 
