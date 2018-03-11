@@ -28,6 +28,17 @@ namespace admincore.Controllers
             return View();
         }
 
+        public async Task<IActionResult> AddEdit()
+        {
+            await SetUserData();
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Save(EventViewModel model)
+        {
+            await SetUserData();
+            return View();
+        }
     }
 }

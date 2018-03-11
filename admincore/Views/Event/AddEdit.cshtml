@@ -1,6 +1,16 @@
-﻿
+﻿@model admincore.Models.EventViewModel
 @{
-    ViewData["Title"] = "Add";
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit Event";
+    }
+    else
+    {
+        ViewData["Title"] = "Add new Event";
+
+    }
+
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <style type="text/css">
@@ -35,7 +45,18 @@
     }
 </style>
 
-<h1 style="text-align: center"> Event Entry</h1>
+@{
+    if (Model.Id > 0)
+    {
+        <h1 style="text-align: center"> Edit Event</h1>
+    }
+    else
+    {
+        <h1 style="text-align: center">Add new Event</h1>
+    }
+
+}
+
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -80,7 +101,7 @@
                 <th scope="row"></th>
                 <td></td>
                 <td>
-                    <button class="btn btn-primary" type="submit" style="float: right;">Submit<div></div></button>
+                    <button class="btn btn-primary" id="btnSave" style="float: right;">Submit<div></div></button>
                 </td>
             </tr>
 
@@ -90,4 +111,5 @@
 
 </div>
 @section EndScripts{
+    <script type="text/javascript" src="~/js/Event/AddEdit.js"></script>
 }
