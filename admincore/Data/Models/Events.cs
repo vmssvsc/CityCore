@@ -18,13 +18,17 @@ namespace admincore.Data.Models
         public DateTime EventDate { get; set; }
 
         public int ImageDocumentId { get; set; }
-        [ForeignKey("ImageDocumentId")]
-        public virtual Document ImageDocument { get; set; }
+        //[ForeignKey("ImageDocumentId")]
+        //public virtual Document ImageDocument { get; set; }
 
-        public int FileDocumentId { get; set; }
-        [ForeignKey("FileDocumentId")]
-        public virtual Document FileDocument { get; set; }
+        public int DocumentId { get; set; }
+        [ForeignKey("DocumentId")]
+        public virtual Document Document { get; set; }
 
         public EventPriority Priority { get; set; }
+
+        public string Description { get; set; }
+
+        public EventStatus Status { get; set; }
     }
 }

@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20180106120510_AddedLocationTables.cs" />
     <Compile Remove="Data\Migrations\20180106120510_AddedLocationTables.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180311071423_AddedEventsTable.cs" />
+    <Compile Remove="Data\Migrations\20180311071423_AddedEventsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180311071919_AddedEventsTable.cs" />
+    <Compile Remove="Data\Migrations\20180311071919_AddedEventsTable.Designer.cs" />
   </ItemGroup>
 
 

@@ -34,5 +34,12 @@ namespace admincore.Common
             Medium,
             High
         }
+
+        public enum EventStatus
+        {
+            Upcoming,
+            Cancelled,
+            Completed
+        }
     }
 }
