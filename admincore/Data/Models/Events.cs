@@ -13,7 +13,7 @@ namespace admincore.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public int Title { get; set; }
+        public string Title { get; set; }
 
         public DateTime EventDate { get; set; }
 
@@ -30,5 +30,10 @@ namespace admincore.Data.Models
         public string Description { get; set; }
 
         public EventStatus Status { get; set; }
+
+        public string CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }

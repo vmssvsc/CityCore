@@ -1,6 +1,7 @@
 ﻿EventList = {
     Variables: {
-        srcSave: '/Events/Save',
+        srcEdit: '/Events/Save',
+        srcList: '/Events/GetList'
     },
     Controls: {
         btnSave: '.btnUpload',
