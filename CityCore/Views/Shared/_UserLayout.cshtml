@@ -12,16 +12,16 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="~/images/favicon.ico">
 
     <!-- this styles only adds some repairs on idevices  -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google fonts - witch you want to use - (rest you can just remove) -->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700italic,700,600italic,600,400italic,300italic,300|Roboto:100,300,400,500,700&amp;subset=latin,latin-ext' type='text/css' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700italic,700,600italic,600,400italic,300italic,300|Roboto:100,300,400,500,700&amp;subset=latin,latin-ext' type='text/css' />
 
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- ######### CSS STYLES ######### -->
 
@@ -74,6 +74,9 @@
 
     <!-- tabs css -->
     <link rel="stylesheet" type="text/css" href="~/js/tabs/tabs.css" />
+
+    <!-- tab widget -->
+    <link rel="stylesheet" type="text/css" href="~/js/tabs/tabwidget/tabwidget.css" />
 
     <!-- testimonials -->
     <link rel="stylesheet" href="~/js/testimonials/fadeeffect.css" type="text/css" media="all">
@@ -171,7 +174,7 @@
         <div class="clearfix mar_top1"></div>
 
         <!-- Footer
-    ======================================= -->
+        ======================================= -->
 
         <div class="footer">
 
@@ -182,7 +185,7 @@
 
                 <div class="one_fourth">
 
-                    <div class="footer_logo"><img src="~/images/VMC.jpg" alt="" height="200" width="200"/></div><!-- end footer logo -->
+                    <div class="footer_logo"><img src="~/images/VMC.jpg" alt="" height="200" width="200" /></div><!-- end footer logo -->
 
                     <ul class="contact_address">
                         <li><i class="fa fa-map-marker icon-large"></i>&nbsp;Vadodara Municipal Corporation,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Khanderao Market</li>
@@ -199,7 +202,7 @@
 
                     <ul class="list">
                         <li><a href="https://vmc.gov.in/"><i class="fa fa-angle-right"></i> Current Site</a></li>
-                       
+
                     </ul>
 
                 </div><!-- end useful links -->
@@ -233,9 +236,9 @@
 
                     @*<h2>Flickr <i>Photos</i></h2>
 
-                    <div id="flickr_badge_wrapper">
-                        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=h&amp;source=user&amp;user=93382411%40N07"></script>
-                    </div>*@
+                        <div id="flickr_badge_wrapper">
+                            <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=h&amp;source=user&amp;user=93382411%40N07"></script>
+                        </div>*@
 
                 </div><!-- end flickr -->
 
@@ -286,7 +289,7 @@
     </div>
 
 
-    <!-- ######### JS FILES ######### -->
+    <!-- ######### JS FILES ######### Modernizr
     <!-- get jQuery from the google apis -->
     <script type="text/javascript" src="~/js/universal/jquery.js"></script>
 
@@ -306,6 +309,8 @@
     <script type="text/javascript" src="~/js/revolutionslider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
     <script type="text/javascript" src="~/js/mainmenu/scripts.js"></script>
+    <!-- jquery jcarousel -->
+    <script type="text/javascript" src="~/js/jcarousel/jquery.jcarousel.min.js"></script>
 
     <!-- tabs script -->
     <script type="text/javascript" src="~/js/tabs/tabs.js"></script>
@@ -354,8 +359,7 @@
                 currentLoc.indexOf('Events') > 0
                 || currentLoc.indexOf('Photos') > 0
                 || currentLoc.indexOf('Media') > 0
-                ) 
-            {
+            ) {
                 $('.topNav-Gallery').addClass('active');
 
             }
@@ -438,7 +442,7 @@
 
 
     </script>
-
+    <script type="text/javascript" src="~/js/modernizr-custom.js"></script></script>
     <script type="text/javascript" src="~/js/sticky-menu/core.js"></script>
 
     <!-- news -->
@@ -470,7 +474,11 @@
         });//]]>
 
     </script>
+    <script type="text/javascript" src="~/js/tabs/tabwidget/tabwidget.js"></script>
 
+    <script type="text/javascript" src="~/js/mainmenu/scripts.js"></script>
+
+    
 </body>
 </html>
 
