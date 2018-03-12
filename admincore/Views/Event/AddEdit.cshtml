@@ -56,60 +56,69 @@
     }
 
 }
+<form asp-action="Save"  enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Title</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.Title">
+                        <span asp-validation-for="@Model.Title" class="text-danger" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Select Date</td>
+                    <td>
+                        <input type="date" class="date" asp-for="@Model.Date" />
+                        <span asp-validation-for="@Model.Date" class="text-danger" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Event Document</td>
+                    <td>
+                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.File" />
+                        <span asp-validation-for="@Model.File" class="text-danger" /><br>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Event Image</td>
+                    <td>
+                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.Image" />
+                        <span asp-validation-for="@Model.Image" class="text-danger" /><br>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Description</td>
+                    <td>
+                        <textarea asp-for="@Model.Description">
+                        
+                    </textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
 
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Table heading</th>
-                <th>Table heading</th>
+                        <a class="btn btn-danger pull-right" href="/Event"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Serial Number</td>
-                <td><input type="text" class="textbox"></td>
+            </tbody>
+        </table>
 
 
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Title of Event</td>
-                <td><input type="text" class="textbox"></td>
-
-
-            </tr>
-
-            <tr>
-                <th scope="row">3</th>
-                <td>Select File</td>
-                <td>
-                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" /><br>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Select Date</td>
-                <td>
-                    <input type="date" class="date" />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <button class="btn btn-primary" id="btnSave" style="float: right;">Submit<div></div></button>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-
-</div>
+    </div>
+</form>
 @section EndScripts{
     <script type="text/javascript" src="~/js/Event/AddEdit.js"></script>
 }

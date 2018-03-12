@@ -18,7 +18,9 @@ namespace admincore.Common
             SliderImage,
             ProjectImage,
             UserProfileImage,
-            ProjectVideo
+            ProjectVideo,
+            EventFile,
+            EventImage
         }
 
         public enum DocumentType

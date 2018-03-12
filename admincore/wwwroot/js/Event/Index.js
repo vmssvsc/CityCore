@@ -1,42 +1,96 @@
 ﻿EventList = {
     Variables: {
-        srcEdit: '/Events/Save',
-        srcList: '/Events/GetList'
+        srcEdit: '/Event/Save',
+        srcList: '/Event/GetList',
+        oTable: null,
     },
     Controls: {
-        btnSave: '.btnUpload',
-        sliderImageInput: '.sliderImage',
-        btnPreview: '.btnPreveiew',
-        btnDelete: '.btnDelete',
-        seqNo: '.seqNo',
-        preview: '.preview',
-        fileInput: '.sliderImage',
-        sliderName: '.sliderName'
-    }
+        table: '#tblEvents',
+    },
+    IntializeTable: function () {
+        EventList.Variables.oTable = $(EventList.Controls.table).dataTable({
+            "sAjaxSource": EventList.Variables.srcList,
+            //"aaSorting": [[1, "desc"]],// default sorting
+            "sDom": "frtlip",
+            "autoWidth": false,
+            "bLengthChange": true,
+            "fixedHeader": true,
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0],
+                    "visible": false
+                },
+                {
+                    "aTargets": [1],
+                },
+                {
+                    "aTargets": [2],
+                },
+                {
+                    "aTargets": [3],
+                },
+                {
+                    "aTargets": [4], //"sortable": false,
+                },
+                {
+                    "aTargets": [5],
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, full) {
+                        return '<a href="/Event/AddEdit?id=' + full[0] + '" ><i class="fa fa-edit"></i></a>';
+                    },
+                    "sortable": false,
+                    "className": "text-center",
+                }
+
+            ],
+
+            "oLanguage": {
+                "sEmptyTable": $('#hdnNodataavailable').val(),
+                "sLengthMenu": "Page Size: _MENU_",
+                "oPaginate": {
+                    "sFirst": $('#hdnFirst').val(),
+                    "sLast": $('#hdnLast').val(),
+                    "sNext": $('#hdnNext').val(),
+                    "sPrevious": $('#hdnPrevious').val()
+                }
+            },
+            "fnServerParams": function (aoData) {
+                $("div").data("srchParams",
+                    [
+                        //{ name: 'iDisplayLength', value: $("#hdnGeneralPageSize").val() },
+                        { name: 'srchTxt', value: encodeURIComponent($(EventList.Controls.txtSearch).val() == '' ? '' : $(EventList.Controls.txtSearch).val()) },
+                        { name: 'srchBy', value: 'ALL' },
+
+
+                        //{
+                        //    name: 'date', value: $('#txtDate').val().toString().trim() == "" ? "" : common.formatDate($('#txtDate').val().toString().trim()), //($('#ddlStationId option:selected').val() == "Select" || $('#ddlStationId option:selected').val() == "0") ? "" : $('#ddlStationId option:selected').val()
+                        //},
+                    ]);
+
+                var srchParams = $("div").data("srchParams");
+                if (srchParams) {
+                    for (var i = 0; i < srchParams.length; i++) {
+                        aoData.push({ "name": "" + srchParams[i].name + "", "value": "" + srchParams[i].value + "" });
+                    }
+                }
+            },
+            "fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+                // return common.pagingText(iStart, iEnd, iTotal, $('#hdnRecordsText').val(), oSettings._iDisplayLength);
+
+            },
+        });
+    },
+
+    reloadList: function () {
+        EventList.Variables.oTable.dataTable().fnClearTable(0);
+        EventList.Variables.oTable.dataTable().fnStandingRedraw();
+    },
+
 
 };
 
 $(document).ready(function () {
-    $(EventList.Controls.btnSave).click(function () {
-        
-        $.ajax({
-            type: 'post',
-            url: EventList.Variables.srcUpload,
-            data: fdata,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                if (data.success) {
-                    //Set controls
-                   
-                }
-                else {
-                    Common.Error(data.message);
-                }
-            },
-            error: function () {
-                Common.Error(data.message);
-            }
-        });
-    });
+    EventList.IntializeTable();
 });
