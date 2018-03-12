@@ -22,6 +22,7 @@ namespace CityCore.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Models.SliderImage> SliderImages { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

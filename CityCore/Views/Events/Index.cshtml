@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CityCore.Models.EventViewModel>
 @{
     ViewBag.Title = "Events";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -13,213 +13,67 @@
 
     <div class="content_left">
 
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>18</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Lorem simply dummy text of the industry</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harris jo</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
+        @{
+            foreach (var item in Model)
+            {
+                <div class="blog_post">
+                    <div class="blog_postcontent">
+                        <div class="image_frame small"><a href="javascript:void(0)"><img src="@item.Image" alt="" /></a></div>
+                        <div class="post_info_content_small">
+                            <a href="blog-archive.html" class="date"><strong>@item.Date.Day</strong><i>@item.Date.ToString("MMM")</i></a>
+                            <h3><a href="blog-post.html">@item.Title</a></h3>
+                            @*<ul class="post_meta_links_small">
+                                <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harris jo</a></li>
+                                <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
+                                <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
+                            </ul>*@
 
-                    <div class="clearfix"></div>
+                            <div class="clearfix"></div>
 
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
+                            <p>@item.Description</p>
 
+                        </div>
+                    </div>
+                </div><!-- /# end post -->
+
+                <div class="clearfix divider_line3"></div>
+            }
+        }
+
+
+
+        @*<div class="blog_post">
+                <div class="blog_postcontent">
+                    <div class="video_frame small"><iframe src="http://www.youtube.com/embed/4mu0Gh8GVfU"></iframe></div>
+                    <div class="post_info_content_small">
+                        <a href="blog-archive.html" class="date"><strong>17</strong><i>October</i></a>
+                        <h3><a href="blog-post.html">There are many variations passages</a></h3>
+                        <ul class="post_meta_links_small">
+                            <li class="post_by"><i class="fa fa-user"></i> <a href="#">Adam</a></li>
+                            <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Photography</a></li>
+                            <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">12 Comments</a></li>
+                        </ul>
+
+                        <div class="clearfix"></div>
+
+                        <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
+
+                    </div>
                 </div>
-            </div>
-        </div><!-- /# end post -->
+            </div>*@<!-- /# end post -->
+        @* <div class="clearfix divider_line3"></div>*@
 
-        <div class="clearfix divider_line3"></div>
 
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="video_frame small"><iframe src="http://www.youtube.com/embed/4mu0Gh8GVfU"></iframe></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>17</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">There are many variations passages</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Adam</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Photography</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">12 Comments</a></li>
-                    </ul>
 
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>16</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Lorem Ipsum passage and going through</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Adams</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">WP Themes</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">10 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>15</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Injected humour words</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>14</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Latin words comined handful of mode</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>13</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Latin words comined handful of mode</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>12</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Latin words comined handful of mode</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>11</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Latin words comined handful of mode</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="blog_post">
-            <div class="blog_postcontent">
-                <div class="image_frame small"><a href="#"><img src="http://placehold.it/810x360" alt="" /></a></div>
-                <div class="post_info_content_small">
-                    <a href="blog-archive.html" class="date"><strong>10</strong><i>October</i></a>
-                    <h3><a href="blog-post.html">Latin words comined handful of mode</a></h3>
-                    <ul class="post_meta_links_small">
-                        <li class="post_by"><i class="fa fa-user"></i> <a href="#">Harrison</a></li>
-                        <li class="post_categoty"><i class="fa fa-folder-open"></i> <a href="#">Web tutorials</a></li>
-                        <li class="post_comments"><i class="fa fa-comments"></i> <a href="#">18 Comments</a></li>
-                    </ul>
-
-                    <div class="clearfix"></div>
-
-                    <p>There are many variations passages of available but theses in majority have suffered alteration in some form injecte humou or randomised words which don't looks even slightly believable embarrassing hidden in the middle.</p>
-
-                </div>
-            </div>
-        </div><!-- /# end post -->
-
-        <div class="clearfix divider_line3"></div>
-
-        <div class="pagination">
-            <b>Page 2 of 18</b>
-            <a href="#" class="navlinks">&lt; Previous</a>
-            <a href="#" class="navlinks">1</a>
-            <a href="#" class="navlinks current">2</a>
-            <a href="#" class="navlinks">3</a>
-            <a href="#" class="navlinks">4</a>
-            <a href="#" class="navlinks">Next ></a>
-        </div><!-- end pagination -->
+        @*<div class="pagination">
+                <b>Page 2 of 18</b>
+                <a href="#" class="navlinks">&lt; Previous</a>
+                <a href="#" class="navlinks">1</a>
+                <a href="#" class="navlinks current">2</a>
+                <a href="#" class="navlinks">3</a>
+                <a href="#" class="navlinks">4</a>
+                <a href="#" class="navlinks">Next ></a>
+            </div>*@<!-- end pagination -->
 
     </div><!-- end content left side area -->
     <!-- right sidebar starts -->

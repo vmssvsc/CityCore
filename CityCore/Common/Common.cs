@@ -18,7 +18,9 @@ namespace CityCore.Common
             SliderImage,
             ProjectImage,
             UserProfileImage,
-            ProjectVideo
+            ProjectVideo,
+            EventFile,
+            EventImage
         }
 
         public enum DocumentType
@@ -26,6 +28,19 @@ namespace CityCore.Common
             Image,
             File,
             Media
+        }
+        public enum EventPriority
+        {
+            Low,
+            Medium,
+            High
+        }
+
+        public enum EventStatus
+        {
+            Upcoming,
+            Cancelled,
+            Completed
         }
     }
 }
