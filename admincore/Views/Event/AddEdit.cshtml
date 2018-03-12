@@ -58,41 +58,57 @@
 }
 
 <div class="table-responsive">
+    
+    <input type="hidden" id="hdnId" value="@Model.Id">
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Table heading</th>
-                <th>Table heading</th>
+                <th>Sr. No</th>
+                <th>Events </th>
+                <th>Details</th>
 
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td>Serial Number</td>
-                <td><input type="text" class="textbox"></td>
+                <td>Title of Event</td>
+                <td><input type="text" id="txtETitle" class="textbox" value="@Model.Title"></td>
 
 
             </tr>
+
+
             <tr>
                 <th scope="row">2</th>
-                <td>Title of Event</td>
-                <td><input type="text" class="textbox"></td>
-
-
-            </tr>
-
-            <tr>
-                <th scope="row">3</th>
-                <td>Select File</td>
+                <td>Event Document</td>
                 <td>
                     <input type="file" class="btn btn-default btn-file" ID="fileuploadimages1" runat="server" /><br>
                 </td>
             </tr>
             <tr>
+                <th scope="row">3</th>
+                <td>Event Image</td>
+                <td>
+                    <input type="file" class="btn btn-default btn-file" ID="fileuploadimages2" runat="server" /><br>
+                </td>
+            </tr>
+
+            <tr>
                 <th scope="row">4</th>
-                <td>Select Date</td>
+                <td>Event Description</td>
+                @*<td><input type="text" id="txtETitle" class="textbox" value="@Model.Description"></td>*@
+                @*<textarea rows="6" class="form-control1 control2"></textarea>*@
+                <td><textarea  id="txtETitle" class="textbox" value="@Model.Description"></textarea></td>
+
+            </tr>
+
+
+
+
+            <tr>
+                <th scope="row">5</th>
+                <td>Event Date</td>
                 <td>
                     <input type="date" class="date" />
                 </td>
