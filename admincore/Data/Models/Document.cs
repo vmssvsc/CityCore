@@ -20,6 +20,7 @@ namespace admincore.Data.Models
 
         public ICollection<SliderImage> SliderImages { get; set; }
         public ICollection<Event> Events { get; set; }
+        public ICollection<AlbumDocumentMap> AlbumDocumentMap { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
