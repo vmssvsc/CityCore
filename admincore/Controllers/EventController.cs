@@ -330,5 +330,51 @@ namespace admincore.Controllers
             }
             return View("AddEdit", model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var rec = _context.Events.Where(s => s.Id == id).FirstOrDefault();
+                    if (rec == null)
+                        throw new Exception("Invalid Event id.");
+
+                    var res = await _documentManager.Delete(rec.DocumentId);
+
+                    var resimage = await _documentManager.Delete(rec.ImageDocumentId);
+
+
+
+                    if (res && resimage)
+                    {
+                        var user = await _userManager.GetUserAsync(User);
+                        _context.Remove(rec);
+                        transaction.Commit();
+                        return Json(new { success = true, message = "File deleted successfully." });
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        return Json(new { success = false, message = "Delete failed." });
+                    }
+
+
+
+                    
+
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return Json(new { success = false, message = e.Message });
+                }
+            }
+        }
+
+
+
     }
 }

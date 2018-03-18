@@ -85,14 +85,13 @@
     },
 
     reloadList: function () {
-        EventList.Variables.oTable.dataTable().fnClearTable(0);
-        EventList.Variables.oTable.dataTable().fnStandingRedraw();
-    },
+        EventList.IntializeTable();
+        },
 
     DeleteEvent: function (id) {
         $.ajax({
             type: 'get',
-            url: Event.Variables.srcDelete + '?id=' + id,
+            url: EventList.Variables.srcDelete + '?id=' + id,
             success: function (data) {
                 if (data.success) {
                     Common.Success(data.message);
