@@ -12,6 +12,8 @@
     <Compile Remove="Data\Migrations\20180311071423_AddedEventsTable.Designer.cs" />
     <Compile Remove="Data\Migrations\20180311071919_AddedEventsTable.cs" />
     <Compile Remove="Data\Migrations\20180311071919_AddedEventsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180318060059_addedAlbumTable.cs" />
+    <Compile Remove="Data\Migrations\20180318060059_addedAlbumTable.Designer.cs" />
   </ItemGroup>
 
 

@@ -36,4 +36,28 @@ namespace CityCore.Data.Models
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
     }
+
+    public class Album
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public ICollection<AlbumDocumentMap> AlbumDocumentMaps { get; set; }
+    }
+
+    public class AlbumDocumentMap
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public int DocumentId { get; set; }
+        [ForeignKey("DocumentId")]
+        public virtual Document Document { get; set; }
+
+        public int AlbumsId { get; set; }
+        [ForeignKey("AlbumsId")]
+        public virtual Album Albums { get; set; }
+    }
 }
