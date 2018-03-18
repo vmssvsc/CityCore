@@ -2,6 +2,7 @@
     Variables: {
         srcEdit: '/Event/Save',
         srcList: '/Event/GetList',
+        srcDelete: '/Event/Delete',
         oTable: null,
     },
     Controls: {
@@ -38,7 +39,7 @@
                 {
                     "aTargets": [6],
                     "mRender": function (data, type, full) {
-                        return '<a href="/Event/AddEdit?id=' + full[0] + '" ><i class="fa fa-edit"></i></a>';
+                        return "<a href='/Event/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\EventList.DeleteEvent('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
                     },
                     "sortable": false,
                     "className": "text-center",
@@ -88,6 +89,24 @@
         EventList.Variables.oTable.dataTable().fnStandingRedraw();
     },
 
+    DeleteEvent: function (id) {
+        $.ajax({
+            type: 'get',
+            url: Event.Variables.srcDelete + '?id=' + id,
+            success: function (data) {
+                if (data.success) {
+                    Common.Success(data.message);
+                    EventList.reloadList();
+                }
+                else {
+                    Common.Error(data.message);
+                }
+            },
+            error: function () {
+                Common.Error(data.message);
+            }
+        });
+    }
 
 };
 

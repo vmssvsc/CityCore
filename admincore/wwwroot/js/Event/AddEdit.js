@@ -8,7 +8,9 @@
         txteventTitle: '#txtETitle',
         txteventDescription: '#txtEDescription'
         
-    }
+    },
+
+    
 
 };
 
