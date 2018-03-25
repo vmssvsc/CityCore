@@ -207,7 +207,14 @@ namespace admincore.Controllers
                     Id = k.Id,
                     Date = k.EventDate,
                     Description = k.Description,
-                    Title = k.Title
+                    Title = k.Title,
+                    DocId = k.DocumentId ?? 0,
+                    ImgId = k.ImageDocumentId ?? 0,
+                    DocName = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.FileName).FirstOrDefault(),
+                    ImageName = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.FileName).FirstOrDefault(),
+                    DocUrl = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),
+                    ImageUrl = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.URL).FirstOrDefault()
+
                 }).FirstOrDefault();
 
                 if (model != null)
@@ -342,18 +349,16 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Event id.");
 
-                    var res = await _documentManager.Delete(rec.DocumentId);
+                    var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
 
-                    var resimage = await _documentManager.Delete(rec.ImageDocumentId);
-
-
+                    var resimage = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
 
                     if (res && resimage)
                     {
                         var user = await _userManager.GetUserAsync(User);
                         _context.Remove(rec);
                         transaction.Commit();
-                        return Json(new { success = true, message = "File deleted successfully." });
+                        return Json(new { success = true, message = "Event deleted successfully." });
                     }
                     else
                     {
@@ -374,7 +379,57 @@ namespace admincore.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DeleteDocument(int id, int type)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var user = await _userManager.GetUserAsync(User);
+                    if (type == 1)
+                    {
+                        var rec = _context.Events.Where(s => s.DocumentId == id).FirstOrDefault();
+                        if (rec == null)
+                            throw new Exception("Invalid Event id.");
 
+                        var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
+                        if (res)
+                        {
+                            rec.DocumentId = null;
+                            rec.ModifiedBy = user.Id;
+                            rec.ModifiedOn = DateTime.UtcNow;
+                        }
 
+                        _context.SaveChanges();
+                        transaction.Commit();
+                        return Json(new { success = true, message = "File deleted successfully." });
+                    }
+                    else
+                    {
+                        var rec = _context.Events.Where(s => s.ImageDocumentId == id).FirstOrDefault();
+                        if (rec == null)
+                            throw new Exception("Invalid Event id.");
+
+                        var res = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
+                        if (res)
+                        {
+                            rec.ImageDocumentId = null;
+                            rec.ModifiedBy = user.Id;
+                            rec.ModifiedOn = DateTime.UtcNow;
+                        }
+
+                        _context.SaveChanges();
+                        transaction.Commit();
+                        return Json(new { success = true, message = "Image deleted successfully." });
+                    }                   
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return Json(new { success = false, message = e.Message });
+                }
+            }
+        }
     }
 }
