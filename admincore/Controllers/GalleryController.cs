@@ -6,6 +6,7 @@ using admincore.Services;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using admincore.Models.Gallery;
 
 namespace admincore.Controllers
 {
@@ -22,7 +23,8 @@ namespace admincore.Controllers
         public async Task<IActionResult> Index()
         {
             await SetUserData();
-            return View();
+            var model =new  GalleryViewModel();
+            return View(model);
         }
     }
 }
