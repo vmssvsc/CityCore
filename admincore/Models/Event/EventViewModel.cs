@@ -25,6 +25,18 @@ namespace admincore.Models
 
         [Required]
         public IFormFile File { get; set; }
+
+        public string DocName { get; set; }
+
+        public string ImageName { get; set; }
+
+        public int DocId { get; set; }
+
+        public int ImgId { get; set; }
+
+        public string DocUrl { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 
     public class EventListModel
