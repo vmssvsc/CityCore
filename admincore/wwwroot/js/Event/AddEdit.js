@@ -14,7 +14,7 @@
 
             success: function (data) {
                 if (data.success) {
-                    Common.Sucess()
+                    Common.Success(data.message);
                     window.location.reload();
                 }
                 else {

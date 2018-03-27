@@ -20,10 +20,8 @@ namespace admincore.Models
         [Required]
         public string Description { get; set; }
 
-        [Required]
         public IFormFile Image { get; set; }
 
-        [Required]
         public IFormFile File { get; set; }
 
         public string DocName { get; set; }
@@ -37,6 +35,10 @@ namespace admincore.Models
         public string DocUrl { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public Common.Enums.EventPriority Priority { get; set; }
+
+        public Common.Enums.EventStatus EventStatus { get; set; }
     }
 
     public class EventListModel

@@ -85,7 +85,7 @@
     },
 
     reloadList: function () {
-        EventList.IntializeTable();
+        $(EventList.Controls.table).DataTable().ajax.reload();
         },
 
     DeleteEvent: function (id) {
