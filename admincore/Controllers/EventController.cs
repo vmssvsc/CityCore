@@ -243,7 +243,7 @@ namespace admincore.Controllers
         [HttpPost]
         public async Task<IActionResult> Save(EventViewModel model)
         {
-            await SetUserData();
+            //await SetUserData();
             var user = await _userManager.GetUserAsync(User);
 
             if (ModelState.IsValid)
@@ -255,10 +255,10 @@ namespace admincore.Controllers
                         //upload.  1.)ToDo Check if both file's size is > that defined in settings table.
                         //         2.)Add add all model validations.
                         //         3.)Change buckets.
-                        //         4.)Set ddl for priority and status.
-                        //         5.)Handle error message.
-                        //         6.)Delete older files.
-                        //         7.)Manage file for edit case.
+                        //         4.)Set ddl for priority and status. [Done]
+                        //         5.)Handle error message. [Done]
+                        //         6.)Delete older files. [Done]
+                        //         7.)Manage file for edit case. [Done]
 
                         if (model.Id > 0)
                         {
@@ -383,7 +383,6 @@ namespace admincore.Controllers
 
                     if (res && resimage)
                     {
-                        var user = await _userManager.GetUserAsync(User);
                         _context.Remove(rec);
                         _context.SaveChanges();
                         transaction.Commit();

@@ -12,12 +12,14 @@ namespace admincore.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
    
         [Required]
+        [MaxLength(200)]
         public string Description { get; set; }
 
         public IFormFile Image { get; set; }
