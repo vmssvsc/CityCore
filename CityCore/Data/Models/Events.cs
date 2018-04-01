@@ -17,11 +17,11 @@ namespace CityCore.Data.Models
 
         public DateTime EventDate { get; set; }
 
-        public int ImageDocumentId { get; set; }
+        public int? ImageDocumentId { get; set; }
         //[ForeignKey("ImageDocumentId")]
         //public virtual Document ImageDocument { get; set; }
 
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
 

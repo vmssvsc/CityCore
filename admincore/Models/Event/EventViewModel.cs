@@ -12,19 +12,35 @@ namespace admincore.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
    
         [Required]
+        [MaxLength(200)]
         public string Description { get; set; }
 
-        [Required]
         public IFormFile Image { get; set; }
 
-        [Required]
         public IFormFile File { get; set; }
+
+        public string DocName { get; set; }
+
+        public string ImageName { get; set; }
+
+        public int DocId { get; set; }
+
+        public int ImgId { get; set; }
+
+        public string DocUrl { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public Common.Enums.EventPriority Priority { get; set; }
+
+        public Common.Enums.EventStatus EventStatus { get; set; }
     }
 
     public class EventListModel

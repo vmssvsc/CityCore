@@ -1,41 +1,21 @@
 ﻿Event = {
     Variables: {
-        srcSave: '/Event/Save',
+        srcDeleteDocument: '/Event/DeleteDocument',
     },
     Controls: {
-        btnSave: '#btnSave',
-        hdnID: '#hdnId',
-        txteventTitle: '#txtETitle',
-        txteventDescription: '#txtEDescription'
-        
+        btnDeleteDoc: '#deleteDoc',
+        btnDeleteImg: '#deleteImg',       
     },
 
-    
-
-};
-
-$(document).ready(function () {
-    $(Event.Controls.btnSave).click(function () {
-
-        var postObj = new Object();
-
-        postObj.Id = $(Event.Controls.hdnID).val();
-        postObj.Title = $(Event.Controls.txteventTitle).val();
-        postObj.Description = $(Event.Controls.txteventDescription).val();
-
-
-
-
+    DeleteDocument: function (id, type) {
         $.ajax({
-            type: 'post',
-            url: Event.Variables.srcSave,
-            data: postObj,
-            
-            
+            type: 'get',
+            url: Event.Variables.srcDeleteDocument + '?id=' + id + '&type=' + type,
+
             success: function (data) {
                 if (data.success) {
-                    //Set controls
-
+                    Common.Success(data.message);
+                    window.location.reload();
                 }
                 else {
                     Common.Error(data.message);
@@ -45,5 +25,16 @@ $(document).ready(function () {
                 Common.Error(data.message);
             }
         });
+    }
+};
+
+$(document).ready(function () {
+    $(Event.Controls.btnDeleteDoc).click(function () {
+        var id = $(this).attr('data-id');
+        Event.DeleteDocument(id, 1)
+    });
+    $(Event.Controls.btnDeleteImg).click(function () {
+        var id = $(this).attr('data-id');
+        Event.DeleteDocument(id, 2)
     });
 });

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
 using admincore.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace admincore.Controllers
 {
@@ -45,7 +46,7 @@ namespace admincore.Controllers
                 var parameters = GetParameters(new List<string>() { "Id", "Title", "Date", "Description", "Priority", "Status", "Action" });
 
                 IQueryable<EventListModel> finallist;
- 
+
                 finallist = (from Events in _context.Events
                              select new EventListModel
                              {
@@ -73,7 +74,7 @@ namespace admincore.Controllers
                     var l = System.Net.WebUtility.UrlDecode(queryStrings["date"]);
                     finallist = finallist.Where(p => p.Date == Convert.ToDateTime(l));
                 }
-              
+
                 #endregion
 
                 int TotalCount = finallist.Count();
@@ -160,7 +161,7 @@ namespace admincore.Controllers
 
                     foreach (var item in entityLst)
                     {
-                        
+
                     }
                     var res = from model in entityLst
                               select new string[]
@@ -200,28 +201,49 @@ namespace admincore.Controllers
                 Date = DateTime.UtcNow
             };
 
-            if(Id > 0)
+            if (Id > 0)
             {
                 var rec = _context.Events.Where(e => e.Id == Id).Select(k => new EventViewModel()
                 {
                     Id = k.Id,
                     Date = k.EventDate,
                     Description = k.Description,
-                    Title = k.Title
+                    Title = k.Title,
+                    DocId = k.DocumentId ?? 0,
+                    ImgId = k.ImageDocumentId ?? 0,
+                    DocName = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.FileName).FirstOrDefault(),
+                    ImageName = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.FileName).FirstOrDefault(),
+                    DocUrl = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),
+                    ImageUrl = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.URL).FirstOrDefault(),
+                    Priority = k.Priority,
+                    EventStatus = k.Status
+
                 }).FirstOrDefault();
 
                 if (model != null)
                     model = rec;
             }
-          
+
             await SetUserData();
+
+
+            var statusList = from Enums.EventStatus es in Enum.GetValues(typeof(Enums.EventStatus))
+                             select new { Id = es, Name = es.ToString() };
+
+            var priorityList = from Enums.EventPriority es in Enum.GetValues(typeof(Enums.EventPriority))
+                               select new { Id = es, Name = es.ToString() };
+
+            ViewBag.Statuses = new SelectList(statusList, "Id", "Name");
+
+            ViewBag.Priorities = new SelectList(priorityList, "Id", "Name");
+
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Save(EventViewModel model)
         {
-            await SetUserData();
+            //await SetUserData();
             var user = await _userManager.GetUserAsync(User);
 
             if (ModelState.IsValid)
@@ -230,58 +252,66 @@ namespace admincore.Controllers
                 {
                     try
                     {
-                        if (model.File != null && model.Image != null && model.File.Length > 0)
-                        {
-                            //upload.  1.)ToDo Check if both file's size is > that defined in settings table.
-                            //         2.)Add add all model validations.
-                            //         3.)Change buckets.
-                            //         4.)Set ddl for priority and status.
-                            //         5.)Handle error message.
-                            //         6.)Delete older files.
-                            //         7.)Manage file for edit case.
-                          
-                            if(model.Id > 0)
-                            {
-                                //Upload files
-                                var fileRes = await _documentManager.Save(model.File, _amazonSettings.SliderBucketName);
-                                var imageRes = await _documentManager.Save(model.Image, _amazonSettings.SliderBucketName);
+                        //upload.  1.)ToDo Check if both file's size is > that defined in settings table.
+                        //         2.)Add add all model validations.
+                        //         3.)Change buckets.
+                        //         4.)Set ddl for priority and status. [Done]
+                        //         5.)Handle error message. [Done]
+                        //         6.)Delete older files. [Done]
+                        //         7.)Manage file for edit case. [Done]
 
-                                if (fileRes != null && imageRes != null)
+                        if (model.Id > 0)
+                        {
+                            var rec = _context.Events.Where(e => e.Id == model.Id).FirstOrDefault();
+                            if (rec == null)
+                            {
+                                throw new Exception("Record not found.");
+                            }
+                            Document fileRes = null;
+                            Document imageRes = null;
+                            //Upload files
+                            if (model.File != null)
+                            {
+                                fileRes = await _documentManager.Save(model.File, _amazonSettings.SliderBucketName);
+                                if (fileRes != null)
                                 {
                                     fileRes.DocumentCategory = Enums.DocumentCategory.EventFile;
                                     fileRes.CreatedBy = user.Id;
-                                    imageRes.DocumentCategory = Enums.DocumentCategory.EventImage;
-                                    imageRes.CreatedBy = user.Id;
-
-                                    var rec = _context.Events.Where(e => e.Id == model.Id).FirstOrDefault();
-                                    if(rec != null)
-                                    {
-                                        rec.ModifiedBy = user.Id;
-                                        rec.ModifiedOn = DateTime.UtcNow;
-                                        rec.DocumentId = fileRes.Id;
-                                        rec.Description = model.Description;
-                                        rec.EventDate = model.Date;
-                                        rec.Title = model.Title;
-                                        //rec.Priority = Enums.EventPriority.High,
-                                        //rec.Status = Enums.EventStatus.Upcoming,
-                                        rec.ImageDocumentId = imageRes.Id;
-                                        _context.Update(rec);
-                                    }
-                                    else
-                                        throw new Exception("Record not found.");
-
-                                    _context.SaveChanges();
-                                    transaction.Commit();
-                                    return RedirectToAction("Index");
-                                }
-                                else
-                                {
-                                    transaction.Rollback();
-                                    return View("AddEdit", model);
-                                    //return Json(new { success = false, message = "Upload failed." });
+                                    rec.DocumentId = fileRes != null ? fileRes.Id : 0;
+                                    if (rec.DocumentId == 0)
+                                        rec.DocumentId = null;
                                 }
                             }
-                            else
+                            if (model.Image != null)
+                            {
+                                imageRes = await _documentManager.Save(model.Image, _amazonSettings.SliderBucketName);
+                                if (imageRes != null)
+                                {
+                                    imageRes.DocumentCategory = Enums.DocumentCategory.EventImage;
+                                    imageRes.CreatedBy = user.Id;
+                                    rec.ImageDocumentId = imageRes != null ? imageRes.Id : 0;
+                                    if (rec.ImageDocumentId == 0)
+                                        rec.ImageDocumentId = null;
+                                }
+                            }
+
+                            rec.ModifiedBy = user.Id;
+                            rec.ModifiedOn = DateTime.UtcNow;
+                           
+                            rec.Description = model.Description;
+                            rec.EventDate = model.Date;
+                            rec.Title = model.Title;
+                            rec.Priority = model.Priority;
+                            rec.Status = model.EventStatus;
+                            _context.Update(rec);
+
+                            _context.SaveChanges();
+                            transaction.Commit();
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            if (model.File != null && model.Image != null && model.File.Length > 0)
                             {
                                 //Upload files
                                 var fileRes = await _documentManager.Save(model.File, _amazonSettings.SliderBucketName);
@@ -302,9 +332,9 @@ namespace admincore.Controllers
                                         Description = model.Description,
                                         EventDate = model.Date,
                                         Title = model.Title,
-                                        Priority = Enums.EventPriority.High,
-                                        Status = Enums.EventStatus.Upcoming,
-                                        ImageDocumentId = imageRes.Id
+                                        Priority = model.Priority,
+                                        Status = model.EventStatus,
+                                        ImageDocumentId = imageRes.Id,
                                     });
                                     _context.SaveChanges();
                                     transaction.Commit();
@@ -316,13 +346,18 @@ namespace admincore.Controllers
                                     return View("AddEdit", model);
                                     //return Json(new { success = false, message = "Upload failed." });
                                 }
+                               
                             }
-                            
+                            else
+                            {
+                                ModelState.AddModelError("", "Please upload both the files.");
+                            }
                         }
                     }
                     catch (Exception e)
                     {
                         transaction.Rollback();
+                        ModelState.AddModelError("", e.Message);
                         return View("AddEdit", model);
                         // return Json(new { success = false, message = e.Message });
                     }
@@ -342,28 +377,22 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Event id.");
 
-                    var res = await _documentManager.Delete(rec.DocumentId);
+                    var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
 
-                    var resimage = await _documentManager.Delete(rec.ImageDocumentId);
-
-
+                    var resimage = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
 
                     if (res && resimage)
                     {
-                        var user = await _userManager.GetUserAsync(User);
                         _context.Remove(rec);
+                        _context.SaveChanges();
                         transaction.Commit();
-                        return Json(new { success = true, message = "File deleted successfully." });
+                        return Json(new { success = true, message = "Event deleted successfully." });
                     }
                     else
                     {
                         transaction.Rollback();
                         return Json(new { success = false, message = "Delete failed." });
                     }
-
-
-
-                    
 
                 }
                 catch (Exception e)
@@ -374,7 +403,57 @@ namespace admincore.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DeleteDocument(int id, int type)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var user = await _userManager.GetUserAsync(User);
+                    if (type == 1)
+                    {
+                        var rec = _context.Events.Where(s => s.DocumentId == id).FirstOrDefault();
+                        if (rec == null)
+                            throw new Exception("Invalid Document.");
 
+                        var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
+                        if (res)
+                        {
+                            rec.DocumentId = null;
+                            rec.ModifiedBy = user.Id;
+                            rec.ModifiedOn = DateTime.UtcNow;
+                        }
 
+                        _context.SaveChanges();
+                        transaction.Commit();
+                        return Json(new { success = true, message = "File deleted successfully." });
+                    }
+                    else
+                    {
+                        var rec = _context.Events.Where(s => s.ImageDocumentId == id).FirstOrDefault();
+                        if (rec == null)
+                            throw new Exception("Invalid Image.");
+
+                        var res = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
+                        if (res)
+                        {
+                            rec.ImageDocumentId = null;
+                            rec.ModifiedBy = user.Id;
+                            rec.ModifiedOn = DateTime.UtcNow;
+                        }
+
+                        _context.SaveChanges();
+                        transaction.Commit();
+                        return Json(new { success = true, message = "Image deleted successfully." });
+                    }
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return Json(new { success = false, message = e.Message });
+                }
+            }
+        }
     }
 }

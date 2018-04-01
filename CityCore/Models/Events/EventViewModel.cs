@@ -20,4 +20,30 @@ namespace CityCore.Models
         public string File { get; set; }
     }
 
+
+    public class AlbumViewModel
+    {
+        public int Id { get; set; }
+        
+        public string Albumname { get; set; }
+
+        public string CoverImage { get; set; }
+
+    }
+
+    public class PhotoViewModel
+    {
+        public int Id { get; set; }
+
+
+        public string Photoname { get; set; }
+
+        public string Url { get; set; }
+
+
+
+
+    }
+
+
 }

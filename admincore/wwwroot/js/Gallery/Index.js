@@ -1,16 +1,16 @@
-﻿EventList = {
+﻿AlbumList = {
     Variables: {
-        srcEdit: '/Event/Save',
-        srcList: '/Event/GetList',
-        srcDelete: '/Event/Delete',
+        srcEdit: '/Gallery/Save',
+        srcList: '/Gallery/GetList',
+        srcDelete: '/Gallery/Delete',
         oTable: null,
     },
     Controls: {
-        table: '#tblEvents',
+        table: '#tblAlbums',
     },
     IntializeTable: function () {
-        EventList.Variables.oTable = $(EventList.Controls.table).dataTable({
-            "sAjaxSource": EventList.Variables.srcList,
+        AlbumList.Variables.oTable = $(AlbumList.Controls.table).dataTable({
+            "sAjaxSource": AlbumList.Variables.srcList,
             //"aaSorting": [[1, "desc"]],// default sorting
             "sDom": "frtlip",
             "autoWidth": false,
@@ -31,15 +31,9 @@
                     "aTargets": [3],
                 },
                 {
-                    "aTargets": [4], //"sortable": false,
-                },
-                {
-                    "aTargets": [5],
-                },
-                {
-                    "aTargets": [6],
+                    "aTargets": [4],
                     "mRender": function (data, type, full) {
-                        return "<a href='/Event/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\EventList.DeleteEvent('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
+                        return "<a href='/Gallery/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\AlbumList.DeleteAlbum('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
                     },
                     "sortable": false,
                     "className": "text-center",
@@ -61,7 +55,7 @@
                 $("div").data("srchParams",
                     [
                         //{ name: 'iDisplayLength', value: $("#hdnGeneralPageSize").val() },
-                        { name: 'srchTxt', value: encodeURIComponent($(EventList.Controls.txtSearch).val() == '' ? '' : $(EventList.Controls.txtSearch).val()) },
+                        { name: 'srchTxt', value: encodeURIComponent($(AlbumList.Controls.txtSearch).val() == '' ? '' : $(AlbumList.Controls.txtSearch).val()) },
                         { name: 'srchBy', value: 'ALL' },
 
 
@@ -85,17 +79,17 @@
     },
 
     reloadList: function () {
-        $(EventList.Controls.table).DataTable().ajax.reload();
+        $(AlbumList.Controls.table).DataTable().ajax.reload();
         },
 
-    DeleteEvent: function (id) {
+    DeleteAlbum: function (id) {
         $.ajax({
             type: 'get',
-            url: EventList.Variables.srcDelete + '?id=' + id,
+            url: AlbumList.Variables.srcDelete + '?id=' + id,
             success: function (data) {
                 if (data.success) {
                     Common.Success(data.message);
-                    EventList.reloadList();
+                    AlbumList.reloadList();
                 }
                 else {
                     Common.Error(data.message);
@@ -110,5 +104,5 @@
 };
 
 $(document).ready(function () {
-    EventList.IntializeTable();
+    AlbumList.IntializeTable();
 });

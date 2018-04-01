@@ -1,34 +1,33 @@
-﻿@model List<CityCore.Models.AlbumViewModel>
+﻿@model List<CityCore.Models.PhotoViewModel>
 @{
-    ViewBag.Title = "Photos";
+    ViewData["Title"] = "AlbumPhotos";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
-<!-- Contant
-======================================= -->
 
 <div class="container">
 
     <div class="content_fullwidth">
 
-        <h2>Album Gallery with <strong>Photos</strong></h2>
-       @{ 
-           foreach (var item in Model)
-           {
-           <div class="one_fourth">
-            <div class="portfolio_image">
-                <i class="icon-search icon-2x"></i>
-                <a class="fancybox" href="#" data-fancybox-group="gallery" title="Publishing packages"><div class="hover_effct3"></div><img src="@item.CoverImage" alt="" /></a>
-                <div class="title">@item.Albumname</div>
-            </div>
-        </div><!-- end section -->
-               }
-           }
+        <h2>Album <strong>Photos</strong></h2>
+               @{ 
+
+                   foreach (var item in Model)
+                   {
+                   <div class="one_fourth">
+                    <div class="portfolio_image">
+                        <i class="icon-search icon-2x"></i>
+                        <a class="fancybox" href="#" data-fancybox-group="gallery" title="Publishing packages"><div class="hover_effct3"></div><img src="@item.Url" alt="" /></a>
+                       
+                    </div>
+                </div><!-- end section -->
+                   }
+                 }
+
         <div class="one_fourth">
             <div class="portfolio_image">
                 <i class="icon-search icon-2x"></i>
-                <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" ><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                <div class="title">Loptop packages</div>
+                <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
+                @*<div class="title">Loptop packages</div>*@
             </div>
         </div><!-- end section -->
 
@@ -36,7 +35,7 @@
             <div class="portfolio_image">
                 <i class="icon-search icon-2x"></i>
                 <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Loptop packages"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                <div class="title">Loptop packages</div>
+                @*<div class="title">Loptop packages</div>*@
             </div>
         </div><!-- end section -->
 
@@ -46,7 +45,7 @@
             <div class="portfolio_image">
                 <i class="icon-search icon-2x"></i>
                 <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Prity alteration"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                <div class="title">Prity alteration</div>
+                @*<div class="title">Prity alteration</div>*@
             </div>
         </div><!-- end section -->
 

@@ -1,108 +1,32 @@
-﻿@model admincore.Models.Gallery.GalleryViewModel
-@{
-
-    if (Model.Id > 0)
-    {
-
-        ViewData["Title"] = "Edit Album";
-    }
-    else
-    {
-        ViewData["Title"] = "Gallery";
-
-    }
-
-   
+﻿@{
+    ViewData["Title"] = "Gallery";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<style type="text/css">
+<h1 style="text-align: center"> Albums List</h1>
+<div class="row">
+    <div class="col-md-12">
 
-    .textbox {
-        border: 1px solid #e0e0e0;
-        padding: 5px 8px;
-        color: black;
-        font-family: arial, sans-serif;
-        box-shadow: none !important;
-        width: 35%;
-        font-size: 1.5em;
-        font-weight: 300;
-        height: 40px;
-        border-radius: 0;
-        -webkit-appearance: none;
-    }
-
-    .date {
-        border: 1px solid #e0e0e0;
-        padding: 5px 8px;
-        color: black;
-        font-family: arial, sans-serif;
-        box-shadow: none !important;
-        width: 35%;
-        font-size: 1.5em;
-        font-weight: 300;
-        height: 40px;
-        border-radius: 0;
-        -webkit-appearance: none;
-        text-align: center;
-    }
-</style>
-
-
-
-
-@{
-    if (Model.Id > 0)
-    {
-        <h1 style="text-align: center"> Edit Event</h1>
-    }
-    else
-    {
-        <h1 style="text-align: center">Add new Album</h1>
-    }
-
-}
-<form asp-action="Save" enctype="multipart/form-data" method="post">
-    <input type="hidden" asp-for="@Model.Id" />
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Title</td>
-                    <td>
-                        <input type="text" class="textbox" asp-for="@Model.Title">
-                        <span asp-validation-for="@Model.Title" class="text-danger" />
-                    </td>
-                </tr>
-                
-               
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Add Photos</td>
-                    <td>
-                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.Files" />
-                        <span asp-validation-for="@Model.Files" class="text-danger" /><br>
-                    </td>
-                </tr>
-               
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td>
-
-                        <a class="btn btn-danger pull-right" href="/Event"><i class="fa fa-times"></i> Cancel</a>
-                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-
-
+        <div class="table-responsive">
+            <table class="table" id="tblAlbums">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Created Date</th>
+                        <th>No Of Photos</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
-</form>
-
-
+    <div class="col-md-12">
+        <br />
+        <a href="/Gallery/AddEdit" class="btn btn-primary pull-right">Add New</a>
+    </div>
+</div>
 @section EndScripts{
+    <script type="text/javascript" src="~/js/Gallery/Index.js"></script>
 }
