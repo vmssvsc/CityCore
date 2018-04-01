@@ -29,6 +29,9 @@ namespace CityCore.Models
 
         public string CoverImage { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
+        public int NoOfPhotos { get; set; }
     }
 
     public class PhotoViewModel
