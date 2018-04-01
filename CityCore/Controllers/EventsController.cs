@@ -36,20 +36,16 @@ namespace CityCore.Controllers
             return View(query);
         }
 
-        public IActionResult Photos(int id)
+        public IActionResult Albums()
         {
             var query = _context.Albums.OrderBy(k => k.CreatedOn).Select(s => new AlbumViewModel()
             {
                 Albumname = s.Name,
-                CoverImage = _context.AlbumDocumentMaps.Where(d =>d.AlbumsId == s.Id).OrderByDescending(k => k.CreatedOn).Select(l => l.Document.URL).FirstOrDefault()
-                
-            }).ToList();
+                CoverImage = _context.AlbumDocumentMaps.Where(d =>d.AlbumsId == s.Id).OrderByDescending(k => k.CreatedOn).Select(l => l.Document.URL).FirstOrDefault(),
+                CreatedOn = s.CreatedOn,
+                NoOfPhotos = _context.AlbumDocumentMaps.Where(m => m.AlbumsId == s.Id).Count()
+            }).OrderByDescending(g => g.CreatedOn).ToList();
             return View(query);
-
-
-
-
-
         }
 
 

@@ -60,7 +60,7 @@ $(document).ready(function () {
 
     $(Slider.Controls.btnDelete).click(function () {
         var seq = $(this).attr('data-seq');
-        bootbox.confirm("Are you sure?",
+        bootbox.confirm("Are you sure you want to delete this Slider?",
             function (result) {
                 if (result) {
                     $.ajax({
