@@ -83,22 +83,27 @@
         },
 
     DeleteAlbum: function (id) {
-        $.ajax({
-            type: 'get',
-            url: AlbumList.Variables.srcDelete + '?id=' + id,
-            success: function (data) {
-                if (data.success) {
-                    Common.Success(data.message);
-                    AlbumList.reloadList();
+        bootbox.confirm("Are you sure you want to delete this album? All the photos inside it will be deleted.",
+            function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'get',
+                        url: AlbumList.Variables.srcDelete + '?id=' + id,
+                        success: function (data) {
+                            if (data.success) {
+                                Common.Success(data.message);
+                                AlbumList.reloadList();
+                            }
+                            else {
+                                Common.Error(data.message);
+                            }
+                        },
+                        error: function () {
+                            Common.Error(data.message);
+                        }
+                    });
                 }
-                else {
-                    Common.Error(data.message);
-                }
-            },
-            error: function () {
-                Common.Error(data.message);
-            }
-        });
+            });        
     }
 
 };

@@ -89,22 +89,28 @@
         },
 
     DeleteEvent: function (id) {
-        $.ajax({
-            type: 'get',
-            url: EventList.Variables.srcDelete + '?id=' + id,
-            success: function (data) {
-                if (data.success) {
-                    Common.Success(data.message);
-                    EventList.reloadList();
+        bootbox.confirm("Are you sure you want to delete this Event?",
+            function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'get',
+                        url: EventList.Variables.srcDelete + '?id=' + id,
+                        success: function (data) {
+                            if (data.success) {
+                                Common.Success(data.message);
+                                EventList.reloadList();
+                            }
+                            else {
+                                Common.Error(data.message);
+                            }
+                        },
+                        error: function () {
+                            Common.Error(data.message);
+                        }
+                    });
                 }
-                else {
-                    Common.Error(data.message);
-                }
-            },
-            error: function () {
-                Common.Error(data.message);
-            }
-        });
+            });    
+        
     }
 
 };
