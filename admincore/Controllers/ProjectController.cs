@@ -24,6 +24,7 @@ namespace admincore.Controllers
             await SetUserData();
             return View();
         }
+                           
     }
 }
     
