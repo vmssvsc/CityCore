@@ -37,7 +37,7 @@
 </style>
 
 
-<h1 style="text-align: center">Add ABD Project Details</h1>
+<h1 style="text-align: center">ABD AREA PROJECTS</h1>
 
 
 <form asp-action="Save" enctype="multipart/form-data" method="post">
@@ -123,7 +123,64 @@
 
 
     </div>
+    <h1 style="text-align: center">ABD AREA INITIATIVE</h1>
+
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Title</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+               
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Description</td>
+                    <td>
+                        <textarea style="height: 253px; width: 542px;">
+                        
+                    </textarea>
+                        @*<span asp-validation-for="@Model.Description" class="text-danger" />*@
+                    </td>
+                </tr>
+
+
+
+              
+
+
+              
+
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
 </form>
+
+
+
+
+
 
 
 
