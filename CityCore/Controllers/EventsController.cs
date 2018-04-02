@@ -43,15 +43,29 @@ namespace CityCore.Controllers
                 Albumname = s.Name,
                 CoverImage = _context.AlbumDocumentMaps.Where(d =>d.AlbumsId == s.Id).OrderByDescending(k => k.CreatedOn).Select(l => l.Document.URL).FirstOrDefault(),
                 CreatedOn = s.CreatedOn,
-                NoOfPhotos = _context.AlbumDocumentMaps.Where(m => m.AlbumsId == s.Id).Count()
+                NoOfPhotos = _context.AlbumDocumentMaps.Where(m => m.AlbumsId == s.Id).Count(),
+                Id = s.Id
             }).OrderByDescending(g => g.CreatedOn).ToList();
             return View(query);
         }
 
 
-        public IActionResult AlbumPhotos()
+        public IActionResult AlbumPhotos(int albumId)
         {
-            return View();
+            var query = (from a in _context.AlbumDocumentMaps
+                         join d in _context.Documents
+                         on a.DocumentId equals d.Id
+                         where a.AlbumsId == albumId
+                         select new PhotoViewModel
+                         {
+                             CreatedOn = d.CreatedOn,
+                             Id = d.Id,
+                             Photoname = d.FileName,
+                             Url = d.URL
+                         }).OrderByDescending(a => a.CreatedOn).ToList();
+            ViewBag.AlbumName = _context.Albums.Where(j => j.Id == albumId).Select(n => n.Name).FirstOrDefault();
+
+            return View(query);
         }
 
 
@@ -59,10 +73,5 @@ namespace CityCore.Controllers
         {
             return View();
         }
-
-
-
-
-
     }
 }

@@ -25,7 +25,9 @@ namespace CityCore.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<AlbumDocumentMap> AlbumDocumentMaps { get; set; }
-
+        public DbSet<Models.Project> Projects { get; set; }
+        public DbSet<ProjectInitiative> ProjectInitiatives { get; set; }
+        public DbSet<Video> Videos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

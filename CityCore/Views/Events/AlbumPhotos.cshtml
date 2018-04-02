@@ -1,61 +1,57 @@
 ﻿@model List<CityCore.Models.PhotoViewModel>
 @{
-    ViewData["Title"] = "AlbumPhotos";
+    ViewData["Title"] = "Album Photos";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
 <div class="container">
-
     <div class="content_fullwidth">
-
-        <h2>Album <strong>Photos</strong></h2>
-               @{ 
-
-                   foreach (var item in Model)
-                   {
-                   <div class="one_fourth">
+        <h2><strong>@ViewBag.AlbumName </strong>(@Model.Count)</h2>
+        @{ var counter = 0;
+            foreach (var item in Model)
+            {
+                counter++;
+                var isFourth = counter % 4 == 0;
+                var albmClass = isFourth ? "one_fourth last" : "one_fourth";
+                <div class="@albmClass">
                     <div class="portfolio_image">
                         <i class="icon-search icon-2x"></i>
-                        <a class="fancybox" href="#" data-fancybox-group="gallery" title="Publishing packages"><div class="hover_effct3"></div> <img src="@item.Url" alt="" he/></a>
-                       
+                        <img class="preview" data-pic-title="@item.Photoname" data-pic="@item.Url" src="@item.Url" alt="" height="178" width="249" />
+                        <div class="title"> <strong>@item.Photoname</strong></div>
                     </div>
                 </div><!-- end section -->
-                   }
-                 }
-
-        <div class="one_fourth">
-            <div class="portfolio_image">
-                <i class="icon-search icon-2x"></i>
-                <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                @*<div class="title">Loptop packages</div>*@
-            </div>
-        </div><!-- end section -->
-
-        <div class="one_fourth">
-            <div class="portfolio_image">
-                <i class="icon-search icon-2x"></i>
-                <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Loptop packages"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                @*<div class="title">Loptop packages</div>*@
-            </div>
-        </div><!-- end section -->
-
-
-
-        <div class="one_fourth last">
-            <div class="portfolio_image">
-                <i class="icon-search icon-2x"></i>
-                <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Prity alteration"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                @*<div class="title">Prity alteration</div>*@
-            </div>
-        </div><!-- end section -->
-
+            }
+        }
         <div class="clearfix"></div>
         <div class="mar_top5"></div>
-
-
     </div>
-
 </div><!-- end content area -->
-
+<img id="preview" data-pic-title="" data-pic="https://cdn.tutsplus.com/net/uploads/legacy/206_imgPreview/20090212-233015.png"
+     src="~/images/abd.jpg"
+     height="30"
+     width="37">
 
 <div class="clearfix mar_top4"></div>
+@section EndScripts{
+
+
+    <script type="text/javascript" src="~/js/viewer.js"></script>
+    <script type="text/javascript" src="~/js/jquery-viewer.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var $image = $('#preview');
+
+            $image.viewer({
+                inline: true,
+                viewed: function () {
+                    $image.viewer('zoomTo', 1);
+                }
+            });
+
+            // Get the Viewer.js instance after initialized
+            var viewer = $image.data('viewer');
+        });
+
+    </script>
+}

@@ -21,7 +21,9 @@ namespace admincore.Common
             ProjectVideo,
             EventFile,
             EventImage,
-            AlbumPhoto
+            AlbumPhoto,
+            VideoFile
+            
         }
 
         public enum DocumentType
@@ -42,6 +44,13 @@ namespace admincore.Common
         {
             Upcoming,
             Cancelled,
+            Completed
+        }
+
+        public enum ProjectStatus
+        {
+            Upcoming,
+            Ongoing,
             Completed
         }
     }
