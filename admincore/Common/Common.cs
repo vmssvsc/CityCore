@@ -21,7 +21,9 @@ namespace admincore.Common
             ProjectVideo,
             EventFile,
             EventImage,
-            AlbumPhoto
+            AlbumPhoto,
+            VideoFile
+            
         }
 
         public enum DocumentType

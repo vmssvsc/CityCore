@@ -26,6 +26,11 @@ namespace admincore.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<AlbumDocumentMap> AlbumDocumentMaps { get; set; }
+        public DbSet<Videos> Videos { get; set; }
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
