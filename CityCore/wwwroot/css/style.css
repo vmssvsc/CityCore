@@ -1635,15 +1635,18 @@ ul.small_social_links {
 	background: url(../images/elements/port-hover-zoom.png) no-repeat center -107px;
 	display: block;
 }
-.portfolio_image:hover .hover_effct3 {
-	float: left;
-	width: 97%;
-	height: 94%;
-	position: absolute;
-	z-index: 999;
-	background: url(../images/elements/port-hover-zoom.png) no-repeat center -133px;
-	display: block;
-}
+    .portfolio_image:hover .hover_effct3 {
+        float: left;
+        width: 97%;
+        height: 94%;
+        position: absolute;
+        z-index: 999;
+        background: url(../images/elements/hover6.png) no-repeat center -133px;
+        background-size: 100px 80px;
+        background-position: center;
+        background-color: gray;
+        opacity: 0.6;
+    }
 .portfolio_image:hover .hover_effct5 {
 	float: left;
 	width: 97%;
@@ -1651,6 +1654,7 @@ ul.small_social_links {
 	position: absolute;
 	z-index: 999;
 	background: url(../images/elements/port-hover-zoom.png) no-repeat center -55px;
+ 
 	display: block;
 }
 
