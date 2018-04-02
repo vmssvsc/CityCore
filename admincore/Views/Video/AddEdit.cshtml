@@ -1,17 +1,8 @@
 ﻿@model  admincore.Models.VideoViewModel
 @{
-    if (Model.Id > 0)
-    {
-
-        ViewData["Title"] = "Edit Video";
-    }
-    else
-    {
+    
         ViewData["Title"] = "Add new Video";
-
-    }
-
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
 }
 
@@ -47,7 +38,7 @@
     }
 </style>
 
-@{
+@*@{
     if (Model.Id > 0)
     {
         <h1 style="text-align: center"> Edit Video</h1>
@@ -57,7 +48,9 @@
         <h1 style="text-align: center">Add new Video</h1>
     }
 
-}
+}*@
+
+        <h1 style="text-align: center">Add new Video</h1>
 <form asp-action="Save" enctype="multipart/form-data" method="post">
     <input type="hidden" asp-for="@Model.Id" />
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -105,7 +98,7 @@
                 </tr>
 
 
-
+       
                 @*<tr>
                             <th scope="row">4</th>
                             <td>Video Document</td>
@@ -126,59 +119,13 @@
                             </td>
                         </tr>*@
 
-                @*<tr>
-            <th scope="row">2</th>
-            <td>Select Date</td>
-            <td>
-                <input type="date" class="date" asp-for="@Model.Date" />
-                <span asp-validation-for="@Model.Date" class="text-danger" />
-            </td>
-        </tr>*@
-                @*<tr>
-            <th scope="row">2</th>
-            <td>Select Priority</td>
-            <td>
-                <select asp-for="@Model.Priority" asp-items="@ViewBag.Priorities"></select>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Select Status</td>
-            <td>
-                <select asp-for="@Model.EventStatus" asp-items="@ViewBag.Statuses"></select>
-            </td>
-        </tr>*@
-
-                @*<tr>
-        <th scope="row">4</th>
-        <td>Event Image</td>
-        <td>
-            @{
-                @*<input type="file" class="btn btn-default btn-file" asp-for="@Model.Image" />
-                    <span asp-validation-for="@Model.Image" class="text-danger" /><br>*@
-                @*if (Model.ImgId > 0)
-                {
-
-                    <a href="@Model.ImageUrl">@Model.ImageName </a> <a href="javascript:void(0)" id="deleteImg" data-id="@Model.ImgId" style="color:red"> X</a>
-                }
-
-                else
-                {
-
-                    <input type="file" accept="image/*" class="btn btn-default btn-file" asp-for="@Model.Image" />
-                    <span asp-validation-for="@Model.Image" class="text-danger" /><br>
-                }
-            }
-
-        </td>*@
-                @*</tr>*@
-
+             
                 <tr>
                     <th scope="row"></th>
                     <td></td>
                     <td>
 
-                        <a class="btn btn-danger pull-right" href="#"><i class="fa fa-times"></i> Cancel</a>
+                        <a class="btn btn-danger pull-right" href="/Video"><i class="fa fa-times"></i> Cancel</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
                     </td>
                 </tr>
@@ -190,5 +137,5 @@
     </div>
 </form>
 @section EndScripts{
-    <script type="text/javascript" src="#"></script>
+    <script type="text/javascript" src="~/js/Video/AddEdit.js"></script>
 }
