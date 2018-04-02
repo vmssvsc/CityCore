@@ -44,5 +44,12 @@ namespace admincore.Common
             Cancelled,
             Completed
         }
+
+        public enum ProjectStatus
+        {
+            Upcoming,
+            Ongoing,
+            Completed
+        }
     }
 }

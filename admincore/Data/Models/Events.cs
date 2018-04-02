@@ -57,7 +57,7 @@ namespace admincore.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public int DocumentId { get; set; }
+        public int DocumentId { get; set; } 
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
 
