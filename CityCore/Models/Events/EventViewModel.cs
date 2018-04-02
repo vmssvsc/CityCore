@@ -38,15 +38,10 @@ namespace CityCore.Models
     {
         public int Id { get; set; }
 
-
         public string Photoname { get; set; }
 
         public string Url { get; set; }
 
-
-
-
+        public DateTime CreatedOn { get; set; }
     }
-
-
 }

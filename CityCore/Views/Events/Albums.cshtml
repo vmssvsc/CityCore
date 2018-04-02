@@ -3,14 +3,8 @@
     ViewBag.Title = "Photos";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
-<!-- Contant
-======================================= -->
-
 <div class="container">
-
     <div class="content_fullwidth">
-
         <h2><strong>All Albums</strong>(@Model.Count)</h2>
         @{ var counter = 0;
             foreach (var item in Model)
@@ -27,39 +21,8 @@
                 </div><!-- end section -->
             }
         }
-        @*<div class="one_fourth">
-                <div class="portfolio_image">
-                    <i class="icon-search icon-2x"></i>
-                    <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" ><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                    <div class="title">Loptop packages</div>
-                </div>
-            </div>
-
-            <div class="one_fourth">
-                <div class="portfolio_image">
-                    <i class="icon-search icon-2x"></i>
-                    <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Loptop packages"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                    <div class="title">Loptop packages</div>
-                </div>
-            </div>
-
-
-
-            <div class="one_fourth last">
-                <div class="portfolio_image">
-                    <i class="icon-search icon-2x"></i>
-                    <a class="fancybox" href="http://placehold.it/800x450" data-fancybox-group="gallery" title="Prity alteration"><div class="hover_effct3"></div><img src="http://placehold.it/800x450" alt="" /></a>
-                    <div class="title">Prity alteration</div>
-                </div>
-            </div>*@
-
         <div class="clearfix"></div>
         <div class="mar_top5"></div>
-
-
     </div>
-
 </div><!-- end content area -->
-
-
 <div class="clearfix mar_top4"></div>

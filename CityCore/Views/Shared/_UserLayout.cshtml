@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="~/images/favicon.ico">
+    <link href="~/images/VMC.jpg" rel="shortcut icon" type="image/x-icon" />
 
     <!-- this styles only adds some repairs on idevices  -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -60,8 +60,8 @@
     <!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
     <!-- sticky menu -->
     <link rel="stylesheet" href="~/js/sticky-menu/core.css">
-  
-      <!-- REVOLUTION SLIDER -->
+
+    <!-- REVOLUTION SLIDER -->
     <link rel="stylesheet" type="text/css" href="~/js/revolutionslider/css/fullwidth.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="~/js/revolutionslider/rs-plugin/css/settings.css" media="screen" />
 
@@ -81,6 +81,7 @@
     <!-- testimonials -->
     <link rel="stylesheet" href="~/js/testimonials/fadeeffect.css" type="text/css" media="all">
 
+    <link href="~/css/viewer.css" rel="stylesheet" type="text/css" media="all">
 </head>
 
 
@@ -126,6 +127,7 @@
 
                                 <ul class="socials">
                                     <li><em>Connect to:</em></li>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -294,13 +296,15 @@
     <!-- get jQuery from the google apis -->
     <script type="text/javascript" src="~/js/universal/jquery.js"></script>
 
+   
+
     <!-- style switcher -->
-    <script src="~/js/style-switcher/jquery-1.js"></script>
+    @*<script src="~/js/style-switcher/jquery-1.js"></script>*@
     <script src="~/js/style-switcher/styleselector.js"></script>
 
     <!-- main menu -->
     <script type="text/javascript" src="~/js/mainmenu/ddsmoothmenu.js"></script>
-    <script type="text/javascript" src="~/js/mainmenu/jquery-1.7.1.min.js"></script>
+    @*<script type="text/javascript" src="~/js/mainmenu/jquery-1.7.1.min.js"></script>*@
     <script type="text/javascript" src="~/js/mainmenu/selectnav.js"></script>
 
     <!-- jquery jcarousel -->
@@ -316,7 +320,7 @@
     <!-- tabs script -->
     <script type="text/javascript" src="~/js/tabs/tabs.js"></script>
 
-   <!-- scroll up -->
+    <!-- scroll up -->
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -364,8 +368,7 @@
                 $('.topNav-Gallery').addClass('active');
 
             }
-            else if (currentLoc.indexOf('Contactus') > 0)
-            {
+            else if (currentLoc.indexOf('Contactus') > 0) {
                 $('.topNav-Contact').addClass('active');
             }
             else {
@@ -448,9 +451,8 @@
 
 
     </script>
-    <script type="text/javascript" src="~/js/modernizr-custom.js"></script></script>
+    <script type="text/javascript" src="~/js/modernizr-custom.js"></script>
     <script type="text/javascript" src="~/js/sticky-menu/core.js"></script>
-
     <!-- news -->
     <script type="text/javascript">
         //<![CDATA[
@@ -483,8 +485,7 @@
     <script type="text/javascript" src="~/js/tabs/tabwidget/tabwidget.js"></script>
 
     <script type="text/javascript" src="~/js/mainmenu/scripts.js"></script>
-
-
+    @RenderSection("EndScripts", required: false);
 </body>
 </html>
 
