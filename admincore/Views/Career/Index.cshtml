@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<style type="text/css">
+
+    .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+
+
+<h1 style="text-align: center">Add Career</h1>
+
+
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    @*<input type="hidden" asp-for="save" />*@
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+
+                @{
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>P.R.O No </td>
+                        <td>
+                            <input type="text" class="textbox">
+                            @*<span asp-validation-for="Title" class="text-danger" />*@
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Departments</td>
+                        <td>
+                            <input type="text" class="textbox">
+                            @*<span asp-validation-for="Title" class="text-danger" />*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Post Name</td>
+                        <td>
+                            <input type="text" class="textbox">
+                            @*<span asp-validation-for="Title" class="text-danger" />*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Start Date</td>
+                        <td>
+                            <input type="date" class="date" />
+                            @*<span asp-validation-for="@Model.Date" class="text-danger" />*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>End Date</td>
+                        <td>
+                            <input type="date" class="date" />
+                            @*<span asp-validation-for="@Model.Date" class="text-danger" />*@
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>View Details</td>
+                        <td>
+                            <input type="file" class="btn btn-default btn-file" multiple="multiple" accept="image/*" />
+                            @*<span asp-validation-for="Files" class="text-danger" /><br>*@
+                        </td>
+                    </tr>
+
+                }
+                
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    
+
+
+</form>
+
+
+
+@section EndScripts{
+}
+
+
+
+
+
+
+
+
+
