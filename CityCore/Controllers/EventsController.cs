@@ -71,7 +71,15 @@ namespace CityCore.Controllers
 
         public IActionResult Media()
         {
-            return View();
+            var query = _context.Videos.OrderBy(v => v.CreatedOn).Select(s => new MediaViewModel()
+            {
+                Id = s.Id,
+                Title = s.Title,
+                Description = s.Description,
+                VideoUrl = s.URL                
+            }).ToList();
+            return View(query);
+
         }
     }
 }
