@@ -1,8 +1,17 @@
 ﻿@model  admincore.Models.VideoViewModel
 @{
-    
+
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit Video";
+    }
+    else
+    {
         ViewData["Title"] = "Add new Video";
-        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    }
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
 }
 
@@ -38,7 +47,7 @@
     }
 </style>
 
-@*@{
+@{
     if (Model.Id > 0)
     {
         <h1 style="text-align: center"> Edit Video</h1>
@@ -48,9 +57,9 @@
         <h1 style="text-align: center">Add new Video</h1>
     }
 
-}*@
+}
 
-        <h1 style="text-align: center">Add new Video</h1>
+        
 <form asp-action="Save" enctype="multipart/form-data" method="post">
     <input type="hidden" asp-for="@Model.Id" />
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -86,39 +95,7 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Video Document</td>
-                    <td>
-                     
-                         <input type="file" class="btn btn-default btn-file" asp-for="@Model.VideoDoc" />
-                         <span asp-validation-for="@Model.VideoDoc" class="text-danger" /><br>
-
-                     </td>
-                </tr>
-
-
-       
-                @*<tr>
-                            <th scope="row">4</th>
-                            <td>Video Document</td>
-                            <td>
-                                @{
-                        if (Model.DocId > 0)
-                        {
-                            <a href="@Model.DocUrl">@Model.DocName </a> <a href="javascript:void(0)" id="deleteDoc" data-id="@Model.DocId" style="color:red"> X</a>
-
-            }
-            else
-            {
-                    <input type="file" class="btn btn-default btn-file" asp-for="@Model.File" />
-                    <span asp-validation-for="@Model.File" class="text-danger" /><br>
-        }
-                                }
-
-                            </td>
-                        </tr>*@
-
+                
              
                 <tr>
                     <th scope="row"></th>
@@ -137,5 +114,5 @@
     </div>
 </form>
 @section EndScripts{
-    <script type="text/javascript" src="~/js/Video/AddEdit.js"></script>
+    @*<script type="text/javascript" src="~/js/Video/AddEdit.js"></script>*@
 }

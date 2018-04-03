@@ -3,14 +3,14 @@
 /*------------------------------------------------------*/
 
 /* ----------- Logo ----------- */
-#logo{
-	float:left;
-	display:block;
-	width:100%;
-	min-height: 50px;
-	margin-top:35px;
-	text-indent:-999em;
-	/*background:url(../images/logo.png) no-repeat center bottom;*/
+#logo {
+    float: left;
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 35px;
+    text-indent: -999em;
+    /*background:url(../images/logo/logo.jpeg) no-repeat center bottom;*/
 }
 
 h1 {
@@ -197,12 +197,14 @@ span {
 
 /* top section */
 .top_contact_info {
-	position: relative;
-	padding: 0px;
-	margin: 0px;
-	width: 100%;
-	min-height: 120px;
-	border-top: 5px solid #212427;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    min-height: 120px;
+    border-top: 5px solid #212427;
+    background-color: #eeeaee;
+    ;
 }
 
 .top_contact_info .left_sec {
@@ -266,7 +268,7 @@ span {
 	line-height: 22px;
 	text-align: center;
 	border-radius: 100%;
-	background-color: #eee;
+	background-color: #000;
 }
 .top_contact_info .right_sec .socials li a i {
 	color: #fff;
@@ -3844,4 +3846,28 @@ a.knowmore_but:hover {
 	z-index: 999;
 }
 
+@media screen and (max-width:360px) {
+    .right_sec {
+        margin-top: 0px !important;
+        margin-bottom: 20px;
+        margin-left: 25%;
+    }
 
+    .left_sec {
+        display: none;
+    }
+}
+@media screen and (max-width:320px)
+{
+    .right_sec {
+        margin-top: 0px !important;
+        margin-bottom: 20px;
+        margin-left: 25%;
+    }
+    .left_sec {
+        display: none;
+    }
+}
+#selectnav2 {
+    display: none;
+}

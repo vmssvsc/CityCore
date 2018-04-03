@@ -25,8 +25,36 @@ namespace admincore.Models
         public string VideoUrl { get; set; }
 
           
-        public string VideoDoc { get; set; }
+        
     }
+
+
+
+
+    public class VideoListModel
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
