@@ -47,7 +47,7 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <tbody>
-                
+
                 @{
 
                     <tr>
@@ -94,7 +94,15 @@
 
                 <tr>
                     <th scope="row">5</th>
-                    <td>Boundary</td>
+                    <td>Boundary East</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Boundary West</td>
                     <td>
                         <input type="text" class="textbox">
                         @*<span asp-validation-for="Title" class="text-danger" />*@
@@ -102,11 +110,46 @@
                 </tr>
 
                 <tr>
+                    <th scope="row">7</th>
+                    <td>Boundary North</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">8</th>
+                    <td>Boundary South</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">9</th>
+                    <td>Status</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td>Document</td>
+                    <td>
+                        <input type="file" class="btn btn-default btn-file" />
+                        @*<span asp-validation-for="" class="text-danger" /><br>*@
+                    </td>
+                </tr>
+
+                <tr>
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-times"></i> Cancel</a>
-                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-edit"></i> Edit</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>&nbsp;
                     </td>
                 </tr>
 
@@ -133,7 +176,7 @@
 
                
                 <tr>
-                    <th scope="row">3</th>
+                    <th scope="row">2</th>
                     <td>Description</td>
                     <td>
                         <textarea style="height: 253px; width: 542px;">
@@ -154,7 +197,7 @@
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-times"></i> Cancel</a>
+                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-edit"></i> Edit</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
                     </td>
                 </tr>
