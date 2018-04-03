@@ -219,7 +219,18 @@ namespace admincore.Controllers
                         }
                         else
                         {
-                            _context.Add(new Video()
+                            var vdo = new Video()
+                            {
+                                CreatedBy = user.Id,
+                                CreatedOn = DateTime.UtcNow,
+
+                                Description = model.Description,
+
+                                Title = model.Title,
+
+                                URL = model.VideoUrl,
+                            };  
+                            _context.Videos.Add(new Video()
                             {
                                 CreatedBy = user.Id,
                                 CreatedOn = DateTime.UtcNow,
