@@ -496,9 +496,10 @@ a.button_slider_02:hover {
 	text-transform: uppercase;
 	background-color: #bfbfbf;
 }
-.layout1_fusection1 .one_third a:hover {
-	background-color: #999;
-}
+    .layout1_fusection1 .one_third a:hover {
+        background-color: #0787c5;
+        
+    }
 
 
 /* fresh projects */
@@ -3190,7 +3191,7 @@ ul.list1 {
 	background-color: #fff;
 	border: 1px solid #dddddd;
 	margin-bottom:20px;
-	width: 100%;
+	width: 75%;
 }
 .table-list th {
 	padding: 18px 10px;

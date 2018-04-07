@@ -1,0 +1,144 @@
+﻿@model admincore.Models.Career.CareerViewModel
+@{
+    ViewData["Title"] = "AddEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style type="text/css">
+
+    .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+
+
+<h1 style="text-align: center">Add Career</h1>
+
+
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    @*<input type="hidden" asp-for="save" />*@
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+
+                
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>P.R.O No </td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="@Model.PRONo">
+                        <span asp-validation-for="@Model.PRONo" class="text-danger" />
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Departments</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="@Model.Department">
+                            <span asp-validation-for="@Model.Department" class="text-danger" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Post Name</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="@Model.PostName">
+                            <span asp-validation-for="@Model.PostName" class="text-danger" />
+                        </td>
+                    </tr>
+                    
+
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Start Date</td>
+                        <td>
+                            <input type="date" class="date" asp-for="@Model.StarDate" />
+                            <span asp-validation-for="@Model.StarDate" class="text-danger" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>End Date</td>
+                        <td>
+                            <input type="date" class="date" asp-for="@Model.EndDate" />
+                            <span asp-validation-for="@Model.EndDate" class="text-danger" />
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Post Document</td>
+                        <td>
+                            <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocName" />
+                            <span asp-validation-for="@Model.PostDocName" class="text-danger" /><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Form Document</td>
+                        <td>
+                            <input type="file" class="btn btn-default btn-file" asp-for="@Model.DocName" />
+                            <span asp-validation-for="@Model.DocName" class="text-danger" /><br>
+                        </td>
+                    </tr>
+
+                
+
+            <th scope="row"></th>
+            <td></td>
+            <td>
+                <a class="btn btn-danger pull-right" href="/Career"><i class="fa fa-times"></i> Cancel</a>
+                <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+            </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+</form>
+
+
+
+@section EndScripts{
+}
