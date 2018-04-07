@@ -29,6 +29,7 @@ namespace admincore.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectInitiative> ProjectInitiatives { get; set; }
         public DbSet<Video> Videos { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

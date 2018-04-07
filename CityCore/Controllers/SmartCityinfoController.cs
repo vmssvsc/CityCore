@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityCore.Controllers
 {
-    public class ProjectsController : Controller
+    public class SmartCityinfoController : Controller
     {
         public IActionResult Index()
         {
@@ -14,12 +14,13 @@ namespace CityCore.Controllers
         }
 
 
-        public IActionResult Abd()
+
+        public IActionResult SmartCityCoverage()
         {
             return View();
         }
 
-        public IActionResult ProjectStatus()
+        public IActionResult SmartCitySelection()
         {
             return View();
         }

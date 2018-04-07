@@ -24,7 +24,15 @@ namespace admincore.Controllers
             await SetUserData();
             return View();
         }
-                           
+
+
+        public async Task<IActionResult> ProjectStatus()
+        {
+            await SetUserData();
+            return View();
+        }
+
+
     }
 }
     
