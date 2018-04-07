@@ -22,7 +22,7 @@ namespace admincore.Common
             EventFile,
             EventImage,
             AlbumPhoto,
-            VideoFile
+            CareerFile
             
         }
 

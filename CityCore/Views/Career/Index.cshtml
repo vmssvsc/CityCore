@@ -1,0 +1,51 @@
+﻿@model List<CityCore.Models.Career.CareerViewModel>
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="content_fullwidth">
+
+        <div class="one_full">
+
+            <h2><strong>Recruitments</strong></h2>
+            <div class="table-style">
+                <table class="table-list">
+                    <tr>
+                        <th>P.R.O No.</th>
+                        <th>Departments</th>
+                        <th>Post Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>View Detail</th>
+                        <th>Download Form </th>
+                    </tr>
+                    
+                   @{ 
+
+                       foreach (var item in Model)
+                       {
+                    <tr>
+                        <td>@item.PRONo</td>
+                        <td>@item.Department</td>
+                        <td>@item.PostName</td>
+                        <td>@item.StarDate</td>
+                        <td>@item.EndDate</td>
+                        <a href="#" > <td>@item.PostDocName</td></a>
+                        <a href="#"> <td>@item.DocName</td></a>
+
+                    </tr>
+                           }
+
+                       }
+                </table>
+            </div>
+
+        </div><!-- end tables -->
+
+
+
+    </div>
+</div>
