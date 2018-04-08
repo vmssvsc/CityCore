@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ABDinitiatives";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <div class="col-md-12">
 
         <div class="table-responsive">
-            <table class="table" id="tblABD">
+            <table class="table" id="tblABDInit">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -24,11 +24,12 @@
     </div>
     <div class="col-md-12">
         <br />
-        <a href="/Project/ABDInitiative" class="btn btn-primary pull-right">Add ABD Initiative</a>
-        <a href="/Project/ABDProject" class="btn btn-primary pull-right">Edit ABD Project</a>
+        
+        <a href="/ABDProject/InitiativesAddEdit" class="btn btn-primary pull-right">Add ABD Initiative</a>
+        
     </div>
 </div>
 @section EndScripts{
-    <script type="text/javascript" src="~/js/Project/ABDInitiative.js"></script>
+    <script type="text/javascript" src="~/js/ABDProject/ABDInitiative.js"></script>
 }
 

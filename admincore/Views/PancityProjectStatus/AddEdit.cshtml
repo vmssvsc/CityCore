@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewData["Title"] = "AddEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style type="text/css">
+
+    .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+
+
+<h1 style="text-align: center">Pan City Project Status</h1>
+
+
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    @*<input type="hidden" asp-for="save" />*@
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Name Of Project</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Project Type</td>
+                    <td>
+                        <select data-val="true" data-val-required="The Priority field is required." id="PrType" name="Project Type">
+
+                            <option selected="selected" value="ICTProject">ICT Project</option>
+                            <option value="Infrastructure">Infrastructure</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Cost</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Start Date</td>
+                    <td>
+                        <input type="date" class="date" />
+                        @*<span asp-validation-for="@Model.Date" class="text-danger" />*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Completion Date</td>
+                    <td>
+                        <input type="date" class="date" />
+                        @*<span asp-validation-for="@Model.Date" class="text-danger" />*@
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Physical Progress</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Description</td>
+                    <td>
+                        <textarea style="height: 253px; width: 542px;">
+                        
+                    </textarea>
+                        @*<span asp-validation-for="@Model.Description" class="text-danger" />*@
+                    </td>
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-danger pull-right" href="/PancityProjectStatus"><i class="fa fa-edit"></i>Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>&nbsp;
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+</form>
+
+
+@section EndScripts{
+}

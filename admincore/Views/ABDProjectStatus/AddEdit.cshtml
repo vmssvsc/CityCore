@@ -1,10 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "ProjectStatus";
+    ViewData["Title"] = "AddEdit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-
 
 <style type="text/css">
 
@@ -39,7 +37,7 @@
 </style>
 
 
-<h1 style="text-align: center">Project Status</h1>
+<h1 style="text-align: center">ABD Project Status</h1>
 
 
 <form asp-action="Save" enctype="multipart/form-data" method="post">
@@ -61,6 +59,20 @@
 
                 <tr>
                     <th scope="row">2</th>
+                    <td>Project Type</td>
+                    <td>
+                        <select data-val="true" data-val-required="The Priority field is required." id="PrType" name="Project Type">
+
+                            <option selected="selected" value="ICTProject">ICT Project</option>
+                            <option value="Infrastructure">Infrastructure</option>
+                            
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">3</th>
                     <td>Cost</td>
                     <td>
                         <input type="text" class="textbox">
@@ -70,7 +82,7 @@
 
 
                 <tr>
-                    <th scope="row">3</th>
+                    <th scope="row">4</th>
                     <td>Start Date</td>
                     <td>
                         <input type="date" class="date" />
@@ -79,7 +91,7 @@
                 </tr>
 
                 <tr>
-                    <th scope="row">4</th>
+                    <th scope="row">5</th>
                     <td>Completion Date</td>
                     <td>
                         <input type="date" class="date" />
@@ -89,7 +101,7 @@
 
 
                 <tr>
-                    <th scope="row">5</th>
+                    <th scope="row">6</th>
                     <td>Physical Progress</td>
                     <td>
                         <input type="text" class="textbox">
@@ -99,7 +111,7 @@
 
 
                 <tr>
-                    <th scope="row">6</th>
+                    <th scope="row">7</th>
                     <td>Description</td>
                     <td>
                         <textarea style="height: 253px; width: 542px;">
@@ -110,15 +122,15 @@
                 </tr>
 
 
-               
 
 
-                
+
+
                 <tr>
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Gallery"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="btn btn-danger pull-right" href="/ABDProjectStatus"><i class="fa fa-edit"></i>Cancel</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>&nbsp;
                     </td>
                 </tr>
@@ -128,7 +140,7 @@
 
 
     </div>
-  
+
 
 
 </form>

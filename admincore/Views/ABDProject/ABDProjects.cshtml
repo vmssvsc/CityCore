@@ -1,6 +1,6 @@
-﻿@model admincore.Models.Project.ProjectInititativeViewModel
+﻿
 @{
-    ViewData["Title"] = "ABDInitiative";
+    ViewData["Title"] = "ABDProjects";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -41,40 +41,50 @@
 
 
 
-<h1 style="text-align: center">ABD AREA INITIATIVE</h1>
+<h1 style="text-align: center">ABD Total Projects</h1>
 
-<form asp-action="SaveI" enctype="multipart/form-data" method="post">
-    <input type="hidden" asp-for="@Model.Id" />
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    @*<input type="hidden" asp-for="@Model.Id" />*@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="table-responsive">
         <table class="table table-bordered">
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Title</td>
+                    <td>Project Type</td>
                     <td>
-                        <input type="text" class="textbox" asp-for="@Model.Title">
-                        <span asp-validation-for="@Model.Title" class="text-danger" />
+                        <select data-val="true" data-val-required="The Priority field is required." id="PrType" name="Project Type">
+
+                            <option selected="selected" value="Total">Total</option>
+                            <option value="DPR">DPR</option>
+                            <option value="TENDER">TENDER</option>
+                            <option value="WorkOrder">Work Order</option>
+                        </select>
                     </td>
                 </tr>
 
 
                 <tr>
                     <th scope="row">2</th>
-                    <td>Description</td>
+                    <td>Total Projects</td>
                     <td>
-                        <textarea asp-for="@Model.Initiative" style="height: 253px; width: 542px;">
-                        
-                    </textarea>
-                        <span asp-validation-for="@Model.Initiative" class="text-danger" />
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="@Model.Title" class="text-danger" />*@
                     </td>
                 </tr>
-
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Total Cost</td>
+                    <td>
+                        <input type="text" class="textbox">
+                        @*<span asp-validation-for="@Model.Title" class="text-danger" />*@
+                    </td>
+                </tr>
                 <tr>
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Index"><i class="fa fa-edit"></i> Cancel</a>
+                        <a class="btn btn-danger pull-right" href="#"><i class="fa fa-edit"></i> Cancel</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
                     </td>
                 </tr>
@@ -93,4 +103,5 @@
 @section EndScripts{
 
 }
+
 

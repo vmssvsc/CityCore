@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "PancityCommand";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 style="text-align: center"> Pan City Project Command  and Controller  List</h1>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="table-responsive">
+            <table class="table" id="tblABD">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Command and Controller Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <br />
+
+        <a href="/PanCityProject/CommandAddEdit" class="btn btn-primary pull-right">Add Pan city Command</a>
+
+    </div>
+</div>
+@section EndScripts{
+    <script type="text/javascript" src="~/js/PanCityProject/PancityCommand.js"></script>
+}
+
