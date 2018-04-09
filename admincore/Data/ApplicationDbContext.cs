@@ -29,7 +29,9 @@ namespace admincore.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectInitiative> ProjectInitiatives { get; set; }
         public DbSet<Video> Videos { get; set; }
-        
+        public DbSet<SmartCityProject> SmartCityProjects { get; set; }
+        public DbSet<ABDProjectDetail> ABDProjectDetails { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
