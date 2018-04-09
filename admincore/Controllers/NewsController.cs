@@ -24,5 +24,10 @@ namespace admincore.Controllers
             await SetUserData();
             return View();
         }
+        public async Task<IActionResult> AddEdit()
+        {
+            await SetUserData();
+            return View();
+        }
     }
 }
