@@ -22,4 +22,15 @@ namespace admincore.Models.Project
 
 
     }
+
+    public class ProjectInititativeListModel
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Initiative { get; set; }
+
+
+    }
 }

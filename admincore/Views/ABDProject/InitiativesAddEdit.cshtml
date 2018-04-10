@@ -1,8 +1,22 @@
 ﻿@model admincore.Models.Project.ProjectInititativeViewModel
 @{
-    ViewData["Title"] = "InitiativesAddEdit";
+
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit ABD Project Initiative";
+    }
+    else
+    {
+        ViewData["Title"] = "Add new ABD Project Initiative";
+
+    }
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
+
+
+
 
 <style type="text/css">
 
@@ -35,12 +49,19 @@
         text-align: center;
     }
 </style>
+@{
+    if (Model.Id > 0)
+    {
+        <h1 style="text-align: center">Edit ABD Project Initiative</h1>
+    }
+    else
+    {
+        <h1 style="text-align: center">Add new ABD Project Initiative</h1>
+    }
+
+}
 
 
-
-
-
-<h1 style="text-align: center">ABD AREA INITIATIVE</h1>
 
 <form asp-action="SaveI" enctype="multipart/form-data" method="post">
     <input type="hidden" asp-for="@Model.Id" />
@@ -73,7 +94,7 @@
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Index"><i class="fa fa-edit"></i> Cancel</a>
+                        <a class="btn btn-danger pull-right" href="/ABDProject/ABDinitiatives"><i class="fa fa-edit"></i> Cancel</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
                     </td>
                 </tr>

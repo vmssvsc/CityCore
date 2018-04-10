@@ -1,7 +1,17 @@
-﻿
+﻿@model admincore.Models.SmartProject.SmartProjectViewModel
 @{
-    ViewData["Title"] = "AddEdit";
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit Smart Project ";
+    }
+    else
+    {
+        ViewData["Title"] = "Add new Smart Project ";
+
+    }
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
 <style type="text/css">
@@ -35,12 +45,22 @@
         text-align: center;
     }
 </style>
-<h1 style="text-align: center">Pan City Project Status</h1>
+@{
+    if (Model.Id > 0)
+    {
+        <h1 style="text-align: center">Edit Smart Project </h1>
+    }
+    else
+    {
+        <h1 style="text-align: center">Add new Smart Project</h1>
+    }
+
+}
 
 
 <form asp-action="Save" enctype="multipart/form-data" method="post">
-    @*<input type="hidden" asp-for="save" />*@
 
+    <input type="hidden" asp-for="@Model.Id" />
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -50,8 +70,8 @@
                     <th scope="row">1</th>
                     <td>Title Of Project</td>
                     <td>
-                        <input type="text" class="textbox">
-                        @*<span asp-validation-for="Title" class="text-danger" />*@
+                        <input type="text" class="textbox" asp-for="@Model.Name">
+                        <span asp-validation-for="@Model.Name" class="text-danger" />
                     </td>
                 </tr>
 
@@ -59,9 +79,20 @@
                     <th scope="row">2</th>
                     <td> Project Image</td>
                     <td>
-                        <input type="file" class="btn btn-default btn-file"  />
-                        @*<span asp-validation-for="@Model.File" class="text-danger" />*@
-                        <br>
+                        @{
+                            if (Model.ImgId > 0)
+                            {
+
+                                <a href="@Model.Url">@Model.ImageName </a> <a href="javascript:void(0)" id="deleteImg" data-id="@Model.ImgId" style="color:red"> X</a>
+                            }
+
+                            else
+                            {
+
+                                <input type="file" accept="image/*" class="btn btn-default btn-file" asp-for="@Model.Image" />
+                                <span asp-validation-for="@Model.Image" class="text-danger" /><br>
+                            }
+                        }
                     </td>
                 </tr>
 
@@ -72,10 +103,10 @@
                     <th scope="row">3</th>
                     <td>Description</td>
                     <td>
-                        <textarea style="height: 253px; width: 542px;">
+                        <textarea asp-for="@Model.Description" style="height: 253px; width: 542px;">
                         
                     </textarea>
-                        @*<span asp-validation-for="@Model.Description" class="text-danger" />*@
+                        <span asp-validation-for="@Model.Description" class="text-danger" />
                     </td>
                 </tr>
 
@@ -105,4 +136,5 @@
 
 
 @section EndScripts{
+    <script type="text/javascript" src="~/js/HomePageProject/AddEdit.js"></script>
 }
