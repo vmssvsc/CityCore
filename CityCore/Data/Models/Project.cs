@@ -33,7 +33,7 @@ namespace CityCore.Data.Models
         [ForeignKey("ImageDocumentId")]
         public virtual Document ImageDocument { get; set; }
 
-        public ICollection<ProjectInitiative> ProjectInitiatives { get; set; }
+        //public ICollection<ProjectInitiative> ProjectInitiatives { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -50,9 +50,9 @@ namespace CityCore.Data.Models
 
         public string Initiative { get; set; }
 
-        public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")]
-        public virtual Project Project { get; set; }
+        //public int ProjectId { get; set; }
+        //[ForeignKey("ProjectId")]
+        //public virtual Project Project { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
