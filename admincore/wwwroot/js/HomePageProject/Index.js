@@ -1,16 +1,16 @@
-﻿InitiativeList = {
+﻿SmartProjectList = {
     Variables: {
-        srcEdit: '/ABDProject/SaveI',
-        srcList: '/ABDProject/GetListI',
-        srcDelete: '/ABDProject/DeleteI',
+        srcEdit: '/HomePageProject/Save',
+        srcList: '/HomePageProject/GetList',
+        srcDelete: '/HomePageProject/Delete',
         oTable: null,
     },
     Controls: {
-        table: '#tblABDInit',
+        table: '#tblProjects',
     },
     IntializeTable: function () {
-        InitiativeList.Variables.oTable = $(InitiativeList.Controls.table).dataTable({
-            "sAjaxSource": InitiativeList.Variables.srcList,
+        SmartProjectList.Variables.oTable = $(SmartProjectList.Controls.table).dataTable({
+            "sAjaxSource": SmartProjectList.Variables.srcList,
             //"aaSorting": [[1, "desc"]],// default sorting
             "sDom": "frtlip",
             "autoWidth": false,
@@ -31,7 +31,7 @@
                 {
                     "aTargets": [3],
                     "mRender": function (data, type, full) {
-                        return "<a href='/ABDProject/InitiativesAddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\InitiativeList.DeleteInitiative('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
+                        return "<a href='/HomePageProject/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\SmartProjectList.DeleteSmartProject('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
                     },
                     "sortable": false,
                     "className": "text-center",
@@ -53,7 +53,7 @@
                 $("div").data("srchParams",
                     [
                         //{ name: 'iDisplayLength', value: $("#hdnGeneralPageSize").val() },
-                        { name: 'srchTxt', value: encodeURIComponent($(InitiativeList.Controls.txtSearch).val() == '' ? '' : $(InitiativeList.Controls.txtSearch).val()) },
+                        { name: 'srchTxt', value: encodeURIComponent($(SmartProjectList.Controls.txtSearch).val() == '' ? '' : $(SmartProjectList.Controls.txtSearch).val()) },
                         { name: 'srchBy', value: 'ALL' },
 
 
@@ -77,20 +77,20 @@
     },
 
     reloadList: function () {
-        $(InitiativeList.Controls.table).DataTable().ajax.reload();
+        $(SmartProjectList.Controls.table).DataTable().ajax.reload();
     },
 
-    DeleteInitiative: function (id) {
-        bootbox.confirm("Are you sure you want to delete this  ABD Area Initiative ?",
+    DeleteSmartProject: function (id) {
+        bootbox.confirm("Are you sure you want to delete this  Smart Project ?",
             function (result) {
                 if (result) {
                     $.ajax({
                         type: 'get',
-                        url: InitiativeList.Variables.srcDelete + '?id=' + id,
+                        url: SmartProjectList.Variables.srcDelete + '?id=' + id,
                         success: function (data) {
                             if (data.success) {
                                 Common.Success(data.message);
-                                InitiativeList.reloadList();
+                                SmartProjectList.reloadList();
                             }
                             else {
                                 Common.Error(data.message);
@@ -108,5 +108,5 @@
 };
 
 $(document).ready(function () {
-    InitiativeList.IntializeTable();
+    SmartProjectList.IntializeTable();
 });
