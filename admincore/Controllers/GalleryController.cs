@@ -301,7 +301,7 @@ namespace admincore.Controllers
                     _context.Remove(rec);
                     _context.SaveChanges();
                     transaction.Commit();
-                    return Json(new { success = true, message = "Event deleted successfully." });
+                    return Json(new { success = true, message = "Album deleted successfully." });
 
                 }
                 catch (Exception e)

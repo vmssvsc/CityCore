@@ -294,15 +294,17 @@ namespace admincore.Controllers
                     var rec = _context.SmartCityProjects.Where(s => s.Id == id).FirstOrDefault();
                     if (rec == null)
                         throw new Exception("Invalid Smart Project id.");
-
-                    
-
+                 
                     var resimage = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ) : true;
 
                     if ( resimage)
                     {
-                        _context.Remove(rec);
-                        _context.SaveChanges();
+                        var updatedRec = _context.SmartCityProjects.Where(s => s.Id == id).FirstOrDefault();
+                        if (updatedRec != null)
+                        {
+                            _context.Remove(updatedRec);
+                            _context.SaveChanges();
+                        }
                         transaction.Commit();
                         return Json(new { success = true, message = "Smart Project deleted successfully." });
                     }
