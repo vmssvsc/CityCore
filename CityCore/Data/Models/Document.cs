@@ -22,6 +22,9 @@ namespace CityCore.Data.Models
         public ICollection<Event> Events { get; set; }
         public ICollection<AlbumDocumentMap> AlbumDocumentMap { get; set; }
         public ICollection<Project> Projects { get; set; }
+        public ICollection<SmartCityProject> SmartCityProjects { get; set; }
+
+
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

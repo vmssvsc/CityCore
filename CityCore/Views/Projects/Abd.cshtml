@@ -1,4 +1,5 @@
-﻿
+﻿@model List<CityCore.Models.Projects.ABDInitiativeViewModel>
+
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -14,7 +15,6 @@
         <div class="pagenation">&nbsp;<a href="/Events/Albums">Albums</a></div>
     </div>
 </div><!-- end page title -->
-
 <!-- Contant
 ======================================= -->
 
@@ -64,7 +64,7 @@
             <div class="one_full">
 
                 <h2><strong>Vadodara Smart City </strong></h2>
-                <div class="table-style"  style="overflow-x:auto;">
+                <div class="table-style" style="overflow-x:auto;">
                     <table class="table-list">
                         <tr>
                             <th>ABD Projects</th>
@@ -95,43 +95,46 @@
                     </table>
                 </div>
             </div>
-            </div><!-- end tables -->
-            <!--initiative-- section start-->
+        </div><!-- end tables -->
+        <!--initiative-- section start-->
 
-            <div class="portfolio_area_left">
-                <h3><i>Vadodara ABD Initiatives</i></h3>
+        <div class="portfolio_area_left">
+            <h3><i>Vadodara ABD Initiatives</i></h3>
 
-                <!-- section 1 -->
-                <span class="acc-trigger active"><a href="#">Heritage and Calture Destination </a></span>
-                <div class="acc-container">
-                    <div class="content">
-                        Renovation of about  25 heritage stractures and highlight calture activity to  make city tourism  destintion
-                    </div>
+            @{
+                foreach (var item in Model)
+                {
+            <span class="acc-trigger active"><a href="#">@item.Title </a></span>
+            <div class="acc-container">
+                <div class="content">
+                    @item.Initiative
                 </div>
-
-                <!-- section 2 -->
-                <span class="acc-trigger"><a href="#">Tourist Infotmation Center </a></span>
-                <div class="acc-container">
-                    <div class="content">
-                        It will be constructed at  Railwaystation for tourist
-                    </div>
+            </div>
+                    }
+                }
+            <!-- section 2 -->
+            @*<span class="acc-trigger"><a href="#">Tourist Infotmation Center </a></span>
+            <div class="acc-container">
+                <div class="content">
+                    It will be constructed at  Railwaystation for tourist
                 </div>
+            </div>
 
-                <!-- section 3 -->
-                <span class="acc-trigger"><a href="#">Urben Health Center</a></span>
-                <div class="acc-container">
-                    <div class="content">
-                        24x7 healthcare with facility of primary treatment  and maternity ward  facility at two loction
-                    </div>
+             section 3 
+            <span class="acc-trigger"><a href="#">Urben Health Center</a></span>
+            <div class="acc-container">
+                <div class="content">
+                    24x7 healthcare with facility of primary treatment  and maternity ward  facility at two loction
                 </div>
+            </div>*@
 
-            </div><!-- end resions to you choose us -->
-
-
-
+        </div><!-- end resions to you choose us -->
 
 
-        </div>
+
+
+
+    </div>
 
 </div><!-- end content area -->
 
