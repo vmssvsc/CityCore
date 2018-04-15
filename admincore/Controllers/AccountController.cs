@@ -254,11 +254,15 @@ namespace admincore.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            var user = _userManager.GetUserAsync(User);
+            if(user != null)
+            {
+                await _signInManager.SignOutAsync();
+                _logger.LogInformation("User logged out.");
+            }          
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
