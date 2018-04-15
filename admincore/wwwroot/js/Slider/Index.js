@@ -51,8 +51,8 @@ $(document).ready(function () {
                     Common.Error(data.message);
                 }
             },
-            error: function() {
-                Common.Error(data.message);
+            error: function (xhr, status, errorThrown) {
+                Common.Error(errorThrown);
             }
         });
     });
@@ -75,8 +75,8 @@ $(document).ready(function () {
                                 Common.Error(data.message);
                             }
                         },
-                        error: function () {
-                            Common.Error(data.message);
+                        error: function (xhr, status, errorThrown) {
+                            Common.Error(errorThrown);
                         }
                     });
                 }
