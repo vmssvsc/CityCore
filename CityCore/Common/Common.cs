@@ -20,7 +20,8 @@ namespace CityCore.Common
             UserProfileImage,
             ProjectVideo,
             EventFile,
-            EventImage
+            EventImage,
+            SmartProjectImage
         }
 
         public enum DocumentType
