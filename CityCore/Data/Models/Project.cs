@@ -29,7 +29,7 @@ namespace CityCore.Data.Models
 
         public ProjectStatus Status { get; set; }
 
-        public int ImageDocumentId { get; set; }
+        public int? ImageDocumentId { get; set; }
         [ForeignKey("ImageDocumentId")]
         public virtual Document ImageDocument { get; set; }
 

@@ -268,7 +268,7 @@ namespace admincore.Controllers
                     Id = k.Id,
                     Description = k.Description,
                     Name = k.Name,
-                    ImgId = k.DocumentId,
+                    ImgId = k.DocumentId ?? 0,
                     ImageName = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.FileName).FirstOrDefault(),
                     Url = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),                   
                     DisplayLocation = k.DisplayLocation
@@ -300,7 +300,7 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Smart Project id.");
 
-                    var resimage = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId) : true;
+                    var resimage = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
 
                     if (resimage)
                     {
@@ -342,7 +342,7 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Image.");
 
-                    var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId) : true;
+                    var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ?? 0) : true;
                     if (res)
                     {
                         rec.ModifiedBy = user.Id;
