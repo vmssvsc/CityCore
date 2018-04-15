@@ -37,6 +37,20 @@ namespace CityCore.Controllers
                                       SequenceNumber = s.SequenceNo,
                                       Url = d.URL
                                   }).ToList();
+
+            model.SmartProject = (from p in _context.SmartCityProjects
+                                  join d in _context.Documents
+                                  on p.DocumentId equals d.Id
+                                  where p.DisplayLocation == Common.Enums.SmartCityProjectDisplayLocation.Home
+                                  select new SmartProjectViewModel()
+                                  {
+                                      Description = p.Description,
+                                      Id = p.Id,
+                                      Name = p.Name,
+                                      Url = p.Url,
+                                      ImageUrl = d.URL
+                                  }).ToList();
+
             return View(model);
         }
 
@@ -58,5 +72,7 @@ namespace CityCore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       
     }
 }

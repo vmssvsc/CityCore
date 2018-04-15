@@ -76,7 +76,9 @@ namespace admincore.Data.Models
         public int DocumentId { get; set; }
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
-        
+
+        public SmartCityProjectDisplayLocation? DisplayLocation { get; set; }
+
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }

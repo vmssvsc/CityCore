@@ -68,7 +68,7 @@
 
                 <tr>
                     <th scope="row">1</th>
-                    <td>Title Of Project</td>
+                    <td>Title</td>
                     <td>
                         <input type="text" class="textbox" asp-for="@Model.Name">
                         <span asp-validation-for="@Model.Name" class="text-danger" />
@@ -77,6 +77,16 @@
 
                 <tr>
                     <th scope="row">2</th>
+                    <td>Display Location</td>
+                    <td>
+                        <select asp-for="@Model.DisplayLocation" asp-items="@ViewBag.DisplayLocations">
+                        </select>
+                        <span asp-validation-for="@Model.Name" class="text-danger" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">3</th>
                     <td> Project Image</td>
                     <td>
                         @{
@@ -100,7 +110,7 @@
 
 
                 <tr>
-                    <th scope="row">3</th>
+                    <th scope="row">4</th>
                     <td>Description</td>
                     <td>
                         <textarea asp-for="@Model.Description" style="height: 253px; width: 542px;">

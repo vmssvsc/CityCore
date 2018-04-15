@@ -9,7 +9,7 @@ namespace CityCore.Models
     {
         public List<SliderImage> SliderImages { get; set; }
         
-        public List<Project> Projects { get; set; }
+        public List<SmartProjectViewModel> SmartProject { get; set; }
     }
 
     public class Project

@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace admincore.Controllers
 {
     [Authorize]
-    public class HomePageProjectController :  BaseController
+    public class HomePageProjectController : BaseController
     {
 
         public HomePageProjectController(UserManager<ApplicationUser> userManager,
@@ -29,10 +29,6 @@ namespace admincore.Controllers
         ILogger<AccountController> logger, IDocumentManager documentManager, ApplicationDbContext context, IOptions<AmazonSettings> amazonSettings) : base(userManager, signInManager, emailSender, logger, documentManager, context, amazonSettings)
         {
         }
-
-
-
-
 
         public async Task<IActionResult> Index()
         {
@@ -52,7 +48,7 @@ namespace admincore.Controllers
                 {
                     try
                     {
-                        
+
 
                         if (model.Id > 0)
                         {
@@ -61,9 +57,9 @@ namespace admincore.Controllers
                             {
                                 throw new Exception("Record not found.");
                             }
-                            
+
                             Document imageRes = null;
-                            
+
                             if (model.Image != null)
                             {
                                 imageRes = await _documentManager.Save(model.Image, _amazonSettings.SliderBucketName);
@@ -78,7 +74,7 @@ namespace admincore.Controllers
 
                             rec.ModifiedBy = user.Id;
                             rec.ModifiedOn = DateTime.UtcNow;
-
+                            rec.DisplayLocation = model.DisplayLocation;
                             rec.Description = model.Description;
                             rec.Name = model.Name;
                             _context.Update(rec);
@@ -89,15 +85,15 @@ namespace admincore.Controllers
                         }
                         else
                         {
-                            if ( model.Image != null )
+                            if (model.Image != null)
                             {
                                 //Upload files
-                                
+
                                 var imageRes = await _documentManager.Save(model.Image, _amazonSettings.SliderBucketName);
 
-                                if ( imageRes != null)
+                                if (imageRes != null)
                                 {
-                                    
+
                                     imageRes.DocumentCategory = Enums.DocumentCategory.SmartProjectImage;
                                     imageRes.CreatedBy = user.Id;
 
@@ -105,10 +101,10 @@ namespace admincore.Controllers
                                     {
                                         CreatedBy = user.Id,
                                         CreatedOn = DateTime.UtcNow,
-                                        
+
                                         Description = model.Description,
                                         Name = model.Name,
-
+                                        DisplayLocation = model.DisplayLocation,
                                         DocumentId = imageRes.Id,
                                     });
                                     _context.SaveChanges();
@@ -149,7 +145,7 @@ namespace admincore.Controllers
                 string errorMessage = string.Empty;
                 var queryStrings = Request.Query;
                 var user = await _userManager.GetUserAsync(User);
-                var parameters = GetParameters(new List<string>() { "Id", "Name","Description", "Action" });
+                var parameters = GetParameters(new List<string>() { "Id", "Name", "Description", "DisplayLoc", "Action" });
 
                 IQueryable<SmartProjectListModel> finallist;
 
@@ -157,14 +153,13 @@ namespace admincore.Controllers
                              select new SmartProjectListModel
                              {
                                  Id = SmartCityProjects.Id,
-                                 
                                  Description = SmartCityProjects.Description,
-                                 
-                                 Name = SmartCityProjects.Name
+                                 Name = SmartCityProjects.Name,
+                                 DisplayLocation = SmartCityProjects.DisplayLocation.ToString()
                              });
-                
 
-                      int TotalCount = finallist.Count();
+
+                int TotalCount = finallist.Count();
 
                 #region Sorting
 
@@ -183,7 +178,7 @@ namespace admincore.Controllers
                             finallist = finallist.OrderBy(x => x.Name);
                         }
                         break;
-                    
+
                     case "Description":
                         if (SortDir == "desc")
                         {
@@ -192,6 +187,17 @@ namespace admincore.Controllers
                         else
                         {
                             finallist = finallist.OrderBy(x => x.Description);
+                        }
+                        break;
+
+                    case "DisplayLoc":
+                        if (SortDir == "desc")
+                        {
+                            finallist = finallist.OrderByDescending(x => x.DisplayLocation);
+                        }
+                        else
+                        {
+                            finallist = finallist.OrderBy(x => x.DisplayLocation);
                         }
                         break;
 
@@ -226,6 +232,7 @@ namespace admincore.Controllers
                                          model.Id.ToString(),
                                          model.Name .ToString(),
                                          model.Description.ToString(),
+                                         model.DisplayLocation
                                 };
                     data = JsonConvert.SerializeObject(new { iTotalRecords = TotalCount, iTotalDisplayRecords = TotalCount, aaData = res });
                 }
@@ -251,7 +258,7 @@ namespace admincore.Controllers
         {
             var model = new SmartProjectViewModel()
             {
-                
+
             };
 
             if (Id > 0)
@@ -259,17 +266,12 @@ namespace admincore.Controllers
                 var rec = _context.SmartCityProjects.Where(e => e.Id == Id).Select(k => new SmartProjectViewModel()
                 {
                     Id = k.Id,
-                    
                     Description = k.Description,
                     Name = k.Name,
-                    
-                    ImgId = k.DocumentId ,
-                    
+                    ImgId = k.DocumentId,
                     ImageName = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.FileName).FirstOrDefault(),
-
-                    Url = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault()
-                    
-
+                    Url = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),                   
+                    DisplayLocation = k.DisplayLocation
                 }).FirstOrDefault();
 
                 if (model != null)
@@ -278,8 +280,11 @@ namespace admincore.Controllers
 
             await SetUserData();
 
+            var DisplayLocations = from Enums.SmartCityProjectDisplayLocation es in Enum.GetValues(typeof(Enums.SmartCityProjectDisplayLocation))
+                                   select new { Id = es, Name = es.ToString() };
 
-            
+            ViewBag.DisplayLocations = new SelectList(DisplayLocations, "Id", "Name");
+
             return View(model);
         }
 
@@ -294,10 +299,10 @@ namespace admincore.Controllers
                     var rec = _context.SmartCityProjects.Where(s => s.Id == id).FirstOrDefault();
                     if (rec == null)
                         throw new Exception("Invalid Smart Project id.");
-                 
-                    var resimage = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId ) : true;
 
-                    if ( resimage)
+                    var resimage = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId) : true;
+
+                    if (resimage)
                     {
                         var updatedRec = _context.SmartCityProjects.Where(s => s.Id == id).FirstOrDefault();
                         if (updatedRec != null)
@@ -332,25 +337,22 @@ namespace admincore.Controllers
                 try
                 {
                     var user = await _userManager.GetUserAsync(User);
-                    
-                    
-                    
-                        var rec = _context.SmartCityProjects.Where(s => s.DocumentId == id).FirstOrDefault();
-                        if (rec == null)
-                            throw new Exception("Invalid Image.");
 
-                        var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId) : true;
-                        if (res)
-                        {
-                            
-                            rec.ModifiedBy = user.Id;
-                            rec.ModifiedOn = DateTime.UtcNow;
-                        }
+                    var rec = _context.SmartCityProjects.Where(s => s.DocumentId == id).FirstOrDefault();
+                    if (rec == null)
+                        throw new Exception("Invalid Image.");
 
-                        _context.SaveChanges();
-                        transaction.Commit();
-                        return Json(new { success = true, message = "Image deleted successfully." });
-                    
+                    var res = rec.DocumentId > 0 ? await _documentManager.Delete(rec.DocumentId) : true;
+                    if (res)
+                    {
+                        rec.ModifiedBy = user.Id;
+                        rec.ModifiedOn = DateTime.UtcNow;
+                    }
+
+                    _context.SaveChanges();
+                    transaction.Commit();
+                    return Json(new { success = true, message = "Image deleted successfully." });
+
                 }
                 catch (Exception e)
                 {

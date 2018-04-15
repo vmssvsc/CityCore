@@ -1,0 +1,286 @@
+﻿
+@model List<CityCore.Models.SmartProjectViewModel>
+<div class="fresh_projects">
+
+    <div class="container">
+
+        <h1>
+            Check our <strong>Projects</strong>
+            <br />
+            <i>Projects Under Vadodara Smart City Mission</i>
+        </h1>
+
+        <ul id="mycarouseltwo" class="jcarousel-skin-tango">
+
+            @{
+                foreach (var item in Model)
+                {
+                    <li>
+                        <div class="item">
+                            <div class="fresh_projects_list">
+                                <section class="cheapest">
+                                    <div class="display">
+                                        <div class="small-group">
+                                            <div class="small money">
+                                                <img src="@item.ImageUrl" alt="" height="300" width="275">
+                                                <div class="info">
+                                                    <div class="title">
+                                                        @item.Name
+                                                        @*<ul>
+                                                                <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                                <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                                <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                            </ul>*@
+                                                    </div>
+                                                    <div class="additionnal">
+                                                        @item.Description<br /><br />
+                                                        <b><a href="@item.Url">more ></a></b>
+                                                    </div>
+                                                </div>
+                                                <div class="hover"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+
+            @*<li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="~/images/Projects/pro1.jpg" alt=""   height="300" width="275" >
+                                            <div class="info">
+                                                <div class="title">
+                                                    Green Vadodara
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="~/images/Projects/pro2.jpg" alt=""  height="300" width="275">
+                                            <div class="info">
+                                                <div class="title">
+                                                    Solar Roof Top
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="~/images/Projects/pro3.jpg" alt=""  height="300" width="275">
+                                            <div class="info">
+                                                <div class="title">
+                                                  E Rickshaw & Tricycles
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="~/images/Projects/pro4.jpg" alt=""  height="300" width="275">
+                                            <div class="info">
+                                                <div class="title">
+                                                    CCC Building
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="http://placehold.it/275x300" alt="">
+                                            <div class="info">
+                                                <div class="title">
+                                                    Suspendisse Opens
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="images/site-img07.jpg" alt="">
+                                            <div class="info">
+                                                <div class="title">
+                                                    Malesuada Magna
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->
+
+                <li>
+                    <div class="item">
+                        <div class="fresh_projects_list">
+                            <section class="cheapest">
+                                <div class="display">
+                                    <div class="small-group">
+                                        <div class="small money">
+                                            <img src="images/site-img08.jpg" alt="">
+                                            <div class="info">
+                                                <div class="title">
+                                                    Model the Structures
+                                                    <ul>
+                                                        <li><a href="#"><img src="images/fa-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/twitter-icon.png" alt="" /></a></li>
+                                                        <li><a href="#"><img src="images/like-icon.png" alt="" /></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="additionnal">
+                                                    There are many variations pasages
+                                                    lpsum available but in the majority
+                                                    have suffered alteration [...]<br /><br />
+                                                    <b><a href="#">more ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="hover"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li><!-- end item -->*@
+
+        </ul>
+
+    </div>
+
+</div>

@@ -54,5 +54,12 @@ namespace admincore.Common
             Ongoing,
             Completed
         }
+
+        public enum SmartCityProjectDisplayLocation
+        {
+            Home,
+            ProjectsPage
+        }
+
     }
 }

@@ -28,6 +28,8 @@ namespace admincore.Models.SmartProject
 
         public string Url { get; set; }
 
+        public Common.Enums.SmartCityProjectDisplayLocation? DisplayLocation { get; set; }
+
     }
 
     public class SmartProjectListModel
@@ -38,10 +40,6 @@ namespace admincore.Models.SmartProject
 
         public string Description { get; set; }
 
-
+        public string DisplayLocation { get; set; }
     }
-
-
-
-
 }

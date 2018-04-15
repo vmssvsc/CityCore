@@ -27,9 +27,11 @@
                 {
                     "aTargets": [2],
                 },
-
                 {
                     "aTargets": [3],
+                },
+                {
+                    "aTargets": [4],
                     "mRender": function (data, type, full) {
                         return "<a href='/HomePageProject/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\SmartProjectList.DeleteSmartProject('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
                     },

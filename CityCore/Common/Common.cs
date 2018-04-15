@@ -50,5 +50,11 @@ namespace CityCore.Common
             Ongoing,
             Completed
         }
+        public enum SmartCityProjectDisplayLocation
+        {
+            Home,
+            ProjectsPage
+        }
+
     }
 }

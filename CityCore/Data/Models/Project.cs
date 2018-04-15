@@ -75,6 +75,7 @@ namespace CityCore.Data.Models
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
 
+        public SmartCityProjectDisplayLocation DisplayLocation { get; set; }
 
 
         public string CreatedBy { get; set; }
