@@ -23,7 +23,8 @@ namespace admincore.Common
             EventImage,
             AlbumPhoto,
             SmartProjectImage,
-            CareerFile
+            CareerFile,
+            CareerForm
             
         }
 
