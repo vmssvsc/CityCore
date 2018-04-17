@@ -30,7 +30,7 @@ namespace CityCore.Data
         public DbSet<Video> Videos { get; set; }
         public DbSet<SmartCityProject> SmartCityProjects { get; set; }
         public DbSet<ABDProjectDetail> ABDProjectDetails { get; set; }
-
+        public DbSet<Career> Careers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

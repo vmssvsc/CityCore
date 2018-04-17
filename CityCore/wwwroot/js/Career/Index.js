@@ -1,12 +1,10 @@
 ﻿CareerList = {
-    Variables: {
-        srcEdit: '/Career/Save',
-        srcList: '/Career/GetList',
-        srcDelete: '/Career/Delete',
+    Variables: {      
+        srcList: '/Career/GetList',     
         oTable: null,
     },
     Controls: {
-        table: '#tblCareer',
+        table: '#tblCareerList',
     },
     IntializeTable: function () {
         CareerList.Variables.oTable = $(CareerList.Controls.table).dataTable({
@@ -44,11 +42,19 @@
                 {
                     "aTargets": [6],
                     "mRender": function (data, type, full) {
-                        return "<a href='/Career/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\CareerList.DeleteCareer('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
+                        return "<a href='" + full[8] +"' ><i class='fa fa-pdf'></i></a>";
                     },
                     "sortable": false,
                     "className": "text-center",
-                }
+                },
+                {
+                    "aTargets": [7],
+                    "mRender": function (data, type, full) {
+                        return "<a href='" + full[9] + "' ><i class='fa fa-pdf'></i></a>";
+                    },
+                    "sortable": false,
+                    "className": "text-center",
+                },
 
             ],
 
@@ -92,32 +98,7 @@
     reloadList: function () {
         $(CareerList.Controls.table).DataTable().ajax.reload();
     },
-
-    DeleteCareer: function (id) {
-        bootbox.confirm("Are you sure you want to delete this record?",
-            function (result) {
-                if (result) {
-                    $.ajax({
-                        type: 'get',
-                        url: CareerList.Variables.srcDelete + '?id=' + id,
-                        success: function (data) {
-                            if (data.success) {
-                                Common.Success(data.message);
-                                CareerList.reloadList();
-                            }
-                            else {
-                                Common.Error(data.message);
-                            }
-                        },
-                        error: function (xhr, status, errorThrown) {
-                            Common.Error(errorThrown);
-                        }
-                    });
-                }
-            });
-
-    }
-
+    
 };
 
 $(document).ready(function () {

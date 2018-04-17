@@ -1,6 +1,6 @@
 ﻿@model admincore.Models.CareerViewModel
 @{
-    
+
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -112,21 +112,23 @@
 
 
                 <tr>
-                    <th scope="row">6</th>
-                    <td>Post Document</td>
-                    <td>
-                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocName" />
-                        <span asp-validation-for="@Model.PostDocName" class="text-danger" /><br>
-                    </td>
-                </tr>
-
-
-                <tr>
                     <th scope="row">7</th>
                     <td>Post Document</td>
                     <td>
-                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
-                        <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
+                        @{
+                            if (Model.PostDocId > 0)
+                            {
+                                <a href="@Model.PostDocURL">@Model.PostDocName </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="@Model.PostDocId" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
+                                <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
+                            }
+                        }
+
                     </td>
                 </tr>
 
@@ -134,8 +136,19 @@
                     <th scope="row">7</th>
                     <td>Form Document</td>
                     <td>
-                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
-                        <span asp-validation-for="@Model.FormDocument class="text-danger" /><br>
+                        @{
+                            if (Model.FormDocId > 0)
+                            {
+                                <a href="@Model.FormDocURL">@Model.FormDocName </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="@Model.FormDocId" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
+                                <span asp-validation-for="@Model.FormDocument class=" text-danger" /><br>
+                            }
+                        }
                     </td>
                 </tr>
 
@@ -163,4 +176,5 @@
 
 
 @section EndScripts{
+    <script type="text/javascript" src="~/js/Carrer/AddEdit.js"></script>
 }

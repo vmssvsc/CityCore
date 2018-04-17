@@ -28,6 +28,8 @@ namespace admincore.Models
         public IFormFile FormDocument { get; set; }
         public int FormDocId { get; set; }
         public int PostDocId { get; set; }
+        public string FormDocURL { get; set; }
+        public string PostDocURL { get; set; }
     }
 
     public class CareerListViewModel

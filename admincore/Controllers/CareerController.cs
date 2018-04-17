@@ -61,12 +61,12 @@ namespace admincore.Controllers
                 #region Filters
 
 
-                //if (parameters.ContainsKey("searchBy") && !string.IsNullOrWhiteSpace(parameters["searchBy"]))
-                //{
-                //    var acode = parameters["searchBy"].ToString();
-                //    finallist = finallist.Where(p => p.Title.ToLower().Contains(acode) || p.Description.ToLower().Contains(acode)
-                //    );
-                //}
+                if (parameters.ContainsKey("searchBy") && !string.IsNullOrWhiteSpace(parameters["searchBy"]))
+                {
+                    var acode = parameters["searchBy"].ToString().ToLower();
+                    finallist = finallist.Where(p => p.ProNo.ToLower().Contains(acode) || p.Post.ToLower().Contains(acode)
+                    );
+                }
 
                 //if (!string.IsNullOrWhiteSpace(queryStrings["date"]) && queryStrings["date"].ToString() != "")
                 //{
@@ -81,7 +81,7 @@ namespace admincore.Controllers
                 #region Sorting
 
                 string SortColumn = parameters["sort_by"].ToString();
-                string SortDir = "";//parameters["sort_order"].ToString();
+                string SortDir = parameters["sort_order"].ToString();
                 //"Id", "ProNo", "Department", "Post", "StartDate", "EndDate", "Action"
                 switch (SortColumn)
                 {
@@ -138,7 +138,7 @@ namespace admincore.Controllers
                         }
                         break;
                     default:
-                        finallist = finallist.OrderBy(x => x.CreatedOn);
+                        finallist = finallist.OrderByDescending(x => x.CreatedOn);
                         break;
                 }
 
@@ -217,6 +217,8 @@ namespace admincore.Controllers
                     StartDate = k.StarDate,
                     PostDocId = k.DocumentId ?? 0,
                     FormDocId = k.FormDocumentId ?? 0,
+                    FormDocURL = _context.Documents.Where(d => d.Id == k.FormDocumentId).Select(m => m.URL).FirstOrDefault(),
+                    PostDocURL = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),
                 }).FirstOrDefault();
 
                 if (model != null)
@@ -245,6 +247,11 @@ namespace admincore.Controllers
                         //         5.)Handle error message. [Done]
                         //         6.)Delete older files. [Done]
                         //         7.)Manage file for edit case. [Done]
+
+
+                        if (model.StartDate > model.EndDate)
+                            throw new Exception("Start date must be less than end date.");
+
 
                         if (model.Id > 0)
                         {

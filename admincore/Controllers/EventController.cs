@@ -216,7 +216,7 @@ namespace admincore.Controllers
                     DocUrl = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),
                     ImageUrl = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.URL).FirstOrDefault(),
                     Priority = k.Priority,
-                    EventStatus = k.Status
+                    EventStatus = k.Status,
 
                 }).FirstOrDefault();
 
