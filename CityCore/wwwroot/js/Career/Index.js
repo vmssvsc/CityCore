@@ -25,35 +25,40 @@
                 },
                 {
                     "aTargets": [1],
+                    "className": "set-center",
                 },
                 {
                     "aTargets": [2],
+                    "className": "set-center",
                 },
                 {
                     "aTargets": [3],
+                    "className": "set-center",
                 },
                 {
                     "aTargets": [4],
+                    "className": "set-center",
                 },
                 {
                     "aTargets": [5],
+                    "className": "set-center",
                 },
 
                 {
                     "aTargets": [6],
                     "mRender": function (data, type, full) {
-                        return "<a href='" + full[8] +"' ><i class='fa fa-pdf'></i></a>";
+                        return "<a href='" + full[8] + "' target='_blank' title='Download pdf'><i class='far fa-file-pdf' style='font-size:20px; color:red'></i></a>";
                     },
                     "sortable": false,
-                    "className": "text-center",
+                    "className": "set-center",
                 },
                 {
                     "aTargets": [7],
                     "mRender": function (data, type, full) {
-                        return "<a href='" + full[9] + "' ><i class='fa fa-pdf'></i></a>";
+                        return "<a href='" + full[9] + "' target='_blank' title='Download pdf'><i class='far fa-file-pdf' style='font-size:20px; color:red'></i></a>";
                     },
                     "sortable": false,
-                    "className": "text-center",
+                    "className": "set-center",
                 },
 
             ],

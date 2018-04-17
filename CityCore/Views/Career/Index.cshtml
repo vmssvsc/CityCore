@@ -3,7 +3,11 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-
+<style>
+    .set-center {
+        text-align: center;
+    }
+</style>
 <div class="container">
 
     <div class="content_fullwidth">
@@ -11,18 +15,20 @@
         <div class="one_full">
 
             <h2><strong>Recruitments</strong></h2>
-            <div class="table-style">
-                <table class="table-list" id="tblCareerList">
-                    <tr>
-                        <th></th>
-                        <th>P.R.O No.</th>
-                        <th>Departments</th>
-                        <th>Post Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Details</th>
-                        <th>Download Form </th>
-                    </tr>
+            <div class="table-responsive">
+                <table class="table" id="tblCareerList">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>P.R.O No.</th>
+                            <th>Departments</th>
+                            <th>Post Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Details</th>
+                            <th>Download Form </th>
+                        </tr>
+                        </thead>
                     <tbody></tbody>
                 </table>
 
@@ -32,7 +38,6 @@
     </div>
 </div>
 @section EndScripts{
-
-    <script type="text/javascript" src="~/js/jquery.dataTables.min.js"></script>
+  
     <script type="text/javascript" src="~/js/Career/Index.js"></script>
 }

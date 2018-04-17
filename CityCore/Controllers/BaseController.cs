@@ -77,7 +77,7 @@ namespace CityCore.Controllers
                     {"page_number", pageIndex.ToString()},
                     {"PageStart", pageStart.ToString()},
                 };
-            if (!string.IsNullOrWhiteSpace(searchBy))
+            if (!string.IsNullOrWhiteSpace(searchTxt))
             {
 
                 parameters.Add("searchBy", string.IsNullOrEmpty(searchTxt) ? string.Empty : searchTxt.ToString().ToLower());
