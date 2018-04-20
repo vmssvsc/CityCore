@@ -24,8 +24,7 @@ namespace admincore.Common
             AlbumPhoto,
             SmartProjectImage,
             CareerFile,
-            CareerForm,
-            NewsImage
+            CareerForm
             
         }
 
@@ -49,27 +48,6 @@ namespace admincore.Common
             Cancelled,
             Completed
         }
-
-        public enum NewsType
-        {
-            City,
-            General
-        }
-
-
-        public enum NewsStatus
-        {
-            Active,
-            Inactive
-        }
-
-        public enum NewsPriority
-        {
-            Low,
-            Medium,
-            High
-        }
-
 
         public enum ProjectStatus
         {

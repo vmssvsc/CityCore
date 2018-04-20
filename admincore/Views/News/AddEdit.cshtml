@@ -1,15 +1,6 @@
-﻿@model admincore.Models.NewsViewModel
+﻿
 @{
-    var title = "";
-    if (Model.Id > 0)
-    {
-        title = "Edit News";
-    }
-    else
-    {
-        title = "Add News";
-    }
-    ViewData["Title"] = title;
+    ViewData["Title"] = "AddEdit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -44,85 +35,56 @@
         text-align: center;
     }
 </style>
-<h1 style="text-align: center">@title</h1>
-   
+
+        <h1 style="text-align: center">Add new News</h1>
+    }
 
 <form asp-action="Save" enctype="multipart/form-data" method="post">
     @*<input type="hidden" asp-for="@Model.Id" />*@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="table-responsive">
-        <input type="hidden" asp-for="@Model.Id" />
         <table class="table table-bordered">
             <tbody>
                 <tr>
                     <th scope="row">1</th>
                     <td>Title</td>
                     <td>
-                        <input asp-for="@Model.Title" type="text" class="textbox">
-                        <span asp-validation-for="@Model.Title" class="text-danger" />
+                        <input type="text" class="textbox" ">
+                        @*<span asp-validation-for="@Model.Title" class="text-danger" />*@
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Select Date</td>
                     <td>
-                        <input asp-for="@Model.Date" type="date" class="date" />
-                        <span asp-validation-for="@Model.Date" class="text-danger" />
+                        <input type="date" class="date" />
+                        @*<span asp-validation-for="@Model.Date" class="text-danger" />*@
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>Select Priority</td>
+                    <td>Select Image</td>
                     <td>
-                        <select asp-for="@Model.Priority" asp-items="@ViewBag.Priorities" ></select>
-                        <span asp-validation-for="@Model.Priority" class="text-danger" />
-                    </td>
-                </tr>
+                        <input type="file" accept="image/*" class="btn btn-default btn-file" />
+                        @*<span asp-validation-for="@Model.Image" class="text-danger" />*@
+                        <br>
+
+
+
                 <tr>
                     <th scope="row">4</th>
-                    <td>Select Type</td>
-                    <td>
-                        <select asp-for="@Model.NewsType" asp-items="@ViewBag.NewsTypes"></select>
-                        <span asp-validation-for="@Model.NewsType" class="text-danger" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Select Status</td>
-                    <td>
-                        <select asp-for="@Model.Status" asp-items="@ViewBag.Statuses"></select> 
-                        <span asp-validation-for="@Model.Status" class="text-danger" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
                     <td>Description</td>
                     <td>
-                        <textarea asp-for="@Model.Description" style="height: 253px; width: 542px;">
+                        <textarea style="height: 253px; width: 542px;">
                         
                     </textarea>
-                        <span asp-validation-for="@Model.Description" class="text-danger" />
+                        @*<span asp-validation-for="@Model.Description" class="text-danger" />*@
                     </td>
                 </tr>
 
-                @{
-                    if (Model.Id == 0)
-                    {
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>Select Images</td>
-                            <td>
-                                <input type="file" asp-for="@Model.Images" accept="image/*" class="btn btn-default btn-file" multiple="multiple" />
-                                @*<span asp-validation-for="@Model.Image" class="text-danger" />*@
-                                <br>
 
 
 
-                            </td>
-                        </tr>
-
-                    }
-                }
 
                 <tr>
                     <th scope="row"></th>
@@ -140,3 +102,6 @@
 
     </div>
 </form>
+@section EndScripts{
+    @*<script type="text/javascript" src="~/js/Video/AddEdit.js"></script>*@
+}
