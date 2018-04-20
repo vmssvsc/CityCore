@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Globalization;
 
 namespace CityCore.Common
 {
@@ -21,7 +22,12 @@ namespace CityCore.Common
             ProjectVideo,
             EventFile,
             EventImage,
-            SmartProjectImage
+            AlbumPhoto,
+            SmartProjectImage,
+            CareerFile,
+            CareerForm,
+            NewsImage
+
         }
 
         public enum DocumentType
@@ -30,6 +36,7 @@ namespace CityCore.Common
             File,
             Media
         }
+
         public enum EventPriority
         {
             Low,
@@ -44,12 +51,34 @@ namespace CityCore.Common
             Completed
         }
 
+        public enum NewsType
+        {
+            City,
+            General
+        }
+
+
+        public enum NewsStatus
+        {
+            Active,
+            Inactive
+        }
+
+        public enum NewsPriority
+        {
+            Low,
+            Medium,
+            High
+        }
+
+
         public enum ProjectStatus
         {
             Upcoming,
             Ongoing,
             Completed
         }
+
         public enum SmartCityProjectDisplayLocation
         {
             Home,
@@ -57,4 +86,18 @@ namespace CityCore.Common
         }
 
     }
+
+    static class DateTimeExtensions
+    {
+        public static string ToMonthName(this DateTime dateTime)
+        {
+            return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(dateTime.Month);
+        }
+
+        public static string ToShortMonthName(this DateTime dateTime)
+        {
+            return CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(dateTime.Month);
+        }
+    }
 }
+
