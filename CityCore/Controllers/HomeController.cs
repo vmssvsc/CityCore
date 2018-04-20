@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using CityCore.Services;
 using Microsoft.Extensions.Logging;
 using CityCore.Data;
+using CityCore.Common;
 
 namespace CityCore.Controllers
 {
@@ -51,6 +52,26 @@ namespace CityCore.Controllers
                                       ImageUrl = d.URL
                                   }).ToList();
 
+            model.News = (from p in _context.News
+                          where p.Status == Enums.NewsStatus.Active
+                          select new NewsViewModel
+                          {
+                              CoverURL = (from m in _context.NewsDocumentMaps
+                                          join d in _context.Documents
+                                          on m.DocumentId equals d.Id
+                                          where m.NewsId == p.Id
+                                          orderby m.CreatedOn descending
+                                          select d.URL).FirstOrDefault(),
+                              Date = DateTimeExtensions.ToShortMonthName(p.Date) + p.Date.Day + "," + p.Date.Year,
+                              Description = p.Description,
+                              NewsType = p.NewsType,
+                              Title = p.Title,
+                              Id = p.Id,
+                              NewsPriority = p.Priority,
+                              DateTime = p.Date
+                          }).ToList();
+
+
             return View(model);
         }
 
@@ -73,6 +94,6 @@ namespace CityCore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-       
+
     }
 }
