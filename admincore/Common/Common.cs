@@ -84,5 +84,10 @@ namespace admincore.Common
             ProjectsPage
         }
 
+        public enum InitiativeType
+        {
+            PANCity,
+            ABD
+        }
     }
 }

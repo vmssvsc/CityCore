@@ -34,7 +34,8 @@ namespace admincore.Data
         public DbSet<Career> Careers { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<NewsDocumentMap> NewsDocumentMaps { get; set; }
-
+        public DbSet<TeamMember> TeamMembers { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
