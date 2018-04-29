@@ -253,38 +253,59 @@
 
                     <ul class="controlls02">
                         @{
-                            <li><a href="#" class="slide03"></a></li>
-                            <li><a href="#" class="slide02"></a></li>
+                            counter = generalNews.Count;
+                            for (int i = counter; i > 0; i--)
+                            {
+                                var className = "slide0" + i;
+                                <li><a href="#@className" class="@className"></a></li>
+
+                            }
                         }
                     </ul>
 
-                 
+                    @{
+                         newsCount = 0;
+                        foreach (var item in generalNews)
+                        {
+                            newsCount++;
+                            var classNm = "slide0" + newsCount;
+                            <div id="@classNm">
+                                <ul class="latest_news">
+                                    <li class="left"><img src="@item.CoverURL" alt="" height="160" width="200" /></li>
+                                    <li><i><a href="/Home/News?id=@item.Id">@item.Title</a></i></li>
+                                    <li class="small"><a href="#" class="date">@item.Date</a>
+                                    <li>@item.Description</li>
+                                    <li><a href="/Home/News?id=@item.Id" class="button_go">Read more</a></li>
+                                </ul>
+                            </div>
+                        }
+                    }
 
-                    <div id="slide02">
-                        <ul class="testi_monials">
-                            <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
-                            <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
-                            <li><b>- Lucia Penelope</b></li>
-                            <li><em>customer</em></li>
-                        </ul>
-                    </div><!-- end slide02 -->
+                    @*<div id="slide02">
+                            <ul class="testi_monials">
+                                <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
+                                <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
+                                <li><b>- Lucia Penelope</b></li>
+                                <li><em>customer</em></li>
+                            </ul>
+                        </div><!-- end slide02 -->
 
-                    <div id="slide03">
-                        <ul class="testi_monials">
-                            <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
-                            <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
-                            <li><b>- Cody Jenson</b></li>
-                            <li><em>customer</em></li>
-                        </ul>
-                    </div><!-- end slide03 -->
-                    @*<div id="slide04">
-            <ul class="testi_monials">
-                <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
-                <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
-                <li><b>- Diyana Florence</b></li>
-                <li><em>customer</em></li>
-            </ul>
-        </div><!-- end slide04 -->*@
+                        <div id="slide03">
+                            <ul class="testi_monials">
+                                <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
+                                <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
+                                <li><b>- Cody Jenson</b></li>
+                                <li><em>customer</em></li>
+                            </ul>
+                        </div><!-- end slide03 -->
+                        <div id="slide04">
+                                <ul class="testi_monials">
+                                    <li class="left"><img src="http://placehold.it/170x160" alt="" /></li>
+                                    <li class="right"><strong>"</strong> There are many variations passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomise words which don't look even believable. <strong>"</strong></li>
+                                    <li><b>- Diyana Florence</b></li>
+                                    <li><em>customer</em></li>
+                                </ul>
+                            </div><!-- end slide04 -->*@
 
                 </div>
 
