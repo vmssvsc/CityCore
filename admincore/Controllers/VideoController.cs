@@ -193,6 +193,8 @@ namespace admincore.Controllers
                 {
                     try
                     {
+                        if (model.VideoUrl.Contains("watch?v="))
+                            model.VideoUrl = model.VideoUrl.Replace("watch?v=", "embed/");
 
                         if (model.Id > 0)
                         {
@@ -201,16 +203,15 @@ namespace admincore.Controllers
                             {
                                 throw new Exception("Record not found.");
                             }
-
-
                             rec.ModifiedBy = user.Id;
                             rec.ModifiedOn = DateTime.UtcNow;
-
                             rec.Description = model.Description;
-
-                            rec.Title = model.Title;
-
+                            rec.Title = model.Title;                          
                             rec.URL = model.VideoUrl;
+
+                            // https://www.youtube.com/watch?v=xpVfcZ0ZcFM
+                            // https://www.youtube.com/embed/gcwyiOFTAuw
+
                             _context.Update(rec);
 
                             _context.SaveChanges();
