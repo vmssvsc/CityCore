@@ -22,8 +22,11 @@ namespace CityCore.Controllers
         {
 
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string returnUrl = null)
         {
+
             return View();
         }
 
@@ -94,6 +97,23 @@ namespace CityCore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult News(int id)
+        {
+            var query = (from a in _context.NewsDocumentMaps
+                         join d in _context.Documents
+                         on a.DocumentId equals d.Id
+                         where a.NewsId == id
+                         select new NewsItemViewModel
+                         {
+                            // CreatedOn = d.CreatedOn,
+                            // Id = d.Id,
+                             Title = d.FileName,
+                             URL = d.URL
+                         }).ToList();
+            ViewBag.NewsTitle = _context.News.Where(j => j.Id == id).Select(n => n.Title).FirstOrDefault();
+
+            return View(query);
+        }
 
     }
 }

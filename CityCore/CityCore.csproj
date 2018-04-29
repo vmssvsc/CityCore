@@ -35,4 +35,10 @@
     <Folder Include="wwwroot\images\sliders\revolution\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\News.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

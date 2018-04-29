@@ -40,5 +40,10 @@ namespace CityCore.Models
         public string Url { get; set; }
     }
 
+    public class NewsItemViewModel
+    {
+        public string Title { get; set; }
 
+        public string URL { get; set; }
+    }
 }

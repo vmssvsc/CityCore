@@ -209,10 +209,10 @@
                             <div id="@classNm">
                                 <ul class="latest_news">
                                     <li class="left"><img src="@item.CoverURL" alt="" height="160" width="200" /></li>
-                                    <li><i><a href="#">@item.Title</a></i></li>
+                                    <li><i><a href="/Home/News?id=@item.Id">@item.Title</a></i></li>
                                     <li class="small"><a href="#" class="date">@item.Date</a> | Vadodara
                                     <li>@item.Description</li>
-                                    <li><a href="/Home/GetNewsImages?id=@item.Id" class="button_go">Read more</a></li>
+                                    <li><a href="/Home/News?id=@item.Id" class="button_go">Read more</a></li>
                                 </ul>
                             </div>
                         }
