@@ -3,7 +3,7 @@
     ViewData["Title"] = "News";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h1 style="text-align: center"> Latest News List</h1>
+<h1 style="text-align: center"> News List</h1>
 <div class="row">
     <div class="col-md-12">
 
@@ -14,7 +14,10 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Date</th>
-                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>News Type</th>
+                        <th>Status</th>
+                        <th>No Of Images</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,10 +27,10 @@
     </div>
     <div class="col-md-12">
         <br />
-        <a href="/News/AddEdit" class="btn btn-primary pull-right">Add New News</a>
+        <a href="/News/AddEdit" class="btn btn-primary pull-right">Add New</a>
     </div>
 </div>
 @section EndScripts{
-    <script type="text/javascript" src="#"></script>
+    <script type="text/javascript" src="~/js/News/Index.js"></script>
 }
 

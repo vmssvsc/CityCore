@@ -1,6 +1,6 @@
 ﻿SmartProject = {
     Variables: {
-        srcDeleteDocument: '/SmartProject/DeleteDocument',
+        srcDeleteDocument: '/HomePageProject/DeleteDocument',
     },
     Controls: {
         

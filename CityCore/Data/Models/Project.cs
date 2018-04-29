@@ -29,7 +29,7 @@ namespace CityCore.Data.Models
 
         public ProjectStatus Status { get; set; }
 
-        public int ImageDocumentId { get; set; }
+        public int? ImageDocumentId { get; set; }
         [ForeignKey("ImageDocumentId")]
         public virtual Document ImageDocument { get; set; }
 
@@ -71,10 +71,11 @@ namespace CityCore.Data.Models
 
         public string Url { get; set; }
 
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
 
+        public SmartCityProjectDisplayLocation DisplayLocation { get; set; }
 
 
         public string CreatedBy { get; set; }

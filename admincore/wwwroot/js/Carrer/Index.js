@@ -16,6 +16,10 @@
             "autoWidth": false,
             "bLengthChange": true,
             "fixedHeader": true,
+            "processing": true,
+            "serverSide": true,
+            //"searching": true,
+           //  "dom": "ltip",  // Remove global search box
             "aoColumnDefs": [
                 {
                     "aTargets": [0],
@@ -40,7 +44,7 @@
                 {
                     "aTargets": [6],
                     "mRender": function (data, type, full) {
-                        return "<a href='/Career/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\VideoList.DeleteCareer('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
+                        return "<a href='/Career/AddEdit?id=" + full[0] + "' ><i class='fa fa-edit'></i></a><a href='javascript:void(0)' onClick=\"\CareerList.DeleteCareer('" + full[0] + "')\"\><i class='fa fa-trash-o'></i></a>";
                     },
                     "sortable": false,
                     "className": "text-center",
@@ -62,8 +66,8 @@
                 $("div").data("srchParams",
                     [
                         //{ name: 'iDisplayLength', value: $("#hdnGeneralPageSize").val() },
-                        { name: 'srchTxt', value: encodeURIComponent($(CarrerList.Controls.txtSearch).val() == '' ? '' : $(CarrerList.Controls.txtSearch).val()) },
-                        { name: 'srchBy', value: 'ALL' },
+                        { name: 'srchTxt', value: encodeURIComponent($('.dataTables_filter input').val() == '' ? '' : $('.dataTables_filter input').val()) },
+                       // { name: 'srchBy', value: 'ALL' },
 
 
                         //{
@@ -90,7 +94,7 @@
     },
 
     DeleteCareer: function (id) {
-        bootbox.confirm("Are you sure you want to delete this Video?",
+        bootbox.confirm("Are you sure you want to delete this record?",
             function (result) {
                 if (result) {
                     $.ajax({

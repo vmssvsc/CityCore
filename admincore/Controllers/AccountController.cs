@@ -471,7 +471,7 @@ namespace admincore.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.MenuDescription), "Home");
+                return Redirect("/home");
             }
         }
 

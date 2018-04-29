@@ -1,6 +1,6 @@
-﻿@model admincore.Models.Career.CareerViewModel
+﻿@model admincore.Models.CareerViewModel
 @{
-    ViewData["Title"] = "AddEdit";
+
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -37,8 +37,20 @@
     }
 </style>
 
+@{
+    if (Model.Id > 0)
+    {
 
-<h1 style="text-align: center">Add Career</h1>
+        ViewData["Title"] = "Edit Career details";
+        <h1 style="text-align: center">Edit Career details</h1>
+    }
+    else
+    {
+
+        ViewData["Title"] = "Add Career details";
+        <h1 style="text-align: center">Add Career details</h1>
+    }
+}
 
 
 <form asp-action="Save" enctype="multipart/form-data" method="post">
@@ -49,84 +61,107 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <tbody>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Post Name</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.PostName">
+                        <span asp-validation-for="@Model.PostName" class="text-danger" />
+                    </td>
+                </tr>
 
-                
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>P.R.O No </td>
-                        <td>
-                            <input type="text" class="textbox" asp-for="@Model.PRONo">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>P.R.O No </td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.PRONo">
                         <span asp-validation-for="@Model.PRONo" class="text-danger" />
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 
 
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Departments</td>
-                        <td>
-                            <input type="text" class="textbox" asp-for="@Model.Department">
-                            <span asp-validation-for="@Model.Department" class="text-danger" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Post Name</td>
-                        <td>
-                            <input type="text" class="textbox" asp-for="@Model.PostName">
-                            <span asp-validation-for="@Model.PostName" class="text-danger" />
-                        </td>
-                    </tr>
-                    
-
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Start Date</td>
-                        <td>
-                            <input type="date" class="date" asp-for="@Model.StarDate" />
-                            <span asp-validation-for="@Model.StarDate" class="text-danger" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>End Date</td>
-                        <td>
-                            <input type="date" class="date" asp-for="@Model.EndDate" />
-                            <span asp-validation-for="@Model.EndDate" class="text-danger" />
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Departments</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.Department">
+                        <span asp-validation-for="@Model.Department" class="text-danger" />
+                    </td>
+                </tr>
 
 
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Post Document</td>
-                        <td>
-                            <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocName" />
-                            <span asp-validation-for="@Model.PostDocName" class="text-danger" /><br>
-                        </td>
-                    </tr>
 
 
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Form Document</td>
-                        <td>
-                            <input type="file" class="btn btn-default btn-file" asp-for="@Model.DocName" />
-                            <span asp-validation-for="@Model.DocName" class="text-danger" /><br>
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Start Date</td>
+                    <td>
+                        <input type="date" class="date" asp-for="@Model.StartDate" />
+                        <span asp-validation-for="@Model.StartDate" class="text-danger" />
+                    </td>
+                </tr>
 
-                
+                <tr>
+                    <th scope="row">5</th>
+                    <td>End Date</td>
+                    <td>
+                        <input type="date" class="date" asp-for="@Model.EndDate" />
+                        <span asp-validation-for="@Model.EndDate" class="text-danger" />
+                    </td>
+                </tr>
 
-            <th scope="row"></th>
-            <td></td>
-            <td>
-                <a class="btn btn-danger pull-right" href="/Career"><i class="fa fa-times"></i> Cancel</a>
-                <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
-            </td>
-            </tr>
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Post Document</td>
+                    <td>
+                        @{
+                            if (Model.PostDocId > 0)
+                            {
+                                <a href="@Model.PostDocURL">@Model.PostDocName </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="@Model.PostDocId" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
+                                <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
+                            }
+                        }
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Form Document</td>
+                    <td>
+                        @{
+                            if (Model.FormDocId > 0)
+                            {
+                                <a href="@Model.FormDocURL">@Model.FormDocName </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="@Model.FormDocId" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
+                                <span asp-validation-for="@Model.FormDocument class=" text-danger" /><br>
+                            }
+                        }
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+
+                        <a class="btn btn-danger pull-right" href="/Career"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
+
 
             </tbody>
         </table>
@@ -141,4 +176,5 @@
 
 
 @section EndScripts{
+    <script type="text/javascript" src="~/js/Carrer/AddEdit.js"></script>
 }

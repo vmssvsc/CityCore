@@ -23,7 +23,9 @@ namespace admincore.Common
             EventImage,
             AlbumPhoto,
             SmartProjectImage,
-            CareerFile
+            CareerFile,
+            CareerForm,
+            NewsImage
             
         }
 
@@ -48,11 +50,39 @@ namespace admincore.Common
             Completed
         }
 
+        public enum NewsType
+        {
+            City,
+            General
+        }
+
+
+        public enum NewsStatus
+        {
+            Active,
+            Inactive
+        }
+
+        public enum NewsPriority
+        {
+            Low,
+            Medium,
+            High
+        }
+
+
         public enum ProjectStatus
         {
             Upcoming,
             Ongoing,
             Completed
         }
+
+        public enum SmartCityProjectDisplayLocation
+        {
+            Home,
+            ProjectsPage
+        }
+
     }
 }
