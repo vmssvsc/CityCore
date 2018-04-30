@@ -52,9 +52,7 @@ namespace admincore.Data.Models
 
         public string Initiative { get; set; }
 
-        //public int ProjectId { get; set; }
-        //[ForeignKey("ProjectId")]
-        //public virtual Project Project { get; set; }
+        public InitiativeType InitiativeType { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -73,10 +71,12 @@ namespace admincore.Data.Models
 
         public string Url { get; set; }
 
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
         [ForeignKey("DocumentId")]
         public virtual Document Document { get; set; }
-        
+
+        public SmartCityProjectDisplayLocation? DisplayLocation { get; set; }
+
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }

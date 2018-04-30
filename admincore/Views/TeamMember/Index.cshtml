@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Team Member";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 style="text-align: center"> Team Member List</h1>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="table-responsive">
+            <table class="table" id="tblMembers">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Member Name</th>
+                        <th>Memebr Post</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <br />
+        <a href="/TeamMember/AddEdit" class="btn btn-primary pull-right">Add New</a>
+    </div>
+</div>
+@section EndScripts{
+    <script type="text/javascript" src="~/js/TeamMember/Index.js"></script>
+}

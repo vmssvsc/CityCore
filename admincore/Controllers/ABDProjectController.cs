@@ -32,9 +32,6 @@ namespace admincore.Controllers
         {
         }
 
-
-
-
         public IActionResult Index()
         {
             return View();
@@ -43,9 +40,12 @@ namespace admincore.Controllers
         {
             return View();
         }
+
+        #region Initiatives
+
         public async Task<IActionResult> ABDinitiatives()
         {
-            await SetUserData();
+                        await SetUserData();
             return View();
         }
 
@@ -77,7 +77,7 @@ namespace admincore.Controllers
                             rec.Title = model.Title;
                             rec.Initiative = model.Initiative;
 
-                            
+                          //  rec.InitiativeType = model.InitiativeType;
 
                             
                             _context.Update(rec);
@@ -88,27 +88,14 @@ namespace admincore.Controllers
                         }
                         else
                         {
-                            var initiative = new ProjectInitiative()
-                            {
-                                CreatedBy = user.Id,
-                                CreatedOn = DateTime.UtcNow,
-
-                                Initiative = model.Initiative,
-
-                                Title = model.Title,
-
-                                
-                            };
+                            
                             _context.ProjectInitiatives.Add(new ProjectInitiative()
                             {
                                 CreatedBy = user.Id,
                                 CreatedOn = DateTime.UtcNow,
-
                                 Initiative = model.Initiative,
-
-                                Title = model.Title,
-
-                                
+                                Title = model.Title, 
+                                InitiativeType = Enums.InitiativeType.ABD
                             });
                             _context.SaveChanges();
                             transaction.Commit();
@@ -142,6 +129,7 @@ namespace admincore.Controllers
                 IQueryable<ProjectInititativeListModel> finallist;
 
                 finallist = (from ProjectInitiatives in _context.ProjectInitiatives
+                             where ProjectInitiatives.InitiativeType == Enums.InitiativeType.ABD
                              select new ProjectInititativeListModel
                              {
                                  Id = ProjectInitiatives.Id,
@@ -250,7 +238,7 @@ namespace admincore.Controllers
                 var rec = _context.ProjectInitiatives.Where(e => e.Id == Id).Select(k => new ProjectInititativeViewModel()
                 {
                     Id = k.Id,
-
+                   // InitiativeType = k.InitiativeType,
                     Initiative = k.Initiative,
                     Title = k.Title,
                     
@@ -261,8 +249,6 @@ namespace admincore.Controllers
             }
 
             await SetUserData();
-
-
             return View(model);
         }
 
@@ -293,6 +279,8 @@ namespace admincore.Controllers
                 }
             }
         }
+
+        #endregion
 
     }
 }

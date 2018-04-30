@@ -85,6 +85,38 @@ namespace admincore.Data.Migrations
                     b.ToTable("AlbumDocumentMaps");
                 });
 
+            modelBuilder.Entity("admincore.Data.Models.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Department");
+
+                    b.Property<int?>("DocumentId");
+
+                    b.Property<DateTime>("EndDate");
+
+                    b.Property<int?>("FormDocumentId");
+
+                    b.Property<string>("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<string>("PRONo");
+
+                    b.Property<string>("PostName");
+
+                    b.Property<DateTime>("StarDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Careers");
+                });
+
             modelBuilder.Entity("admincore.Data.Models.City", b =>
                 {
                     b.Property<int>("Id")
@@ -173,6 +205,58 @@ namespace admincore.Data.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("admincore.Data.Models.News", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<int>("NewsType");
+
+                    b.Property<int>("Priority");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("News");
+                });
+
+            modelBuilder.Entity("admincore.Data.Models.NewsDocumentMap", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<int>("DocumentId");
+
+                    b.Property<int>("NewsId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
+
+                    b.HasIndex("NewsId");
+
+                    b.ToTable("NewsDocumentMaps");
+                });
+
             modelBuilder.Entity("admincore.Data.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -223,6 +307,8 @@ namespace admincore.Data.Migrations
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Initiative");
+
+                    b.Property<int>("InitiativeType");
 
                     b.Property<string>("ModifiedBy");
 
@@ -292,7 +378,9 @@ namespace admincore.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("DocumentId");
+                    b.Property<int?>("DisplayLocation");
+
+                    b.Property<int?>("DocumentId");
 
                     b.Property<string>("ModifiedBy");
 
@@ -323,6 +411,32 @@ namespace admincore.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("States");
+                });
+
+            modelBuilder.Entity("admincore.Data.Models.TeamMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<int>("ImageDocumentId");
+
+                    b.Property<string>("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Post");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageDocumentId");
+
+                    b.ToTable("TeamMembers");
                 });
 
             modelBuilder.Entity("admincore.Data.Models.Video", b =>
@@ -542,6 +656,19 @@ namespace admincore.Data.Migrations
                         .HasForeignKey("DocumentId");
                 });
 
+            modelBuilder.Entity("admincore.Data.Models.NewsDocumentMap", b =>
+                {
+                    b.HasOne("admincore.Data.Models.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("admincore.Data.Models.News", "News")
+                        .WithMany("NewsDocumentMaps")
+                        .HasForeignKey("NewsId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("admincore.Data.Models.Project", b =>
                 {
                     b.HasOne("admincore.Data.Models.Document", "ImageDocument")
@@ -562,8 +689,7 @@ namespace admincore.Data.Migrations
                 {
                     b.HasOne("admincore.Data.Models.Document", "Document")
                         .WithMany("SmartCityProjects")
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DocumentId");
                 });
 
             modelBuilder.Entity("admincore.Data.Models.State", b =>
@@ -571,6 +697,14 @@ namespace admincore.Data.Migrations
                     b.HasOne("admincore.Data.Models.Country", "Country")
                         .WithMany("States")
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("admincore.Data.Models.TeamMember", b =>
+                {
+                    b.HasOne("admincore.Data.Models.Document", "ImageDocument")
+                        .WithMany()
+                        .HasForeignKey("ImageDocumentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -19,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\css\font-awesome\webfonts\fa-solid-900.woff2" />
     <None Include="wwwroot\images\banner1.svg" />
     <None Include="wwwroot\images\banner2.svg" />
     <None Include="wwwroot\images\banner3.svg" />
@@ -27,6 +33,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\sliders\revolution\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Home\News.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

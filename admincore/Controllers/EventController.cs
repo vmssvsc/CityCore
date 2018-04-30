@@ -216,7 +216,7 @@ namespace admincore.Controllers
                     DocUrl = _context.Documents.Where(d => d.Id == k.DocumentId).Select(m => m.URL).FirstOrDefault(),
                     ImageUrl = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.URL).FirstOrDefault(),
                     Priority = k.Priority,
-                    EventStatus = k.Status
+                    EventStatus = k.Status,
 
                 }).FirstOrDefault();
 
@@ -363,6 +363,17 @@ namespace admincore.Controllers
                     }
                 }
             }
+
+            var statusList = from Enums.EventStatus es in Enum.GetValues(typeof(Enums.EventStatus))
+                             select new { Id = es, Name = es.ToString() };
+
+            var priorityList = from Enums.EventPriority es in Enum.GetValues(typeof(Enums.EventPriority))
+                               select new { Id = es, Name = es.ToString() };
+
+            ViewBag.Statuses = new SelectList(statusList, "Id", "Name");
+
+            ViewBag.Priorities = new SelectList(priorityList, "Id", "Name");
+
             return View("AddEdit", model);
         }
 

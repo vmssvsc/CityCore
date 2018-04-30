@@ -4,16 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CityCore.Controllers
+namespace admincore.Controllers
 {
-    public class NewsController : Controller
+    public class TeamMemberController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult NewsDetail()
+        public IActionResult AddEdit()
         {
             return View();
         }

@@ -1,6 +1,6 @@
 ﻿SmartProject = {
     Variables: {
-        srcDeleteDocument: '/SmartProject/DeleteDocument',
+        srcDeleteDocument: '/HomePageProject/DeleteDocument',
     },
     Controls: {
         
@@ -21,8 +21,8 @@
                     Common.Error(data.message);
                 }
             },
-            error: function () {
-                Common.Error(data.message);
+            error: function (xhr,status,errorThrown) {
+                Common.Error(errorThrown);
             }
         });
     }

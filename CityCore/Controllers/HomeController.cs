@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using CityCore.Services;
 using Microsoft.Extensions.Logging;
 using CityCore.Data;
+using CityCore.Common;
 
 namespace CityCore.Controllers
 {
@@ -21,8 +22,11 @@ namespace CityCore.Controllers
         {
 
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string returnUrl = null)
         {
+
             return View();
         }
 
@@ -37,6 +41,40 @@ namespace CityCore.Controllers
                                       SequenceNumber = s.SequenceNo,
                                       Url = d.URL
                                   }).ToList();
+
+            model.SmartProject = (from p in _context.SmartCityProjects
+                                  join d in _context.Documents
+                                  on p.DocumentId equals d.Id
+                                  where p.DisplayLocation == Common.Enums.SmartCityProjectDisplayLocation.Home
+                                  select new SmartProjectViewModel()
+                                  {
+                                      Description = p.Description,
+                                      Id = p.Id,
+                                      Name = p.Name,
+                                      Url = p.Url,
+                                      ImageUrl = d.URL
+                                  }).ToList();
+
+            model.News = (from p in _context.News
+                          where p.Status == Enums.NewsStatus.Active
+                          select new NewsViewModel
+                          {
+                              CoverURL = (from m in _context.NewsDocumentMaps
+                                          join d in _context.Documents
+                                          on m.DocumentId equals d.Id
+                                          where m.NewsId == p.Id
+                                          orderby m.CreatedOn descending
+                                          select d.URL).FirstOrDefault(),
+                              Date = DateTimeExtensions.ToShortMonthName(p.Date) + p.Date.Day + "," + p.Date.Year,
+                              Description = p.Description,
+                              NewsType = p.NewsType,
+                              Title = p.Title,
+                              Id = p.Id,
+                              NewsPriority = p.Priority,
+                              DateTime = p.Date
+                          }).ToList();
+
+
             return View(model);
         }
 
@@ -58,5 +96,24 @@ namespace CityCore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult News(int id)
+        {
+            var query = (from a in _context.NewsDocumentMaps
+                         join d in _context.Documents
+                         on a.DocumentId equals d.Id
+                         where a.NewsId == id
+                         select new NewsItemViewModel
+                         {
+                            // CreatedOn = d.CreatedOn,
+                            // Id = d.Id,
+                             Title = d.FileName,
+                             URL = d.URL
+                         }).ToList();
+            ViewBag.NewsTitle = _context.News.Where(j => j.Id == id).Select(n => n.Title).FirstOrDefault();
+
+            return View(query);
+        }
+
     }
 }

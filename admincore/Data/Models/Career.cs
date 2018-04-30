@@ -16,6 +16,7 @@ namespace admincore.Data.Models
         public String PRONo { get; set; }
 
         public String Department { get; set; }
+
         public String PostName { get; set; }
 
         public DateTime StarDate { get; set; }
@@ -23,14 +24,8 @@ namespace admincore.Data.Models
         public DateTime EndDate { get; set; }
 
         public int? DocumentId { get; set; }
-        [ForeignKey("DocumentId")]
-        public virtual Document Document { get; set; }
 
-        
-
-        
-
-       
+        public int? FormDocumentId { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
