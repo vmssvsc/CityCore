@@ -85,6 +85,13 @@ namespace CityCore.Common
             ProjectsPage
         }
 
+        public enum InitiativeType
+        {
+            PANCity,
+            ABD
+        }
+
+
     }
 
     static class DateTimeExtensions
