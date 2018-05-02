@@ -26,7 +26,8 @@ namespace CityCore.Common
             SmartProjectImage,
             CareerFile,
             CareerForm,
-            NewsImage
+            NewsImage,
+            TeamMemberImage
 
         }
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CityCore.Models.TeamMemberViewModel>
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -19,79 +19,48 @@
 <div class="container">
 
     <div class="content_left">
-           
+
         <!-- team -->
         <div class="our_team_box">
             <h2>Meet Our <strong>Team</strong></h2>
 
-            <div class="boxleft">
+            @{
+
+                var counter = 0;
+                foreach (var item in Model)
+                {
+                    counter++;
+                    var isRight = counter % 4 == 0;
+                    var teamClass = isRight ? "boxright" : "boxleft";
+                 <div class="@teamClass">
                 <div class="cont-area">
-                    <img src="http://placehold.it/210x230" alt="" class="teammempic" />
+                    <img src="@item.Image" alt="" class="teammempic" />
                     <ul>
-                        <li><strong>Mark Frances<i> - ceo</i></strong></li>
-                        <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
+                        <li><strong>@item.Name<i> - @item.Post</i></strong></li>
                     </ul>
                 </div>
-                <p>Passage with the recente desktop software we like versions avaliable.</p>
             </div>
 
+        }
+            }
 
-            <div class="boxleft">
-                <div class="cont-area">
-                    <img src="http://placehold.it/210x230" alt="" class="teammempic" />
-                    <ul>
-                        <li><strong>Lexi Penelope<i> - manager</i></strong></li>
-                        <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
-                    </ul>
-                </div>
-                <p>Passage with the recente desktop software we like versions avaliable.</p>
+
+
+            @*<div class="boxright">
+            <div class="cont-area">
+                <img src="http://placehold.it/210x230" alt="" class="teammempic" />
+                <ul>
+                    <li><strong>Anya Sienna<i> - member</i></strong></li>
+                </ul>
             </div>
 
-
-            <div class="boxleft">
-                <div class="cont-area">
-                    <img src="http://placehold.it/210x230" alt="" class="teammempic" />
-                    <ul>
-                        <li><strong>Jacob Leighton<i> - developer</i></strong></li>
-                        <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
-                    </ul>
-                </div>
-                <p>Passage with the recente desktop software we like versions avaliable.</p>
-            </div>
-
-
-            <div class="boxright">
-                <div class="cont-area">
-                    <img src="http://placehold.it/210x230" alt="" class="teammempic" />
-                    <ul>
-                        <li><strong>Anya Sienna<i> - member</i></strong></li>
-                        <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
-                    </ul>
-                </div>
-                <p>Passage with the recente desktop software we like versions avaliable.</p>
-            </div>
+        </div>*@
 
         </div><!-- end team -->
 
         <div class="clearfix divider_line2"></div>
 
-        
+
 
     </div><!-- end content left side area -->
     <!-- right sidebar starts -->
@@ -111,10 +80,10 @@
         </div><!-- end section -->
 
 
-        
 
 
-      
+
+
 
     </div>
 
