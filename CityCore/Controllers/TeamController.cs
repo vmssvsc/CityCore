@@ -20,7 +20,7 @@ namespace CityCore.Controllers
         }
 
 
-         public IActionResult Index()
+          public IActionResult Index()
         {
             var query = _context.TeamMembers.OrderBy(k => k.CreatedOn).Select(s => new TeamMemberViewModel()
             {

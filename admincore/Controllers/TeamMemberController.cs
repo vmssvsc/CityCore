@@ -20,8 +20,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace admincore.Controllers
 {
 
-    [Authorize]
-    public class TeamMemberController : BaseController
+      [Authorize]
+     public class TeamMemberController : BaseController
     {
 
         public TeamMemberController(UserManager<ApplicationUser> userManager,

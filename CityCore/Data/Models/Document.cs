@@ -23,7 +23,7 @@ namespace CityCore.Data.Models
         public ICollection<AlbumDocumentMap> AlbumDocumentMap { get; set; }
         public ICollection<Project> Projects { get; set; }
         public ICollection<SmartCityProject> SmartCityProjects { get; set; }
-        public ICollection<TeamMember> TeamMembers { get; set; }
+         public ICollection<TeamMember> TeamMembers { get; set; }
 
 
         public string CreatedBy { get; set; }

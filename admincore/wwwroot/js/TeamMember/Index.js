@@ -1,4 +1,4 @@
-﻿TeamMemebertList = {
+﻿ TeamMemebertList = {
     Variables: {
         srcEdit: '/TeamMember/Save',
         srcList: '/TeamMember/GetList',
@@ -8,7 +8,7 @@
     Controls: {
         table: '#tblMembers',
     },
-    IntializeTable: function () {
+     IntializeTable: function () {
         TeamMemebertList.Variables.oTable = $(TeamMemebertList.Controls.table).dataTable({
             "sAjaxSource": TeamMemebertList.Variables.srcList,
             //"aaSorting": [[1, "desc"]],// default sorting

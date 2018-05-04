@@ -1,4 +1,4 @@
-﻿TeamMemeber = {
+﻿  TeamMemeber = {
     Variables: {
         srcDeleteDocument: '/TeamMemeber/DeleteDocument',
     },
