@@ -26,7 +26,8 @@ namespace CityCore.Common
             SmartProjectImage,
             CareerFile,
             CareerForm,
-            NewsImage
+            NewsImage,
+            TeamMemberImage
 
         }
 
@@ -84,6 +85,13 @@ namespace CityCore.Common
             Home,
             ProjectsPage
         }
+
+        public enum InitiativeType
+        {
+            PANCity,
+            ABD
+        }
+
 
     }
 

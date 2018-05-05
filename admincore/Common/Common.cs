@@ -25,8 +25,8 @@ namespace admincore.Common
             SmartProjectImage,
             CareerFile,
             CareerForm,
-            NewsImage
-            
+            NewsImage,
+            TeamMemberImage
         }
 
         public enum DocumentType

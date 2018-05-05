@@ -1,0 +1,127 @@
+﻿
+@model admincore.Models.TeamMemberViewModel
+@{
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit Team Member";
+    }
+    else
+    {
+        ViewData["Title"] = "Add new Team Member";
+
+    }
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+     .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+
+@{
+    if (Model.Id > 0)
+    {
+        <h1 style="text-align: center"> Edit Team Member</h1>
+    }
+    else
+    {
+        <h1 style="text-align: center">Add new Team Member</h1>
+    }
+
+}
+
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Member Name</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.Name">
+                        <span asp-validation-for="@Model.Name" class="text-danger" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Member Post</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.Post">
+                        <span asp-validation-for="@Model.Post" class="text-danger" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Member Image</td>
+                    <td>
+                        @{
+
+                if (Model.ImgId > 0)
+                {
+
+                    <a href="@Model.ImageUrl">@Model.ImageName </a> <a href="javascript:void(0)" id="deleteImg" data-id="@Model.ImgId" style="color:red"> X</a>
+                 }
+
+               else
+                 {
+
+                    <input type="file" accept="image/*" class="btn btn-default btn-file" asp-for="@Model.Image" />
+                    <span asp-validation-for="@Model.Image" class="text-danger" /><br>
+                  }
+                        }
+
+                    </td>
+                </tr>
+               
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+
+                        <a class="btn btn-danger pull-right" href="/TeamMember"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+</form>
+@section EndScripts{
+    <script type="text/javascript" src="~/js/TeamMember/AddEdit.js"></script>
+}
