@@ -377,10 +377,10 @@ namespace admincore.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToAction(nameof(ForgotPasswordConfirmation));
+                    ModelState.AddModelError("", "User does not exist");
+                    return View(model);
                 }
 
                 // For more information on how to enable account confirmation and password reset please
@@ -388,7 +388,7 @@ namespace admincore.Controllers
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
                 await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                   $"Please reset your password by clicking <a href='{callbackUrl}'>here</a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 

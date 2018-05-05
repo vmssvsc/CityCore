@@ -50,10 +50,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         @Html.ValidationSummary()
         <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
             <input asp-for="Email" placeholder="Email" autofocus="" />
-            <span asp-validation-for="Email" class="text-danger"></span>
             <input asp-for="Password" placeholder="Password" autofocus="" />
 
-            <span asp-validation-for="Password" class="text-danger"></span>
             @*<div class="submit"><button type="submit"></button></div>*@
             <button class="btn btn-lg btn-success1 btn-block" type="submit">Submit</button>
             @*<div class="login-social-link">

@@ -31,6 +31,7 @@ namespace admincore
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.Configure<AmazonSettings>(Configuration.GetSection("AmazonSettings"));
+            services.Configure<SendgridConfigs>(Configuration.GetSection("SendgridConfigs"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

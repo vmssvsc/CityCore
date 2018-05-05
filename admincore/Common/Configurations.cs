@@ -15,4 +15,11 @@ namespace admincore.Common
 
         public string AWSURL { get; set; }
     }
+
+    public class SendgridConfigs
+    {
+        public string APIKey { get; set; }
+
+        public string From { get; set; }
+    }
 }
