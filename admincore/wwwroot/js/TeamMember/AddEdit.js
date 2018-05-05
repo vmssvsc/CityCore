@@ -1,6 +1,6 @@
 ﻿  TeamMemeber = {
     Variables: {
-        srcDeleteDocument: '/TeamMemeber/DeleteDocument',
+        srcDeleteDocument: '/TeamMember/DeleteDocument',
     },
     Controls: {
 

@@ -16,7 +16,7 @@ namespace admincore.Data.Models
 
         public string Post { get; set; }
 
-        public int ImageDocumentId { get; set; }
+        public int? ImageDocumentId { get; set; }
 
         [ForeignKey("ImageDocumentId")]
         public virtual Document ImageDocument { get; set; }

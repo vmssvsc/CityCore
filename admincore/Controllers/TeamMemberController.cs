@@ -256,7 +256,7 @@ namespace admincore.Controllers
                     Id = k.Id,
                     Post = k.Post,
                     Name = k.Name,
-                    ImgId = k.ImageDocumentId ,
+                    ImgId = k.ImageDocumentId ?? 0,
                     ImageName = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.FileName).FirstOrDefault(),
                     ImageUrl = _context.Documents.Where(d => d.Id == k.ImageDocumentId).Select(m => m.URL).FirstOrDefault(),
                    
@@ -283,7 +283,7 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Team Member id.");
 
-                    var resimage = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId) : true;
+                    var resimage = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
 
                     if (resimage)
                     {
@@ -324,7 +324,7 @@ namespace admincore.Controllers
                     if (rec == null)
                         throw new Exception("Invalid Image.");
 
-                    var res = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ) : true;
+                    var res = rec.ImageDocumentId > 0 ? await _documentManager.Delete(rec.ImageDocumentId ?? 0) : true;
                     if (res)
                     {
                         rec.ModifiedBy = user.Id;
