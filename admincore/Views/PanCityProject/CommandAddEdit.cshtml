@@ -1,8 +1,22 @@
-﻿
+﻿@model admincore.Models.Project.ProjectInititativeViewModel
 @{
-    ViewData["Title"] = "CommandAddEdit";
+
+    if (Model.Id > 0)
+    {
+
+        ViewData["Title"] = "Edit Pan city Command";
+    }
+    else
+    {
+        ViewData["Title"] = "Add Pan city Command";
+
+    }
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
+
+
+
 
 <style type="text/css">
 
@@ -35,15 +49,22 @@
         text-align: center;
     }
 </style>
+@{
+    if (Model.Id > 0)
+    {
+        <h1 style="text-align: center">Edit Pan city Command</h1>
+    }
+    else
+    {
+        <h1 style="text-align: center">Add new Pan city Command</h1>
+    }
+
+}
 
 
-
-
-
-<h1 style="text-align: center">Pan City Project Command and Controller</h1>
 
 <form asp-action="SaveI" enctype="multipart/form-data" method="post">
-    @*<input type="hidden" asp-for="@Model.Id" />*@
+    <input type="hidden" asp-for="@Model.Id" />
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -52,8 +73,8 @@
                     <th scope="row">1</th>
                     <td>Title</td>
                     <td>
-                        <input type="text" class="textbox" >
-                        @*<span asp-validation-for="@Model.Title" class="text-danger" />*@
+                        <input type="text" class="textbox" asp-for="@Model.Title">
+                        <span asp-validation-for="@Model.Title" class="text-danger" />
                     </td>
                 </tr>
 
@@ -62,10 +83,10 @@
                     <th scope="row">2</th>
                     <td>Description</td>
                     <td>
-                        <textarea  style="height: 253px; width: 542px;">
+                        <textarea asp-for="@Model.Initiative" style="height: 253px; width: 542px;">
                         
                     </textarea>
-                        @*<span asp-validation-for="@Model.Initiative" class="text-danger" />*@
+                        <span asp-validation-for="@Model.Initiative" class="text-danger" />
                     </td>
                 </tr>
 
@@ -73,7 +94,7 @@
                     <th scope="row"></th>
                     <td></td>
                     <td>
-                        <a class="btn btn-danger pull-right" href="/Index"><i class="fa fa-edit"></i> Cancel</a>
+                        <a class="btn btn-danger pull-right" href="/PanCityProject/PancityCommand"><i class="fa fa-edit"></i> Cancel</a>
                         <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
                     </td>
                 </tr>
@@ -92,3 +113,4 @@
 @section EndScripts{
 
 }
+

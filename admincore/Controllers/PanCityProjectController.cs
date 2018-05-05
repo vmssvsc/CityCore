@@ -40,19 +40,10 @@ namespace admincore.Controllers
         {
             return View();
         }
-
-        public IActionResult PancityCommand()
-        {
-            return View();
-        }
-        public IActionResult CommandAddEdit()
-        {
-            return View();
-        }
-
+     
         #region Initiatives
 
-        public async Task<IActionResult> ABDinitiatives()
+        public async Task<IActionResult> PancityCommand()
         {
             await SetUserData();
             return View();
@@ -93,7 +84,7 @@ namespace admincore.Controllers
 
                             _context.SaveChanges();
                             transaction.Commit();
-                            return RedirectToAction("ABDinitiatives");
+                            return RedirectToAction("PancityCommand");
                         }
                         else
                         {
@@ -108,7 +99,7 @@ namespace admincore.Controllers
                             });
                             _context.SaveChanges();
                             transaction.Commit();
-                            return RedirectToAction("ABDinitiatives");
+                            return RedirectToAction("PancityCommand");
                         }
 
                     }
@@ -116,13 +107,13 @@ namespace admincore.Controllers
                     {
                         transaction.Rollback();
                         ModelState.AddModelError("", e.Message);
-                        return View("InitiativesAddEdit", model);
+                        return View("CommandAddEdit", model);
                         // return Json(new { success = false, message = e.Message });
                     }
                 }
             }
       
-            return View("InitiativesAddEdit", model);
+            return View("CommandAddEdit", model);
         }
 
         public async Task<ContentResult> GetListI()
@@ -236,7 +227,7 @@ namespace admincore.Controllers
             return Content(data, "application/json");
         }
 
-        public async Task<IActionResult> InitiativesAddEdit(int Id)
+        public async Task<IActionResult> CommandAddEdit(int Id)
         {
             var model = new ProjectInititativeViewModel()
             {
@@ -271,14 +262,14 @@ namespace admincore.Controllers
                 {
                     var rec = _context.ProjectInitiatives.Where(v => v.Id == id).FirstOrDefault();
                     if (rec == null)
-                        throw new Exception("Invalid Project Initiative id.");
+                        throw new Exception("Invalid Pan City Command id.");
 
 
 
                     _context.Remove(rec);
                     _context.SaveChanges();
                     transaction.Commit();
-                    return Json(new { success = true, message = "Project Initiative deleted successfully." });
+                    return Json(new { success = true, message = "Pan City Command deleted successfully." });
 
 
                 }
