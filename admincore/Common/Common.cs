@@ -89,5 +89,10 @@ namespace admincore.Common
             PANCity,
             ABD
         }
+        public enum TenderStatus
+        {
+            Open,
+            Closed
+        }
     }
 }
