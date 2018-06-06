@@ -35,7 +35,8 @@ namespace admincore.Data
         public DbSet<News> News { get; set; }
         public DbSet<NewsDocumentMap> NewsDocumentMaps { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
-        
+        public DbSet<Tender> Tenders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
