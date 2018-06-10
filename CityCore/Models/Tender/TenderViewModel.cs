@@ -5,14 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace admincore.Models
+namespace CityCore.Models.Tender
 {
-    
     public class TenderViewModel
     {
         public int Id { get; set; }
-       
-        
+
+
         public string TenderDesc { get; set; }
 
         [Required]
@@ -27,13 +26,16 @@ namespace admincore.Models
         public int PostDocId { get; set; }
         public string FormDocURL { get; set; }
         public string PostDocURL { get; set; }
+        public DateTime CreatedOn { get; internal set; }
+        public string FromDocName { get; internal set; }
+        public DateTime StarDate { get; internal set; }
     }
 
     public class TenderListViewModel
     {
         //"Id", "ProNo", "Department", "Post", "StartDate", "EndDate",
         public int Id { get; set; }
-                       
+
         public string StartDate { get; set; }
 
         public string EndDate { get; set; }

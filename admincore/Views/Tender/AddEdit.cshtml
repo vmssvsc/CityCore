@@ -1,0 +1,177 @@
+﻿@model admincore.Models.TenderViewModel
+@{
+    ViewData["Title"] = "AddEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+
+    .textbox {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+    }
+
+    .date {
+        border: 1px solid #e0e0e0;
+        padding: 5px 8px;
+        color: black;
+        font-family: arial, sans-serif;
+        box-shadow: none !important;
+        width: 35%;
+        font-size: 1.5em;
+        font-weight: 300;
+        height: 40px;
+        border-radius: 0;
+        -webkit-appearance: none;
+        text-align: center;
+    }
+</style>
+@{
+        if (Model.Id > 0)
+        {
+
+            ViewData["Title"] = "Edit Career details";
+            <h1 style="text-align: center">Edit Career details</h1>
+        }
+        else
+        {
+
+            ViewData["Title"] = "Add Career details";
+            <h1 style="text-align: center">Add Career details</h1>
+        }
+    }
+
+
+
+
+<form asp-action="Save" enctype="multipart/form-data" method="post">
+    @*<input type="hidden" asp-for="save" />*@
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Tender Description</td>
+                    <td>
+                        <input type="text" class="textbox" asp-for="@Model.TenderDesc">
+                        <span asp-validation-for="@Model.TenderDesc" class="text-danger" />
+                    </td>
+                </tr>
+
+
+
+
+                @*<tr>
+                        <th scope="row">2</th>
+                        <td>Select Status</td>
+                        <td>
+                            <select asp-for="" asp-items=""></select>
+                        </td>
+                    </tr>*@
+
+
+
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Start Date</td>
+                    <td>
+                        <input type="date" class="date" asp-for="@Model.StartDate" />
+                        <span asp-validation-for="@Model.StartDate" class="text-danger" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">5</th>
+                    <td>End Date</td>
+                    <td>
+                        <input type="date" class="date" asp-for="@Model.EndDate" />
+                        <span asp-validation-for="@Model.EndDate" class="text-danger" />
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                                                <th scope="row">7</th>
+                                                <td>Post Document</td>
+                                                <td>
+
+                                                    @{
+                                    if (Model.PostDocId > 0)
+                                    {
+                                        <a href="@Model.PostDocURL">@Model.PostDocName </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="@Model.PostDocId" style="color:red"> X</a>
+
+                    }
+                    else
+                    {
+
+                                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
+                                        <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
+                    }
+                                                    }
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>Form Document</td>
+                                                <td>
+                                                    @{
+                                    if (Model.FormDocId > 0)
+                                    {
+                                        <a href="@Model.FormDocURL">@Model.FormDocName </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="@Model.FormDocId" style="color:red"> X</a>
+
+                    }
+                    else
+                    {
+
+                                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
+                                        <span asp-validation-for="@Model.FormDocument class=" text-danger" /><br>
+                    }
+                                                    }
+                                                </td>
+                                            </tr>
+
+
+
+
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td>
+
+                        <a class="btn btn-danger pull-right" href="/Career"><i class="fa fa-times"></i> Cancel</a>
+                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+</form>
+
+
+
+@section EndScripts{
+    <script type="text/javascript" src="~/js/Carrer/AddEdit.js"></script>
+}

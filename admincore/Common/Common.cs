@@ -26,7 +26,9 @@ namespace admincore.Common
             CareerFile,
             CareerForm,
             NewsImage,
-            TeamMemberImage
+            TeamMemberImage,
+            TenderFile,
+            TenderForm,
         }
 
         public enum DocumentType

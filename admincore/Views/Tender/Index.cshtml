@@ -4,154 +4,31 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<style type="text/css">
+<h1 style="text-align: center"> Recruitment List</h1>
+<div class="row">
+    <div class="col-md-12">
 
-    .textbox {
-        border: 1px solid #e0e0e0;
-        padding: 5px 8px;
-        color: black;
-        font-family: arial, sans-serif;
-        box-shadow: none !important;
-        width: 35%;
-        font-size: 1.5em;
-        font-weight: 300;
-        height: 40px;
-        border-radius: 0;
-        -webkit-appearance: none;
-    }
-
-    .date {
-        border: 1px solid #e0e0e0;
-        padding: 5px 8px;
-        color: black;
-        font-family: arial, sans-serif;
-        box-shadow: none !important;
-        width: 35%;
-        font-size: 1.5em;
-        font-weight: 300;
-        height: 40px;
-        border-radius: 0;
-        -webkit-appearance: none;
-        text-align: center;
-    }
-</style>
-
-
-
-
-<form asp-action="Save" enctype="multipart/form-data" method="post">
-    @*<input type="hidden" asp-for="save" />*@
-
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input type="hidden" " />
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Description</td>
-                    <td>
-                        <input type="text" class="textbox" asp-for="">
-                        <span asp-validation-for="" class="text-danger" />
-                    </td>
-                </tr>
-
-
-
-
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Select Status</td>
-                    <td>
-                        <select asp-for="" asp-items=""></select>
-                    </td>
-                </tr>
-
-
-
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Start Date</td>
-                    <td>
-                        <input type="date" class="date" asp-for="" />
-                        <span asp-validation-for="" class="text-danger" />
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">5</th>
-                    <td>End Date</td>
-                    <td>
-                        <input type="date" class="date" asp-for="" />
-                        <span asp-validation-for="" class="text-danger" />
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Post Document</td>
-                    <td>
-                        @*@{
-                    if (Model.PostDocId > 0)
-                    {
-                        <a href=" </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="" style="color:red"> X</a>
-
-                    }
-                    else
-                    {
-
-                        <input type="file" class="btn btn-default btn-file" asp-for="" />
-                        <span asp-validation-for="" class="text-danger" /><br>
-                    }
-                }*@
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Form Document</td>
-                    <td>
-                        @*@{
-                    if (Model.FormDocId > 0)
-                    {
-                        <a href=""> </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="" style="color:red"> X</a>
-
-                    }
-                    else
-                    {
-
-                        <input type="file" class="btn btn-default btn-file" asp-for="" />
-                        <span asp-validation-for=" class=" text-danger" /><br>
-                    }
-                }*@
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td>
-
-                        <a class="btn btn-danger pull-right" href="/Career"><i class="fa fa-times"></i> Cancel</a>
-                        <button class="btn btn-primary pull-right" type="submit"><i class="fa fa-floppy-o"></i> Save</button>
-                    </td>
-                </tr>
-
-
-            </tbody>
-        </table>
-
-
+        <div class="table-responsive">
+            <table class="table" id="tblCareer">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Description</th>
+                       
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
-
-
-
-</form>
-
-
-
+    <div class="col-md-12">
+        <br />
+        <a href="/tender/AddEdit" class="btn btn-primary pull-right">Add New</a>
+    </div>
+</div>
 @section EndScripts{
-    <script type="text/javascript" src="~/js/Carrer/AddEdit.js"></script>
+    <script type="text/javascript" src="~/js/Tender/Index.js"></script>
 }

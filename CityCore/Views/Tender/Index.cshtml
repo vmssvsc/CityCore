@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CityCore.Models.Tender.TenderViewModel>
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -27,50 +27,29 @@
 
     <div class="content_fullwidth">
         <div class="four_col_fusection inner">
-
+           
             <div class="get_features tender">
+                @{
+        foreach (var item in Model)
+        {
+            <div class="one_full">@item.TenderDesc</div>
 
-                <div class="one_full">Latin words the combined with handful model sentence structures looks reasonable.</div>
+            <div class="one_fifth ">@item.StarDate   </div>
+            <div class="one_fifth ">@item.EndDate    </div>
+            <div class="one_fifth ">  Availability: Open   </div>
+            <ul class="list_empty top-space">
+                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+            </ul>
+}
+                }
 
-                <div class="one_fifth "> Start Date: 25/05/2018    </div>
-                <div class="one_fifth ">  End Date: 08/06/2018     </div>
-                <div class="one_fifth ">  Availability: Open   </div>
-                <ul class="list_empty top-space">
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                </ul>
 
             </div><!-- end section -->
-            <div class="get_features tender">
 
-                <div class="one_full">Latin words the combined with handful model sentence structures looks reasonable.</div>
-
-                <div class="one_fifth "> Start Date: 25/05/2018    </div>
-                <div class="one_fifth ">  End Date: 08/06/2018     </div>
-                <div class="one_fifth ">  Availability: Open   </div>
-
-                <ul class="list_empty top-space">
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                </ul>
-
-            </div><!-- end section -->
-            <div class="get_features tender">
-
-                <div class="one_full">Latin words the combined with handful model sentence structures looks reasonable.</div>
-
-                <div class="one_fifth "> Start Date: 25/05/2018    </div>
-                <div class="one_fifth ">  End Date: 08/06/2018     </div>
-                <div class="one_fifth ">  Availability: Open   </div>
-                <ul class="list_empty top-space">
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                </ul>
-
-            </div><!-- end section -->
+              
+          
         </div>
     </div>
 </div>
