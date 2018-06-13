@@ -28,9 +28,21 @@ namespace CityCore.Controllers
    
         public IActionResult Index()
         {
-            return View();
-        }
+            var query = _context.Tenders.OrderBy(k => k.CreatedOn).Select(s => new TenderViewModel()
+            {
+                Id = s.Id,
+                TenderDesc= s.TenderDesc,
+                StarDate=s.StarDate,
+                EndDate=s.EndDate,
+                PostDocId=s.PostDocId,
 
+                //Image = _context.Documents.Where(d => d.Id == s.ImageDocumentId).Select(j => j.URL).FirstOrDefault(),
+            }).ToList();
+            return View(query);
+
+
+
+        }
         public ContentResult GetList()
         {
             var data = string.Empty;

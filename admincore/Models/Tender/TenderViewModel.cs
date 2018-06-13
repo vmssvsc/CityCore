@@ -16,6 +16,9 @@ namespace admincore.Models
         public string TenderDesc { get; set; }
 
         [Required]
+        public int? File1Id { get; set; }
+
+        public int? File2Id { get; set; }
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }

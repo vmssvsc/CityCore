@@ -27,29 +27,33 @@
 
     <div class="content_fullwidth">
         <div class="four_col_fusection inner">
-           
-            <div class="get_features tender">
-                @{
+
+
+            @{
         foreach (var item in Model)
         {
-            <div class="one_full">@item.TenderDesc</div>
 
-            <div class="one_fifth ">@item.StarDate   </div>
-            <div class="one_fifth ">@item.EndDate    </div>
-            <div class="one_fifth ">  Availability: Open   </div>
-            <ul class="list_empty top-space">
-                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-                <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
-            </ul>
-}
-                }
+            <div class="get_features tender">
+
+                <div class="one_full">@item.TenderDesc</div>
+
+                <div class="one_fifth ">@item.StarDate   </div>
+                <div class="one_fifth ">@item.EndDate    </div>
+                <div class="one_fifth "> @item.TenderStatus  </div>
+                <ul class="list_empty top-space">
+                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+                    <li><a href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Clouds</a></li>
+                </ul>
 
 
             </div><!-- end section -->
+}
+            }
 
-              
-          
+
+
+
         </div>
     </div>
 </div>

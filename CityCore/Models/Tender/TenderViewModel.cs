@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CityCore.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,8 +10,11 @@ namespace CityCore.Models.Tender
 {
     public class TenderViewModel
     {
+        public static int DocumentId { get; internal set; }
         public int Id { get; set; }
+        public int? File1Id { get; set; }
 
+        public int? File2Id { get; set; }
 
         public string TenderDesc { get; set; }
 
@@ -29,6 +33,7 @@ namespace CityCore.Models.Tender
         public DateTime CreatedOn { get; internal set; }
         public string FromDocName { get; internal set; }
         public DateTime StarDate { get; internal set; }
+        public Enums.TenderStatus TenderStatus { get; internal set; }
     }
 
     public class TenderListViewModel
