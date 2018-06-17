@@ -263,6 +263,9 @@ namespace admincore.Controllers
                             }
                             Document docRes = null;
                             Document formRes = null;
+
+                            Document file1Res = null;
+                            Document file2Res = null;
                             //Upload files
                             if (model.PostDocument != null)
                             {
@@ -289,6 +292,32 @@ namespace admincore.Controllers
                                 }
                             }
 
+                            if (model.File1 != null)
+                            {
+                                file1Res = await _documentManager.Save(model.File1, _amazonSettings.SliderBucketName);
+                                if (file1Res != null)
+                                {
+                                    file1Res.DocumentCategory = Enums.DocumentCategory.TenderFile1;
+                                    file1Res.CreatedBy = user.Id;
+                                    rec.File1Id = file1Res != null ? file1Res.Id : 0;
+                                    if (rec.File1Id == 0)
+                                        rec.File1Id = null;
+                                }
+                            }
+
+                            if (model.File2 != null)
+                            {
+                                file2Res = await _documentManager.Save(model.File2, _amazonSettings.SliderBucketName);
+                                if (file2Res != null)
+                                {
+                                    file2Res.DocumentCategory = Enums.DocumentCategory.TenderFile2;
+                                    file2Res.CreatedBy = user.Id;
+                                    rec.File2Id = file2Res != null ? file2Res.Id : 0;
+                                    if (rec.File2Id == 0)
+                                        rec.File2Id = null;
+                                }
+                            }
+
                             rec.ModifiedBy = user.Id;
                             rec.ModifiedOn = DateTime.UtcNow;
 
@@ -305,18 +334,27 @@ namespace admincore.Controllers
                         }
                         else
                         {
-                            if (model.FormDocument != null && model.PostDocument != null)
+                            if (model.FormDocument != null && model.PostDocument != null && model.File1 != null && model.File2 != null)
                             {
                                 //Upload files
                                 var docRes = await _documentManager.Save(model.PostDocument, _amazonSettings.SliderBucketName);
                                 var formRes = await _documentManager.Save(model.FormDocument, _amazonSettings.SliderBucketName);
 
-                                if (docRes != null && formRes != null)
+                                var file1Res = await _documentManager.Save(model.File1, _amazonSettings.SliderBucketName);
+                                var file2Res = await _documentManager.Save(model.File2, _amazonSettings.SliderBucketName);
+
+                                if (docRes != null && formRes != null && file1Res != null && file2Res != null)
                                 {
                                     docRes.DocumentCategory = Enums.DocumentCategory.TenderFile;
                                     docRes.CreatedBy = user.Id;
                                     formRes.DocumentCategory = Enums.DocumentCategory.TenderForm;
                                     formRes.CreatedBy = user.Id;
+
+                                    file1Res.DocumentCategory = Enums.DocumentCategory.TenderFile1;
+                                    file1Res.CreatedBy = user.Id;
+
+                                    file2Res.DocumentCategory = Enums.DocumentCategory.TenderFile1;
+                                    file2Res.CreatedBy = user.Id;
 
                                     _context.Add(new Tender()
                                     {
@@ -328,6 +366,8 @@ namespace admincore.Controllers
                                         StarDate = model.StartDate,
                                         TenderDesc = model.TenderDesc,
                                         FormDocumentId = formRes.Id,
+                                        File1Id = file1Res.Id,
+                                        File2Id = file2Res.Id,
                                         //Department = model.Department,
                                     });
                                     _context.SaveChanges();
@@ -344,7 +384,7 @@ namespace admincore.Controllers
                             }
                             else
                             {
-                                ModelState.AddModelError("", "Please upload both the files.");
+                                ModelState.AddModelError("", "Please upload all the files.");
                             }
                         }
                     }

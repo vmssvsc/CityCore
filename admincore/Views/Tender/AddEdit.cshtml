@@ -36,19 +36,19 @@
     }
 </style>
 @{
-        if (Model.Id > 0)
-        {
+    if (Model.Id > 0)
+    {
 
-            ViewData["Title"] = "Edit Career details";
-            <h1 style="text-align: center">Edit Career details</h1>
-        }
-        else
-        {
-
-            ViewData["Title"] = "Add Career details";
-            <h1 style="text-align: center">Add Career details</h1>
-        }
+        ViewData["Title"] = "Edit Career details";
+        <h1 style="text-align: center">Edit Career details</h1>
     }
+    else
+    {
+
+        ViewData["Title"] = "Add Career details";
+        <h1 style="text-align: center">Add Career details</h1>
+    }
+}
 
 
 
@@ -104,46 +104,87 @@
 
 
                 <tr>
-                                                <th scope="row">7</th>
-                                                <td>Post Document</td>
-                                                <td>
+                    <th scope="row">7</th>
+                    <td>Post Document</td>
+                    <td>
 
-                                                    @{
-                                    if (Model.PostDocId > 0)
-                                    {
-                                        <a href="@Model.PostDocURL">@Model.PostDocName </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="@Model.PostDocId" style="color:red"> X</a>
+                        @{
+                            if (Model.PostDocId > 0)
+                            {
+                                <a href="@Model.PostDocURL">@Model.PostDocName </a> <a href="javascript:void(0)" id="deletePostDoc" data-id="@Model.PostDocId" style="color:red"> X</a>
 
-                    }
-                    else
-                    {
+                            }
+                            else
+                            {
 
-                                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
-                                        <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
-                    }
-                                                    }
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.PostDocument" />
+                                <span asp-validation-for="@Model.PostDocument" class="text-danger" /><br>
+                            }
+                        }
 
-                                                </td>
-                                            </tr>
+                    </td>
+                </tr>
 
-                                            <tr>
-                                                <th scope="row">7</th>
-                                                <td>Form Document</td>
-                                                <td>
-                                                    @{
-                                    if (Model.FormDocId > 0)
-                                    {
-                                        <a href="@Model.FormDocURL">@Model.FormDocName </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="@Model.FormDocId" style="color:red"> X</a>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Form Document</td>
+                    <td>
+                        @{
+                            if (Model.FormDocId > 0)
+                            {
+                                <a href="@Model.FormDocURL">@Model.FormDocName </a> <a href="javascript:void(0)" id="deleteFormDoc" data-id="@Model.FormDocId" style="color:red"> X</a>
 
-                    }
-                    else
-                    {
+                            }
+                            else
+                            {
 
-                                        <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
-                                        <span asp-validation-for="@Model.FormDocument class=" text-danger" /><br>
-                    }
-                                                    }
-                                                </td>
-                                            </tr>
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.FormDocument" />
+                                <span asp-validation-for="@Model.FormDocument class=" text-danger" /><br>
+                            }
+                        }
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>File 1</td>
+                    <td>
+                        @{
+                            if (Model.File1Id > 0)
+                            {
+                                <a href="@Model.File1URL">@Model.File1Name </a> <a href="javascript:void(0)" id="deleteFile1" data-id="@Model.File1Id" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.File1" />
+                                <span asp-validation-for="@Model.File1 class=" text-danger" /><br>
+                            }
+                        }
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>File 2</td>
+                    <td>
+                        @{
+                            if (Model.File2Id > 0)
+                            {
+                                <a href="@Model.File2URL">@Model.File2Name </a> <a href="javascript:void(0)" id="deleteFile2" data-id="@Model.File2Id" style="color:red"> X</a>
+
+                            }
+                            else
+                            {
+
+                                <input type="file" class="btn btn-default btn-file" asp-for="@Model.File2" />
+                                <span asp-validation-for="@Model.File2 class=" text-danger" /><br>
+                            }
+                        }
+                    </td>
+                </tr>
 
 
 

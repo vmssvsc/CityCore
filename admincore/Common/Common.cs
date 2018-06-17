@@ -29,6 +29,8 @@ namespace admincore.Common
             TeamMemberImage,
             TenderFile,
             TenderForm,
+            TenderFile1,
+            TenderFile2,
         }
 
         public enum DocumentType
